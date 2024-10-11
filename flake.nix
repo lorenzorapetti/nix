@@ -111,11 +111,52 @@
 	      "/Applications/Firefox.app"
 	      "${pkgs.obsidian}/Applications/Obsidian.app"
 	    ];
+	    tilesize = 48;
 	  };
-	  finder.FXPreferredViewStyle = "clmv";
+	  finder = {
+	    _FXSortFoldersFirst = true;
+	    # Search in current folder
+	    FXDefaultSearchScope = "SCcf";
+	    FXEnableExtensionChangeWarning = false;
+	    # Show column style as default
+	    FXPreferredViewStyle = "clmv";
+	    # Allow quitting the Finder
+	    QuitMenuItem = true;
+	  };
+	  # Disable quarantine for downloaded applications
+	  LaunchServices.LSQuarantine = false;
 	  loginwindow.GuestEnabled = false;
-	  NSGlobalDomain.KeyRepeat = 2;
+	  menuExtraClock = {
+	    IsAnalog = true;
+	    # Never show date
+	    ShowDate = 2;
+	  };
+	  NSGlobalDomain = {
+	    "com.apple.swipescrolldirection" = false;
+	    # Enables swiping left or right with two fingers to navigate backward or forward
+	    AppleEnableMouseSwipeNavigateWithScrolls = true;
+	    AppleEnableSwipeNavigateWithScrolls = true;
+	    AppleICUForce24HourTime = true;
+	    InitialKeyRepeat = 20;
+	    KeyRepeat = 1;
+	    NSAutomaticCapitalizationEnabled = false;
+	    NSAutomaticDashSubstitutionEnabled = false;
+	    NSAutomaticInlinePredictionEnabled = false;
+	    NSAutomaticPeriodSubstitutionEnabled = false;
+	    NSAutomaticQuoteSubstitutionEnabled = false;
+	    NSAutomaticSpellingCorrectionEnabled = false;
+	    NSDocumentSaveNewDocumentsToCloud = false;
+	    NSNavPanelExpandedStateForSaveMode = true;
+	    NSNavPanelExpandedStateForSaveMode2 = true;
+	    PMPrintingExpandedStateForPrint = true;
+	    PMPrintingExpandedStateForPrint2 = true;
+	  };
 	};	
+
+	keyboard = {
+	  enableKeyMapping = true;
+	  swapLeftCtrlAndFn = true;
+	};
       };
     };
   in
