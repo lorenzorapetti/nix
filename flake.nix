@@ -34,6 +34,7 @@
           mkalias
 	  neovim
 	  tmux
+	  gh
 
 	  kitty
 	  obsidian
@@ -50,7 +51,11 @@
 	  "the-unarchiver"
 	];
 	masApps = {};
-	onActivation.cleanup = "zap";
+	onActivation = {
+	  cleanup = "zap";
+	  autoUpdate = true;
+	  upgrade = true;
+	};
       };
 
       fonts.packages = [
@@ -78,25 +83,40 @@
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
 
-      system.activationScripts.applications.text = let
-	env = pkgs.buildEnv {
-	  name = "system-applications";
-	  paths = config.environment.systemPackages;
-	  pathsToLink = "/Applications";
-	};
-      in
-	pkgs.lib.mkForce ''
-	# Set up applications.
-	echo "setting up /Applications..." >&2
-	rm -rf /Applications/Nix\ Apps
-	mkdir -p /Applications/Nix\ Apps
-	find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-	while read src; do
-	  app_name=$(basename "$src")
-	  echo "copying $src" >&2
-	  ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
-	done
-	    '';
+      system = {
+        activationScripts.applications.text = let
+		env = pkgs.buildEnv {
+		  name = "system-applications";
+		  paths = config.environment.systemPackages;
+		  pathsToLink = "/Applications";
+		};
+	      in
+		pkgs.lib.mkForce ''
+		# Set up applications.
+		echo "setting up /Applications..." >&2
+		rm -rf /Applications/Nix\ Apps
+		mkdir -p /Applications/Nix\ Apps
+		find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
+		while read src; do
+		  app_name=$(basename "$src")
+		  echo "copying $src" >&2
+		  ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
+		done
+		    '';
+        defaults = {
+	  dock = {
+	    autohide = true;
+	    persistent-apps = [
+	      "${pkgs.kitty}/Applications/Kitty.app"
+	      "/Applications/Firefox.app"
+	      "${pkgs.obsidian}/Applications/Obsidian.app"
+	    ];
+	  };
+	  finder.FXPreferredViewStyle = "clmv";
+	  loginwindow.GuestEnabled = false;
+	  NSGlobalDomain.KeyRepeat = 2;
+	};	
+      };
     };
   in
   {
