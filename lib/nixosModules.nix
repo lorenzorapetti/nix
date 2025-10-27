@@ -6,6 +6,6 @@ let
 in
 {
   default = ../modules/nixos/default;
-  # desktop = pathAttrs ../modules/nixos/desktop;
+  desktop = pathAttrs ../modules/nixos/desktop;
   # hardware = pathAttrs ../modules/nixos/hardware;
 }
