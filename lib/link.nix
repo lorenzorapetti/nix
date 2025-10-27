@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ lib, ... }: config:
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
 
@@ -16,8 +16,6 @@ let
     };
   };
 in
-assert
-  (builtins.pathExists dotfilesPath) || throw "You need to clone this repo in your home directory";
 {
   linkConfFiles = lib.map linkFile;
   linkConfDirs = lib.map linkDir;

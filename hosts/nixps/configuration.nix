@@ -24,6 +24,8 @@
   networking.networkmanager.enable = true;
 
   hardware.bluetooth.enable = true;
+  hardware.ipu6.enable = true;
+  hardware.ipu6.platform = "ipu6epmtl";
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
@@ -61,10 +63,15 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  users.users.lorenzo.extraGroups = [
-    "networkmanager"
-    "wheel"
-  ];
+
+  users.users.lorenzo = {
+    isNormalUser = true;
+    description = "Lorenzo";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+  };
 
   # Install firefox.
   programs.firefox.enable = true;

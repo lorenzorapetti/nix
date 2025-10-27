@@ -9,7 +9,6 @@
 
     _1password-cli
     lazydocker # docker tui
-    lazygit # git tui
 
     lsd # Better ls
     bat # Better cat
@@ -19,5 +18,6 @@
 
   programs = {
     starship.enable = lib.mkDefault true;
+    lazygit.enable = lib.mkDefault true;
   };
 }

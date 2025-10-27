@@ -1,10 +1,12 @@
-{ flake, lib, ... }:
+{ flake, lib, config,  ... }:
 let
   inherit (lib) map mergeAttrsList;
 
+  link = flake.lib.link config;
+
   confFiles = [ ];
 
-  confDirs = map flake.lib.link.linkDir [
+  confDirs = link.linkConfDirs [
     "helix"
   ];
 

@@ -22,4 +22,6 @@ rec {
   # Extra flake outputs
   homeModules = import ./homeModules.nix args;
   nixosModules = import ./nixosModules.nix args;
+
+  link = import ./link.nix args;
 }

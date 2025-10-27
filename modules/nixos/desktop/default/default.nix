@@ -1,5 +1,4 @@
-{ _ }:
+{ ... }:
 {
-  imports = [ ./configs ];
-  desktop.enable = true;
+  imports = [ ./configs ./fonts.nix ];
 }

@@ -46,5 +46,7 @@
       homeModules
       nixosModules
       ;
+
+    home-manager.backupFileExtension = "backup";
   };
 }

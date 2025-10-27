@@ -1,4 +1,4 @@
-{ _ }:
+{ ... }:
 {
   imports = [ ./sound.nix ];
 }
