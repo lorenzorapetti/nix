@@ -6,25 +6,16 @@
 }:
 perSystem.devshell.mkShell {
   # Set name of devshell from config
-  devshell.name = "nix";
+  devshell.name = "nix-dotfiles";
 
-  # Startup script of devshell, plus extra
-  devshell.startup.nixos.text = "";
-
-  # Base list of commands for devshell, plus extra
+  # Base list of commands for devshell
   commands = [
     {
       category = "development";
-      name = "nixos";
-      help = "Deploy hosts and generate files";
-      package = perSystem.self.default;
+      name = "switch";
+      help = "Create a new generation";
+      command = "sudo nixos-rebuild switch --flake .";
     }
-    # {
-    #   category = "development";
-    #   name = "agenix";
-    #   help = "Manage secrets and identity";
-    #   package = perSystem.self.agenix;
-    # }
     {
       category = "development";
       name = "browse";

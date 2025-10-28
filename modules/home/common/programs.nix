@@ -15,8 +15,6 @@ in {
 
     lsd # Better ls
     bat # Better cat
-
-    direnv # Execute .envrc on dir change
   ];
 
   programs = {
@@ -25,5 +23,6 @@ in {
     zsh.enable = mkDefault true;
     starship.enable = mkDefault true;
     lazygit.enable = mkDefault true;
+    direnv.enable = mkDefault true;
   };
 }
