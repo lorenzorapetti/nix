@@ -3,15 +3,15 @@
 
   inputs = {
     # Nix Packages
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Nix for MacOS
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     # Home Manager
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.url = "github:nix-community/home-manager/master";
     # Follow nixpkgs declared above instead of downloading another one
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -31,7 +31,7 @@
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs: {
+  outputs = inputs: rec {
     inherit (inputs.blueprint { inherit inputs; })
       checks
       devShells
@@ -40,12 +40,11 @@
       nixosConfigurations
       packages
       modules
+      nixosModules
+      homeModules
       ;
 
-    inherit (inputs.self.lib)
-      homeModules
-      nixosModules
-      ;
+    commonModules = modules.common;
 
     home-manager.backupFileExtension = "backup";
   };

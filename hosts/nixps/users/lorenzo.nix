@@ -1,8 +1,8 @@
-{ config, flake, ... }:
+{ flake, ... }:
 {
   imports = [
-    flake.homeModules.default
-    flake.homeModules.desktop.niri
-    flake.homeModules.users.lorenzo
+    flake.homeModules.common
+    flake.homeModules.niri
+    flake.homeModules.lorenzo
   ];
 }

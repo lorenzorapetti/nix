@@ -8,19 +8,21 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    flake.nixosModules.default
-    flake.nixosModules.desktop.niri
+    flake.nixosModules.common
+    flake.nixosModules.niri
   ];
 
   boot = {
     loader = {
       systemd-boot.enable = true;
+      systemd-boot.configurationLimit = 10;
       efi.canTouchEfiVariables = true;
     };
 
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
+  networking.hostName = "nixps";
   networking.networkmanager.enable = true;
 
   hardware.bluetooth.enable = true;

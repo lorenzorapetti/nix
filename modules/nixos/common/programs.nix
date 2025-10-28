@@ -1,7 +1,7 @@
 { pkgs, flake, ... }:
 {
   imports = [
-    flake.modules.global.packages
+    flake.commonModules.packages
   ];
 
   environment.systemPackages = with pkgs; [

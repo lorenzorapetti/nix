@@ -18,4 +18,6 @@
       options = "--delete-older-than 1w";
     };
   };
+
+  system.stateVersion = "25.05";
 }

@@ -1,10 +1,9 @@
-{ pkgs, lib, ... }:
-{
+{ pkgs, lib, ... }: let
+  inherit (lib) mkDefault;
+in {
   home.packages = with pkgs; [
     fzf
     ripgrep
-    fish
-    zsh
     zoxide # change dir with z
 
     _1password-cli
@@ -17,7 +16,10 @@
   ];
 
   programs = {
-    starship.enable = lib.mkDefault true;
-    lazygit.enable = lib.mkDefault true;
+    bash.enable = mkDefault true;
+    fish.enable = mkDefault true;
+    zsh.enable = mkDefault true;
+    starship.enable = mkDefault true;
+    lazygit.enable = mkDefault true;
   };
 }

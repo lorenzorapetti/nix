@@ -1,6 +1,6 @@
 { flake, lib, config,  ... }:
 let
-  inherit (lib) map mergeAttrsList;
+  inherit (lib) mergeAttrsList;
 
   link = flake.lib.link config;
 
