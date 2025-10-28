@@ -21,6 +21,8 @@ in {
         hour_format = "hour24";
         auto_update = false;
 
+        buffer_font_family = "GeistMono Nerd Font";
+
         languages = {
           Nix = {
             language_servers = [

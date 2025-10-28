@@ -1,7 +1,8 @@
 {lib, ...}: let
   inherit (lib) mkDefault;
 in {
-  imports = [./zed.nix];
+  imports = [./alacritty.nix ./zed.nix];
 
+  programs.alacritty.enable = mkDefault true;
   programs.zed-editor.enable = mkDefault true;
 }
