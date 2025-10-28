@@ -1,4 +1,8 @@
-{config, lib, ...}: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (lib) mkIf;
 
   starshipEnabled = config.programs.starship.enable;
@@ -9,4 +13,5 @@ in {
   };
 
   programs.starship.enableBashIntegration = mkIf starshipEnabled true;
+  programs.direnv.enableBashIntegration = true;
 }

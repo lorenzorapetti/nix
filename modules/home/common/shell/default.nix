@@ -1,3 +1,3 @@
 {...}: {
-  imports = [ ./bash.nix ./starship.nix ];
+  imports = [./bash.nix ./starship.nix];
 }

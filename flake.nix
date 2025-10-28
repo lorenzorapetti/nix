@@ -26,13 +26,18 @@
     blueprint.url = "github:numtide/blueprint";
     blueprint.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Developer environments
+    devshell.url = "github:numtide/devshell";
+    devshell.inputs.nixpkgs.follows = "nixpkgs";
+
     # Neovim configuration using Nix
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs: rec {
-    inherit (inputs.blueprint { inherit inputs; })
+    inherit
+      (inputs.blueprint {inherit inputs;})
       checks
       devShells
       formatter

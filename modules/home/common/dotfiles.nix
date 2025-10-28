@@ -1,17 +1,20 @@
-{ flake, lib, config,  ... }:
-let
+{
+  flake,
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mergeAttrsList;
 
   link = flake.lib.link config;
 
-  confFiles = [ ];
+  confFiles = [];
 
   confDirs = link.linkConfDirs [
     "helix"
   ];
 
   links = mergeAttrsList (confDirs ++ confFiles);
-in
-{
+in {
   xdg.configFile = links;
 }

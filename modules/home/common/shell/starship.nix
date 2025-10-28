@@ -1,9 +1,11 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.programs.starship;
   inherit (lib) mkIf;
-in
-{
+in {
   config = mkIf cfg.enable {
     programs.starship = {
       settings = {

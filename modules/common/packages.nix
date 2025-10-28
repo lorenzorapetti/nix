@@ -31,6 +31,7 @@
 
     # Nix dev
     nixd
-    nixfmt
+    alejandra
+    statix
   ];
 }

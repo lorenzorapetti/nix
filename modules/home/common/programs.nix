@@ -1,4 +1,8 @@
-{ pkgs, lib, ... }: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   inherit (lib) mkDefault;
 in {
   home.packages = with pkgs; [

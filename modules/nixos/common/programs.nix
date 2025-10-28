@@ -1,5 +1,8 @@
-{ pkgs, flake, ... }:
 {
+  pkgs,
+  flake,
+  ...
+}: {
   imports = [
     flake.commonModules.packages
   ];

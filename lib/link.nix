@@ -1,5 +1,4 @@
-{ lib, ... }: config:
-let
+{lib, ...}: config: let
   inherit (config.lib.file) mkOutOfStoreSymlink;
 
   dotfilesPath = "${config.home.homeDirectory}/nix/dotfiles";
@@ -15,8 +14,7 @@ let
       recursive = true;
     };
   };
-in
-{
+in {
   linkConfFiles = lib.map linkFile;
   linkConfDirs = lib.map linkDir;
 }

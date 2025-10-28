@@ -1,3 +1,3 @@
-{ flake, ... }: {
-  imports = [ flake.homeModules.desktop ];
+{flake, ...}: {
+  imports = [flake.homeModules.desktop];
 }

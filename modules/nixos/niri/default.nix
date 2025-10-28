@@ -1,4 +1,3 @@
-{ flake, ... }:
-{
-  imports = [ flake.nixosModules.desktop ];
+{flake, ...}: {
+  imports = [flake.nixosModules.desktop];
 }

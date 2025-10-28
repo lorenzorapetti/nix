@@ -1,28 +1,57 @@
-{ config, lib, ... }: let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (lib) mkIf;
 
   cfg = config.programs.zed-editor;
 in {
   config = {
     programs.zed-editor = mkIf cfg.enable {
-      extensions = [ "nix" "rust" "toml" "json" ];
+      extensions = [
+        "nix"
+        "rust"
+        "toml"
+        "json"
+        "catppuccin"
+      ];
 
       userSettings = {
         hour_format = "hour24";
         auto_update = false;
 
-        lsp = {
-            rust-analyzer = {
-            binary = {
-                path_lookup = true;
-            };
-            };
+        languages = {
+          Nix = {
+            language_servers = [
+              "nixd"
+              "!nil"
+            ];
 
-            nix = {
+            formatter = {
+              external = {
+                command = "alejandra";
+                arguments = [
+                  "--quiet"
+                  "--"
+                ];
+              };
+            };
+          };
+        };
+
+        lsp = {
+          rust-analyzer = {
             binary = {
-                path_lookup = true;
+              path_lookup = true;
             };
+          };
+
+          nixd = {
+            binary = {
+              path_lookup = true;
             };
+          };
         };
 
         vim_mode = true;
