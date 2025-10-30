@@ -23,13 +23,4 @@ in {
   programs.firefox.enable = mkDefault true;
   programs.chromium.enable = mkDefault true;
   programs.zen-browser.enable = mkDefault true;
-
-  programs.ssh = {
-    enable = true;
-    enableDefaultConfig = false;
-    extraConfig = ''
-      Host *
-         	IdentityAgent ~/.1password/agent.sock
-    '';
-  };
 }

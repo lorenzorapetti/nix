@@ -11,7 +11,7 @@
     roboto
     source-sans-pro
 
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     openmoji-black
     openmoji-color
     twemoji-color-font
