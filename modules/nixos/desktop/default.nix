@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./sound.nix ./fonts.nix];
+  imports = [./sound.nix ./fonts.nix ./applications];
 }
