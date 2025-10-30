@@ -1,8 +1,11 @@
 {
   pkgs,
   flake,
+  lib,
   ...
-}: {
+}: let
+  inherit (lib) mkDefault;
+in {
   imports = [
     flake.commonModules.packages
   ];
@@ -13,5 +16,8 @@
     inetutils
     nmap
     home-manager
+    tailscale
   ];
+
+  services.tailscale.enable = mkDefault true;
 }
