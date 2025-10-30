@@ -23,7 +23,7 @@
     hardware.url = "github:NixOS/nixos-hardware";
 
     # Map folder structure to flake outputs
-    blueprint.url = "github:numtide/blueprint";
+    blueprint.url = "github:lorenzorapetti/blueprint";
     blueprint.inputs.nixpkgs.follows = "nixpkgs";
 
     # Developer environments
@@ -50,7 +50,5 @@
       ;
 
     commonModules = modules.common;
-
-    home-manager.backupFileExtension = "backup";
   };
 }
