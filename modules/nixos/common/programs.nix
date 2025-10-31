@@ -15,8 +15,11 @@ in {
     gnumake
     inetutils
     nmap
-    home-manager
     tailscale
+
+    # Nix
+    home-manager
+    cachix
   ];
 
   services.tailscale.enable = mkDefault true;

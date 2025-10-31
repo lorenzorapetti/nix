@@ -64,6 +64,7 @@ in {
         theme = {
           mode = "dark";
           dark = "Catppuccin Mocha";
+          light = "Catppuccin Latte";
         };
       };
     };
