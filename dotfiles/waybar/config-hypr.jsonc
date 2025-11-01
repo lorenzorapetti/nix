@@ -1,0 +1,205 @@
+{
+  "layer": "bottom",
+  "position": "top",
+  "margin-top": 8,
+  "margin-bottom": 0,
+  "margin-left": 10,
+  "margin-right": 10,
+  "spacing": 8, // Gaps between modules (8px)
+  "modules-left": [
+    "clock#date",
+    // "hyprland/language",
+    "wireplumber",
+    "custom/ddcutil",
+    "tray",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "hyprland/workspaces",
+    "hyprland/submap"
+  ],
+  "modules-right": [
+    "cpu",
+    "memory",
+    // "custom/gpu",
+    // "custom/storage",
+    "temperature"
+    // "backlight",
+    // "custom/power"
+    // "battery"
+  ],
+  "clock#date": {
+    "on-click": "gnome-calendar",
+    "format": "  {:%a %d %b %H:%M}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#eebebe'><b>{}</b></span>",
+        "days": "<span color='#ffe6ff'><b>{}</b></span>",
+        "weeks": "<span color='#c6a0f6'><b>W{}</b></span>",
+        "weekdays": "<span color='#eebebe'><b>{}</b></span>",
+        "today": "<span color='#ed8796'><b><u>{}</u></b></span>"
+      }
+    },
+    "justify": "center"
+  },
+  "hyprland/language": {
+    "format": "{short}",
+  },
+  "wireplumber": {
+    "on-click": "pavucontrol-qt",
+    "on-click-right": "amixer sset Master toggle 1>/dev/null",
+    "on-scroll-down": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.05-",
+    "on-scroll-up": "wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 0.05+",
+    "format": "{icon} {volume}%",
+    "format-source": " ",
+    "format-source-muted": " ",
+    "format-muted": "<span foreground='#fab387'>  MUT</span>",
+    "format-icons": {
+      "headphone": " ",
+      "hands-free": " ",
+      "headset": " ",
+      "phone": " ",
+      "portable": " ",
+      "car": " ",
+      "default": [
+        " ",
+        " ",
+        " "
+      ]
+    },
+    "justify": "center"
+  },
+  "custom/ddcutil": {
+    "format": "{icon} {percentage}%",
+    "format-icons": [
+      "󰃞",
+      "󰃟",
+      "󰃠"
+    ],
+    "exec": "ddc_brightness",
+    "exec-if": "sleep 1",
+    "return-type": "json",
+    "on-scroll-up": "echo '+' > /tmp/waybar-ddc-module-rx",
+    "on-scroll-down": "echo '-' > /tmp/waybar-ddc-module-rx",
+    "on-click": "echo 'max' > /tmp/waybar-ddc-module-rx",
+    "on-click-right": "echo 'min' > /tmp/waybar-ddc-module-rx",
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 15,
+    "spacing": 10
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十",
+      "special": "特別"
+    },
+    "persistent-workspaces": {
+      "*": 10
+    },
+    //"on-scroll-up": "hyprctl dispatch workspace e+1 1>/dev/null",
+    //"on-scroll-down": "hyprctl dispatch workspace e-1 1>/dev/null",
+    "sort-by-number": true,
+    "justify": "center",
+    "show-special": true,
+  },
+  "hyprland/window": {
+    "format": "{title}",
+    "rewrite": {
+      "(.*) — Mozilla Firefox": "  $1",
+      "(.*) - fish": "> [$1]"
+    },
+  },
+  "cpu": {
+    "format": "󰌢  {usage}% {max_frequency:0.1f}GHz",
+    "on-click": "ghostty -e btop",
+    "interval": 3,
+    //"max-length": 14,
+    //"min-length": 14,
+    "justify": "center",
+    "tooltip": false
+  },
+  "memory": {
+    "format": "  {percentage}% ({used:0.1f}G)",
+    "interval": 3,
+    "justify": "center",
+    "tooltip-format": "Used {used:0.1f}G of {total:0.1f}G available ({percentage}%)"
+  },
+  "custom/storage": {
+    "format": "  {}G",
+    "format-alt": "  {percentage}%",
+    "format-alt-click": "click",
+    "return-type": "json",
+    "interval": 60,
+    "exec": "~/.config/waybar/modules/storage.sh",
+    "justify": "center",
+    "tooltip": false
+  },
+  "temperature": {
+    "thermal-zone": 1,
+    "interval": 3,
+    "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon/hwmon6",
+    "input-filename": "temp1_input",
+    "critical-threshold": 80,
+    "format-critical": " {temperatureC}°C",
+    "format": "{icon} {temperatureC}°C",
+    "format-icons": [
+      ""
+    ],
+    //"max-length": 20,
+    //"min-length": 7,
+    "tooltip": false
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon}{percent}%",
+    "format-icons": [
+      "󰃞 ",
+      "󰃟 ",
+      "󰃠 "
+    ],
+    "on-scroll-down": "brightnessctl s 5%-",
+    "on-scroll-up": "brightnessctl s +5%",
+    "justify": "center",
+    "tooltip": false
+  },
+  "battery": {
+    "interval": 30,
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}",
+    "format-charging": " {capacity}",
+    "format-plugged": " {capacity}",
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ],
+    "justify": "center"
+  },
+  "custom/power": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "wleave -k",
+    "justify": "center"
+  }
+}

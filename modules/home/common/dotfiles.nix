@@ -12,6 +12,7 @@
 
   confDirs = link.linkConfDirs [
     "helix"
+    "waybar"
   ];
 
   links = mergeAttrsList (confDirs ++ confFiles);

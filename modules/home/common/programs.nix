@@ -12,6 +12,7 @@ in {
 
     _1password-cli
     lazydocker # docker tui
+    systemctl-tui
 
     lsd # Better ls
     bat # Better cat

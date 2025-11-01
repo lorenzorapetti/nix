@@ -5,7 +5,7 @@
   perSystem,
   ...
 }: let
-  inherit (lib) replaceStrings attrNames attrValues isList head tail concatMap listToAttrs;
+  inherit (lib) map replaceStrings attrNames attrValues isList head tail concatMap listToAttrs;
 
   # This combines prefixes in the form
   #
@@ -160,7 +160,7 @@ in {
     gestures.hot-corners.enable = false;
 
     spawn-at-startup = [
-      {sh = "hypridle";}
+      {argv = ["nm-applet" "--indicator"];}
     ];
 
     window-rules = let
