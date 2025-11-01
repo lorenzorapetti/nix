@@ -171,9 +171,55 @@ in {
         top-right = radius;
       };
     in [
+      # Border radius for all windows
       {
         geometry-corner-radius = cornerRadius 8.0;
         clip-to-geometry = true;
+      }
+      {
+        matches = [
+          {app-id = "^1Password$";}
+        ];
+        block-out-from = "screencast";
+        open-floating = true;
+      }
+      {
+        matches = [
+          {app-id = "^(nm-connection-editor|\.blueman-manager-wrapped)";}
+        ];
+        open-floating = true;
+      }
+      {
+        matches = [
+          {app-id = "^quick-terminal";}
+        ];
+        open-floating = true;
+        default-floating-position = {
+          x = 200;
+          y = 126;
+          relative-to = "top-left";
+        };
+        min-width = 1500;
+        min-height = 1000;
+      }
+      {
+        matches = [
+          {
+            app-id = "steam";
+            title = "^notificationtoasts_\d+_desktop$";
+          }
+        ];
+        default-floating-position = {
+          x = 10;
+          y = 10;
+          relative-to = "bottom-right";
+        };
+      }
+      {
+        matches = [
+          {app-id = "^(brave-browser|dev\.zed\.Zed|firefox|zen|zen-twilight)$";}
+        ];
+        open-maximized = true;
       }
     ];
 
@@ -337,5 +383,7 @@ in {
           "Ctrl+Alt+Delete" = bind "Quit Niri" quit;
         }
       ];
+
+    xwayland-satellite.path = "${lib.getExe pkgs.xwayland-satellite-unstable}";
   };
 }
