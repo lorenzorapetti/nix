@@ -160,6 +160,7 @@ in {
     gestures.hot-corners.enable = false;
 
     spawn-at-startup = [
+      {sh = "mako";}
       {argv = ["nm-applet" "--indicator"];}
     ];
 

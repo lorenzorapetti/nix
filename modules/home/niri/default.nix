@@ -1,8 +1,4 @@
-{
-  flake,
-  lib,
-  ...
-}: {
+{flake, ...}: {
   imports = [
     flake.homeModules.desktop-tiling
     ./programs.nix
