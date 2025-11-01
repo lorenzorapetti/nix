@@ -5,5 +5,7 @@
     libinput
 
     cliphist
+    playerctl
+    brightnessctl
   ];
 }

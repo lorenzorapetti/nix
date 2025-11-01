@@ -1,3 +1,8 @@
 {flake, ...}: {
-  imports = [flake.homeModules.desktop ./programs.nix ./niri.nix];
+  imports = [
+    flake.homeModules.desktop-tiling
+    ./programs.nix
+    ./hypridle.nix
+    ./niri.nix
+  ];
 }

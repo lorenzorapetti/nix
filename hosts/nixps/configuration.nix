@@ -27,6 +27,7 @@
   hardware.ipu6.enable = true;
   hardware.ipu6.platform = "ipu6epmtl";
 
+  services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
 
   # Configure keymap in X11

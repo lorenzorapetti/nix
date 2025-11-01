@@ -8,6 +8,7 @@
 in {
   imports = [
     inputs.zen-browser.homeModules.twilight
+    ./vicinae.nix
     ./alacritty.nix
     ./browsers.nix
     ./zen-browser.nix
@@ -17,6 +18,8 @@ in {
   home.packages = with pkgs; [
     ticktick
   ];
+
+  services.vicinae.enable = mkDefault true;
 
   programs.alacritty.enable = mkDefault true;
   programs.zed-editor.enable = mkDefault true;
