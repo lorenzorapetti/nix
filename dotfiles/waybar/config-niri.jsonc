@@ -110,7 +110,7 @@
     "format-icons": [""],
     //"max-length": 20,
     //"min-length": 7,
-    "tooltip": false,
+    "tooltip": true,
   },
   "backlight": {
     "device": "intel_backlight",
