@@ -28,11 +28,12 @@
   programs.niri.package = pkgs.niri-unstable;
 
   services.udisks2.enable = true;
+  services.swayosd.enable = true;
 
   environment.variables.NIXOS_OZONE_WL = "1";
 
   systemd.user.services = let
-    services = ["waybar" "hypridle" "udiskie"];
+    services = ["waybar" "hypridle" "udiskie" "swayosd"];
   in
     lib.attrsets.mergeAttrsList [
       (builtins.listToAttrs (builtins.map (service: {

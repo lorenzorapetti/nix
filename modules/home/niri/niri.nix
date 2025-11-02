@@ -249,6 +249,43 @@ in {
         inherit action;
         allow-when-locked = true;
       };
+
+      swayosdEnabled = config.services.swayosd.enable;
+
+      audio =
+        if swayosdEnabled
+        then {
+          raise = "swayosd-client --output-volume raise";
+          lower = "swayosd-client --output-volume lower";
+          mute = "swayosd-client --output-volume mute-toggle";
+          micMute = "swayosd-client --input-volume mute-toggle";
+        }
+        else {
+          raise = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+";
+          lower = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+          mute = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+          micMute = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+        };
+
+      brightness =
+        if swayosdEnabled
+        then {
+          raise = "swayosd-client --brightness raise";
+          lower = "swayosd-client --brightness lower";
+        }
+        else {
+          raise = "${brightnessctl} s +5%";
+          lower = "${brightnessctl} s 5%-";
+        };
+
+      player =
+        if swayosdEnabled
+        then {
+          playPause = "swayosd-client --playerctl play-pause";
+        }
+        else {
+          playPause = "${playerctl} play-pause";
+        };
     in
       lib.attrsets.mergeAttrsList [
         {
@@ -267,19 +304,19 @@ in {
         }
         # Media
         {
-          XF86AudioRaiseVolume = bindMedia (spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+");
-          XF86AudioLowerVolume = bindMedia (spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-");
-          XF86AudioMute = bindMedia (spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle");
-          XF86AudioMicMute = bindMedia (spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle");
+          XF86AudioRaiseVolume = bindMedia (spawn-sh audio.raise);
+          XF86AudioLowerVolume = bindMedia (spawn-sh audio.lower);
+          XF86AudioMute = bindMedia (spawn-sh audio.mute);
+          XF86AudioMicMute = bindMedia (spawn-sh audio.micMute);
 
           XF86AudioNext = bindMedia (spawn "${playerctl}" "next");
           XF86AudioPrev = bindMedia (spawn "${playerctl}" "previous");
-          XF86AudioPlay = bindMedia (spawn "${playerctl}" "play-pause");
-          XF86AudioPause = bindMedia (spawn "${playerctl}" "play-pause");
+          XF86AudioPlay = bindMedia (spawn-sh player.playPause);
+          XF86AudioPause = bindMedia (spawn-sh player.playPause);
           XF86AudioStop = bindMedia (spawn "${playerctl}" "stop");
 
-          XF86MonBrightnessUp = bindMedia (spawn "${brightnessctl}" "s" "+5%");
-          XF86MonBrightnessDown = bindMedia (spawn "${brightnessctl}" "s" "5%-");
+          XF86MonBrightnessUp = bindMedia (spawn-sh brightness.raise);
+          XF86MonBrightnessDown = bindMedia (spawn-sh brightness.lower);
         }
         # Focus & Movement
         (binds {
