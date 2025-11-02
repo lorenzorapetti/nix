@@ -41,6 +41,10 @@ in {
       defaultApplications = associations;
     };
 
+    home.packages = with pkgs; [
+      ungoogled-chromium
+    ];
+
     home.sessionVariables.BROWSER = "${lib.getExe pkgs.brave}";
 
     programs.chromium = mkIf chromium.enable {
