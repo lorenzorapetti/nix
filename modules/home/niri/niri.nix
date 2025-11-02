@@ -186,7 +186,7 @@ in {
       }
       {
         matches = [
-          {app-id = "^(nm-connection-editor|\.blueman-manager-wrapped)";}
+          {app-id = "^(nm-connection-editor|\.blueman-manager-wrapped|imv|mpv)";}
         ];
         open-floating = true;
       }
