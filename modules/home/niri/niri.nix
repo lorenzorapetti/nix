@@ -234,8 +234,6 @@ in {
     binds = with config.lib.niri.actions; let
       inherit (lib) getExe range;
 
-      zen-twilight = perSystem.zen-browser.twilight;
-
       vicinae = getExe perSystem.vicinae.default;
       playerctl = getExe pkgs.playerctl;
       brightnessctl = getExe pkgs.brightnessctl;
@@ -256,7 +254,7 @@ in {
         {
           "Mod+Shift+Slash".action = show-hotkey-overlay;
           "Mod+Return" = bind "Open Terminal" (spawn "${getExe pkgs.alacritty}");
-          "Mod+B" = bind "Open Browser" (spawn "${getExe zen-twilight}");
+          "Mod+B" = bind "Open Browser" (spawn "${getExe pkgs.brave}");
 
           "Mod+Q" = bind "Close Window" close-window;
           "Mod+Ctrl+E" = bind "Toggle Overview" toggle-overview;
