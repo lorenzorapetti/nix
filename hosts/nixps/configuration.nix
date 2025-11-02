@@ -17,7 +17,19 @@
       efi.canTouchEfiVariables = true;
     };
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
+  };
+
+  # Trim SSDs weekly (harmless on HDDs)
+  services.fstrim = {
+    enable = true;
+    interval = "weekly";
+  };
+
+  # ZRAM swap with zstd
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
   };
 
   networking.hostName = "nixps";
