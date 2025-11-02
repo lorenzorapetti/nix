@@ -13,6 +13,9 @@ in {
     ./browsers.nix
     ./zen-browser.nix
     ./zed.nix
+    ./imv.nix
+    ./desktop-entries.nix
+    ./mimeapps.nix
   ];
 
   home.packages = with pkgs; [
