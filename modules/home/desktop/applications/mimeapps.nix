@@ -1,16 +1,10 @@
 {
   lib,
-  osConfig,
-  pkgs,
+  flake,
   ...
 }: let
-  inherit (lib) mkIf map mergeAttrsList;
-  inherit (builtins) elem listToAttrs;
-
-  installedPkgs = osConfig.environment.systemPackages;
-  pkgInstalled = pkg: mkIf (elem pkg installedPkgs);
-
-  imvInstalled = pkgInstalled pkgs.imv;
+  inherit (lib) map mergeAttrsList;
+  inherit (builtins) listToAttrs;
 
   associations = value: mimes:
     listToAttrs (map (name: {
@@ -19,23 +13,7 @@
       mimes);
 in {
   xdg.mimeApps = let
-    browser = associations ["brave-browser.desktop"] [
-      "application/x-extension-shtml"
-      "application/x-extension-xhtml"
-      "application/x-extension-html"
-      "application/x-extension-xht"
-      "application/x-extension-htm"
-      "x-scheme-handler/unknown"
-      "x-scheme-handler/mailto"
-      "x-scheme-handler/chrome"
-      "x-scheme-handler/about"
-      "x-scheme-handler/https"
-      "x-scheme-handler/http"
-      "application/xhtml+xml"
-      "application/json"
-      "text/plain"
-      "text/html"
-    ];
+    browser = associations ["brave-browser.desktop"] flake.lib.mimeTypes.web;
 
     images = associations ["imv.desktop"] [
       "image/png"
@@ -46,8 +24,26 @@ in {
       "image/tiff"
     ];
 
-    added = mergeAttrsList [browser images];
-    default = mergeAttrsList [browser images];
+    videos = associations ["mpv.desktop"] [
+      "video/mp4"
+      "video/x-msvideo"
+      "video/x-matroska"
+      "video/x-flv"
+      "video/x-ms-wmv"
+      "video/mpeg"
+      "video/ogg"
+      "video/webm"
+      "video/quicktime"
+      "video/3gpp"
+      "video/3gpp2"
+      "video/x-ms-asf"
+      "video/x-ogm+ogg"
+      "video/x-theora+ogg"
+      "application/ogg"
+    ];
+
+    added = mergeAttrsList [browser images videos];
+    default = mergeAttrsList [browser images videos];
   in {
     associations.added = added;
     defaultApplications = default;

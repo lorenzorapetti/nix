@@ -1,7 +1,6 @@
 {
   pkgs,
   perSystem,
-  # flake,
   ...
 }:
 perSystem.devshell.mkShell {
@@ -27,19 +26,11 @@ perSystem.devshell.mkShell {
   # Base list of packages for devshell, plus extra
   packages = with pkgs; [
     # pkgs.age
-    # pkgs.alejandra
     git
     nix-inspect
 
     nixd
     alejandra
     statix
-    # pkgs.openssl
-    # (pkgs.python3.withPackages (ps: [ ps.cryptography ]))
-    # perSystem.self.agenix
-    # perSystem.self.default
-    # perSystem.self.derive
-    # perSystem.self.ipaddr
-    # perSystem.self.sshed
   ];
 }

@@ -14,6 +14,7 @@ in {
     ./zen-browser.nix
     ./zed.nix
     ./imv.nix
+    ./mpv.nix
     ./desktop-entries.nix
     ./mimeapps.nix
   ];

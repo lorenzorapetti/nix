@@ -8,4 +8,5 @@
   args = {inherit flake inputs lib;};
 in {
   link = import ./link.nix args;
+  mimeTypes = import ./mimetypes.nix;
 }

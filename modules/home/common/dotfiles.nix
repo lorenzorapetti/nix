@@ -8,7 +8,11 @@
 
   link = flake.lib.link config;
 
-  confFiles = [];
+  confFiles = link.linkConfFiles [
+    "mpv/fonts/fluent-system-icons.ttf"
+    "mpv/fonts/material-design-icons.ttf"
+    "mpv/scripts/modernz.lua"
+  ];
 
   confDirs = link.linkConfDirs [
     "helix"
