@@ -5,5 +5,6 @@
     ./hypridle.nix
     ./niri.nix
     ./waybar.nix
+    ./awww.nix
   ];
 }

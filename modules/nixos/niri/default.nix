@@ -29,6 +29,7 @@
 
   services.udisks2.enable = true;
   services.swayosd.enable = true;
+  services.awww.enable = true;
 
   environment.variables.NIXOS_OZONE_WL = "1";
 

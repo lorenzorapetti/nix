@@ -43,6 +43,9 @@
 
     # Launcher inspired by raycast
     vicinae.url = "github:vicinaehq/vicinae";
+
+    # An Answer to your Wayland Wallpaper Woes
+    awww.url = "git+https://codeberg.org/LGFae/awww";
   };
 
   outputs = inputs: rec {

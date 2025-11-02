@@ -1,0 +1,3 @@
+{...}: {
+  imports = [./swayosd.nix];
+}

@@ -4,11 +4,12 @@
     ./bluetooth.nix
     ./sound.nix
     ./fonts.nix
-    ./swayosd.nix
+    ./services
     ./applications
   ];
 
   options = {
     services.swayosd.enable = lib.mkEnableOption "Enable SwayOSD";
+    services.awww.enable = lib.mkEnableOption "Enable awww";
   };
 }
