@@ -4,6 +4,7 @@
     ./bluetooth.nix
     ./sound.nix
     ./fonts.nix
+    ./sddm.nix
     ./services
     ./applications
   ];

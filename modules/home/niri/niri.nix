@@ -81,7 +81,6 @@ in {
 
         xkb = {
           layout = "us";
-          options = "compose:ralt,ctrl:nocaps";
         };
       };
 
@@ -221,6 +220,25 @@ in {
           {app-id = "^(brave-browser|dev\.zed\.Zed|firefox|zen|zen-twilight)$";}
         ];
         open-maximized = true;
+      }
+      {
+        matches = [
+          {title = "^(Picture in picture)$";}
+        ];
+        open-floating = true;
+        default-floating-position = {
+          x = 10;
+          y = 10;
+          relative-to = "bottom-right";
+        };
+      }
+      {
+        matches = [
+          {title = "^(Vicinae Launcher)$";}
+        ];
+        open-floating = true;
+        focus-ring.enable = false;
+        shadow.enable = false;
       }
     ];
 

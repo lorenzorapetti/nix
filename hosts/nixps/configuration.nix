@@ -39,9 +39,6 @@
   hardware.ipu6.enable = true;
   hardware.ipu6.platform = "ipu6epmtl";
 
-  services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 

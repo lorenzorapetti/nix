@@ -16,6 +16,7 @@ in {
     inetutils
     nmap
     tailscale
+    usbutils
 
     # Nix
     home-manager

@@ -27,6 +27,8 @@
   programs.niri.enable = true;
   programs.niri.package = pkgs.niri-unstable;
 
+  services.displayManager.sddm.enable = true;
+
   services.udisks2.enable = true;
   services.swayosd.enable = true;
   services.awww.enable = true;
