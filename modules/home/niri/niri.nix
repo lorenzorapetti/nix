@@ -318,6 +318,11 @@ in {
           XF86MonBrightnessUp = bindMedia (spawn-sh brightness.raise);
           XF86MonBrightnessDown = bindMedia (spawn-sh brightness.lower);
         }
+        # Screenshot
+        {
+          Print = bind "Screenshot" (spawn-sh "screenshot region");
+          "Ctrl+Print" = bind "Screenshot Entire Screen" (spawn-sh "screenshot fullscreen");
+        }
         # Focus & Movement
         (binds {
           suffixes.Left = "column-left";

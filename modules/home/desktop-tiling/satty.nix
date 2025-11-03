@@ -1,0 +1,3 @@
+{...}: {
+  programs.satty.enable = true;
+}
