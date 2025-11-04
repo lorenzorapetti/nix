@@ -13,9 +13,12 @@ in {
     _1password-cli
     lazydocker # docker tui
     systemctl-tui
+    gh # GitHub CLI
 
     lsd # Better ls
     bat # Better cat
+    dust # Better du
+    fd # Better find
   ];
 
   programs = {
