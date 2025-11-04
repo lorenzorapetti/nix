@@ -17,6 +17,8 @@ in {
     ./mpv.nix
     ./desktop-entries.nix
     ./mimeapps.nix
+    ./obs.nix
+    ./obsidian.nix
   ];
 
   home.packages = with pkgs; [

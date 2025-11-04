@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [./1password.nix];
 
   environment.systemPackages = with pkgs; [
@@ -7,4 +11,7 @@
     imv
     mpv
   ];
+
+  programs.obs-studio.enable = lib.mkDefault true;
+  programs.obsidian.enable = lib.mkDefault true;
 }

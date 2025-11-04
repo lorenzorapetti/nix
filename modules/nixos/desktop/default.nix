@@ -12,5 +12,6 @@
   options = {
     services.swayosd.enable = lib.mkEnableOption "Enable SwayOSD";
     services.awww.enable = lib.mkEnableOption "Enable awww";
+    programs.obsidian.enable = lib.mkEnableOption "Enable Obsidian";
   };
 }
