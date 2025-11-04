@@ -438,7 +438,7 @@ in {
           "Mod+W".action = toggle-column-tabbed-display;
         }
         {
-          "Mod+Ctrl+E" = bind "Quit Niri" quit;
+          "Mod+Ctrl+X" = bind "Quit Niri" quit;
           "Ctrl+Alt+Delete" = bind "Quit Niri" quit;
         }
       ];

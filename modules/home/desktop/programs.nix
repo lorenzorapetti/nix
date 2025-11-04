@@ -3,6 +3,7 @@
     libnotify
     wl-clipboard
     wayland-utils
+    wev
     libinput
 
     cliphist

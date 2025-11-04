@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  perSystem,
   ...
 }: let
   inherit (lib) mkIf;
@@ -10,20 +11,22 @@
 
   intercept = "${pkgs.interception-tools}/bin/intercept";
   caps2esc = "${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc";
+  ralt2hypr = "${perSystem.self.ralt2hyper}/bin/ralt2hyper";
   uinput = "${pkgs.interception-tools}/bin/uinput";
   udevmon = "${pkgs.interception-tools}/bin/udevmon";
 
   configFile = pkgs.writeText "udevmon.yaml" ''
-    - JOB: ${intercept} -g /dev/input/event0 | ${caps2esc} -m 1 | ${uinput} -d /dev/input/event0
+    - JOB: ${intercept} -g /dev/input/event0 | ${caps2esc} -m 1 | ${ralt2hypr} | ${uinput} -d /dev/input/event0
       DEVICE:
         EVENTS:
-          EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
+          EV_KEY: [KEY_CAPSLOCK, KEY_ESC, KEY_RIGHTALT]
   '';
 in {
   config = mkIf interceptionEnabled {
     environment.systemPackages = with pkgs; [
       interception-tools
       interception-tools-plugins.caps2esc
+      perSystem.self.ralt2hyper
     ];
 
     systemd.services.udevmon = {
