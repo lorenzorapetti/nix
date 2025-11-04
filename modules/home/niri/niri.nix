@@ -443,6 +443,9 @@ in {
         }
       ];
 
-    xwayland-satellite.path = "${lib.getExe pkgs.xwayland-satellite-unstable}";
+    xwayland-satellite = {
+      enable = true;
+      path = "${lib.getExe pkgs.xwayland-satellite-unstable}";
+    };
   };
 }
