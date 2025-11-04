@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  perSystem,
+  ...
+}: {
   home.packages = with pkgs; [
     xwayland-satellite-unstable
     gnome-keyring
@@ -10,5 +14,7 @@
 
     # gnome-keyring gui
     seahorse
+
+    perSystem.self.focus-or-open
   ];
 }

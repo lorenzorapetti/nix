@@ -3,17 +3,17 @@
   pname,
   ...
 }: let
-  inherit (pkgs) lib stdenv fetchFromGitLab cmake;
+  inherit (pkgs) lib stdenv fetchFromGitHub cmake;
 in
   stdenv.mkDerivation rec {
     inherit pname;
     version = "1.0.0";
 
-    src = fetchFromGitLab {
-      owner = "oarmstrong";
+    src = fetchFromGitHub {
+      owner = "lorenzorapetti";
       repo = pname;
       rev = version;
-      hash = "sha256-b3w8Zs2DrwOiGhPZ7cVDtVUEiMvC/bp5nYQubwp6f5w=";
+      hash = "sha256-mj373rfcKvmnIiHq5rqrM/2UVGN4vaoY7xA97aEilu8=";
     };
 
     nativeBuildInputs = [
@@ -26,8 +26,8 @@ in
     ];
 
     meta = with lib; {
-      description = "Interception plugin to remap Right Alt (commonly AltGr) to Hyper (i.e. Control, Alt and Super)";
-      homepage = "https://gitlab.com/oarmstrong/ralt2hyper";
+      description = "Interception plugin to remap Right Alt (commonly AltGr) to Hyper (i.e. Shift, Control, Alt and Super)";
+      homepage = "https://github.com/lorenzorapetti/ralt2hyper";
       license = licenses.mit;
       maintainers = [];
       platforms = platforms.linux;

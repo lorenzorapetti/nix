@@ -251,6 +251,7 @@ in {
 
     binds = with config.lib.niri.actions; let
       inherit (lib) getExe range;
+      inherit (lib.attrsets) mergeAttrsList;
 
       vicinae = getExe perSystem.vicinae.default;
       playerctl = getExe pkgs.playerctl;
@@ -267,6 +268,16 @@ in {
         inherit action;
         allow-when-locked = true;
       };
+
+      focus-or-open = {
+        app,
+        letter,
+        id,
+      }: {
+        "Shift+Ctrl+Alt+Super+${letter}" = bind "Focus Or Open ${app}" (spawn-sh "${perSystem.self.focus-or-open}/bin/focus-or-open ${app} --app-id ${id}");
+      };
+
+      focusOrOpenBinds = apps: mergeAttrsList (map focus-or-open apps);
 
       swayosdEnabled = config.services.swayosd.enable;
 
@@ -319,6 +330,9 @@ in {
           "Mod+Space" = bind "Open Launcher" (menu "toggle");
           "Mod+Y" = bind "Open Clipboard History" (menu "vicinae://extensions/vicinae/clipboard/history");
           "Mod+E" = bind "Open Emoji Selector" (menu "vicinae://extensions/vicinae/vicinae/search-emojis");
+
+          "Mod+Ctrl+B" = bind "Open Bluetooth" (spawn "blueman-manager");
+          "Mod+Ctrl+V" = bind "Open Volume Control" (spawn "pavucontrol");
         }
         # Media
         {
@@ -360,6 +374,34 @@ in {
           substitutions."monitor-column" = "monitor";
           substitutions."monitor-window-or-workspace" = "monitor";
         })
+        # Focus or Open Apps
+        (focusOrOpenBinds [
+          {
+            app = "zeditor";
+            letter = "Z";
+            id = "dev.zed.Zed";
+          }
+          {
+            app = "brave";
+            letter = "B";
+            id = "brave-browser";
+          }
+          {
+            app = "telegram-desktop";
+            letter = "T";
+            id = "org.telegram.desktop";
+          }
+          {
+            app = "vesktop";
+            letter = "D";
+            id = "vesktop";
+          }
+          {
+            app = "alacritty";
+            letter = "A";
+            id = "Alacritty";
+          }
+        ])
         (binds {
           suffixes.Home = "first";
           suffixes.End = "last";
