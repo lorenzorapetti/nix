@@ -15,6 +15,11 @@
     wayfreeze
     ffmpeg
 
+    pavucontrol # Mixer control
+    libreoffice-qt6-fresh # Office Suite
+    papers # Document Viewer
+    xournalpp # Annotate PDFs
+
     perSystem.self.screenshot
     perSystem.self.screenrecord
   ];

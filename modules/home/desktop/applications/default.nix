@@ -25,6 +25,8 @@ in {
   home.packages = with pkgs; [
     ticktick
     telegram-desktop
+    pinta
+    localsend
   ];
 
   services.vicinae.enable = mkDefault true;

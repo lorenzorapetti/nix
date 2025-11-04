@@ -19,6 +19,8 @@ in {
     bat # Better cat
     dust # Better du
     fd # Better find
+
+    fastfetch
   ];
 
   programs = {
