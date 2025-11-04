@@ -19,10 +19,12 @@ in {
     ./mimeapps.nix
     ./obs.nix
     ./obsidian.nix
+    ./vesktop.nix
   ];
 
   home.packages = with pkgs; [
     ticktick
+    telegram-desktop
   ];
 
   services.vicinae.enable = mkDefault true;

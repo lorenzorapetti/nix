@@ -13,5 +13,6 @@
     services.swayosd.enable = lib.mkEnableOption "Enable SwayOSD";
     services.awww.enable = lib.mkEnableOption "Enable awww";
     programs.obsidian.enable = lib.mkEnableOption "Enable Obsidian";
+    programs.vesktop.enable = lib.mkEnableOption "Enable Vesktop (Discord Client)";
   };
 }
