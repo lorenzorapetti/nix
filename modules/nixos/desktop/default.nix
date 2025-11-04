@@ -1,4 +1,6 @@
-{lib, ...}: {
+{lib, ...}: let
+  inherit (lib) mkEnableOption;
+in {
   imports = [
     ./stylix.nix
     ./bluetooth.nix
@@ -10,9 +12,9 @@
   ];
 
   options = {
-    services.swayosd.enable = lib.mkEnableOption "Enable SwayOSD";
-    services.awww.enable = lib.mkEnableOption "Enable awww";
-    programs.obsidian.enable = lib.mkEnableOption "Enable Obsidian";
-    programs.vesktop.enable = lib.mkEnableOption "Enable Vesktop (Discord Client)";
+    services.swayosd.enable = mkEnableOption "Enable SwayOSD";
+    services.awww.enable = mkEnableOption "Enable awww";
+    programs.obsidian.enable = mkEnableOption "Enable Obsidian";
+    programs.vesktop.enable = mkEnableOption "Enable Vesktop (Discord Client)";
   };
 }

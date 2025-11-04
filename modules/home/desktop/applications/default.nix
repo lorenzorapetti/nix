@@ -20,6 +20,7 @@ in {
     ./obs.nix
     ./obsidian.nix
     ./vesktop.nix
+    ./webapps.nix
   ];
 
   home.packages = with pkgs; [
