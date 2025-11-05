@@ -1,4 +1,8 @@
-{...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   nix = {
     settings = {
       experimental-features = [
@@ -9,6 +13,9 @@
       warn-dirty = false;
 
       auto-optimise-store = true;
+
+      trusted-users = lib.attrNames config.home-manager.users;
+      trusted-substituters = ["https://vicinae.cachix.org"];
     };
 
     gc = {

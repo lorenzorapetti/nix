@@ -35,7 +35,7 @@ in {
       };
 
       extensions = [
-        (inputs.vicinae.mkVicinaeExtension.${pkgs.system} {
+        (inputs.vicinae.mkVicinaeExtension.${pkgs.stdenv.hostPlatform.system} {
           inherit pkgs;
           name = "awww-switcher";
           src = pkgs.fetchFromGitHub {
