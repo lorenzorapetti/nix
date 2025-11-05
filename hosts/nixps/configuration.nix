@@ -39,6 +39,14 @@
   hardware.ipu6.enable = true;
   hardware.ipu6.platform = "ipu6epmtl";
 
+  services.keyboard-interception = {
+    enable = true;
+    devices = [
+      "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
+      "/dev/input/gem-80-kbd"
+    ];
+  };
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 

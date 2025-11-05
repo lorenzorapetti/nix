@@ -5,9 +5,9 @@
   perSystem,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkOption mkEnableOption types concatMapStringsSep;
 
-  interceptionEnabled = config.services.caps2esc.enable;
+  interception = config.services.keyboard-interception;
 
   intercept = "${pkgs.interception-tools}/bin/intercept";
   caps2esc = "${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc";
@@ -15,14 +15,19 @@
   uinput = "${pkgs.interception-tools}/bin/uinput";
   udevmon = "${pkgs.interception-tools}/bin/udevmon";
 
-  configFile = pkgs.writeText "udevmon.yaml" ''
-    - JOB: ${intercept} -g /dev/input/event0 | ${caps2esc} -m 1 | ${ralt2hypr} | ${uinput} -d /dev/input/event0
+  mkJob = device: ''
+    - JOB: ${intercept} -g ${device} | ${caps2esc} -m 1 | ${ralt2hypr} | ${uinput} -d ${device}
       DEVICE:
+        LINK: ${device}
         EVENTS:
           EV_KEY: [KEY_CAPSLOCK, KEY_ESC, KEY_RIGHTALT]
   '';
+
+  configFile =
+    pkgs.writeText "udevmon.yaml"
+    (concatMapStringsSep "\n" mkJob interception.devices);
 in {
-  config = mkIf interceptionEnabled {
+  config = mkIf interception.enable {
     environment.systemPackages = with pkgs; [
       interception-tools
       interception-tools-plugins.caps2esc
@@ -47,6 +52,23 @@ in {
       };
 
       wantedBy = ["multi-user.target"];
+    };
+
+    services.udev.extraRules = ''
+      KERNEL=="event*", SUBSYSTEM=="input", ATTRS{name}=="NuPhy Gem80-2 Keyboard", SYMLINK+="input/gem-80-kbd"
+    '';
+  };
+
+  options = {
+    services.keyboard-interception = mkOption {
+      type = types.submodule {
+        options = {
+          enable = mkEnableOption "Enable interception-tools";
+          devices = mkOption {
+            type = types.listOf types.str;
+          };
+        };
+      };
     };
   };
 }
