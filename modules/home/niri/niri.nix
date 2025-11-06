@@ -160,6 +160,7 @@ in {
 
     spawn-at-startup = [
       {sh = "mako";}
+      {sh = "1password --silent";}
       {argv = ["nm-applet" "--indicator"];}
     ];
 
