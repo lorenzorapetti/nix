@@ -148,6 +148,17 @@
     "on-click": "~/.config/waybar/modules/tlp.sh toggle",
     "on-click-right": "~/.config/waybar/modules/tlp.sh set auto",
   },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "󱐌",
+      "balanced": "",
+      "power-saver": "󰌪",
+      "performance": "󱐋",
+    },
+  },
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": { "activated": " ", "deactivated": " " },
@@ -156,6 +167,6 @@
   },
   "group/power": {
     "orientation": "inherit",
-    "modules": ["battery", "custom/tlp", "idle_inhibitor"],
+    "modules": ["battery", "power-profiles-daemon", "idle_inhibitor"],
   },
 }

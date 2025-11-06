@@ -50,7 +50,6 @@
 #backlight,
 #custom-power-menu,
 #power,
-#power-profiles-daemon,
 #window,
 #submap {
     margin: 0;
@@ -85,14 +84,6 @@
 
 #temperature {
     border-color: @green;
-}
-
-#power-profiles-daemon.balanced {
-    padding: 0 17px 0 10px;
-}
-
-#power-profiles-daemon.power-saver {
-    padding: 0 15px 0 10px;
 }
 
 window#waybar.empty #window {
@@ -176,6 +167,12 @@ window#waybar.empty #window {
 #custom-tlp {
     padding: 0;
     padding-right: 10px;
+}
+
+#power-profiles-daemon {
+    padding: 0;
+    padding-right: 15px;
+    font-size: 8pt;
 }
 
 #idle_inhibitor {
