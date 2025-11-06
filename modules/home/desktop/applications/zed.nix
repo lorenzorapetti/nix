@@ -1,11 +1,13 @@
 {
   config,
+  osConfig,
   lib,
   ...
 }: let
   inherit (lib) mkIf;
 
   cfg = config.programs.zed-editor;
+  fonts = osConfig.stylix.fonts;
 in {
   config = {
     programs.zed-editor = mkIf cfg.enable {
@@ -21,7 +23,7 @@ in {
         hour_format = "hour24";
         auto_update = false;
 
-        buffer_font_family = "GeistMono Nerd Font";
+        buffer_font_family = fonts.monospace.name;
 
         languages = {
           Nix = {
