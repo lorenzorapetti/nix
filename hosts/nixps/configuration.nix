@@ -6,6 +6,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    flake.inputs.hardware.nixosModules.dell-xps-13-9340
     flake.nixosModules.common
     flake.nixosModules.niri
   ];
@@ -50,25 +51,6 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable thermald and tlp for power management
-  powerManagement.enable = true;
-  services.thermald.enable = true;
-  services.tlp = {
-    enable = true;
-    settings = {
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-
-      CPU_MIN_PERF_ON_AC = 0;
-      CPU_MAX_PERF_ON_AC = 100;
-      CPU_MIN_PERF_ON_BAT = 0;
-      CPU_MAX_PERF_ON_BAT = 50;
-    };
-  };
-
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
@@ -91,9 +73,6 @@
   # May help if FFmpeg/VAAPI/QSV init fails (esp. on Arc with i915):
   hardware.enableRedistributableFirmware = true;
   boot.kernelParams = ["i915.enable_guc=3"];
-
-  # Keyboard input path for udevmon to replace caps with esc/ctrl
-  environment.variables.DEVNODE = "/dev/input/event0";
 
   users.users.lorenzo = {
     isNormalUser = true;

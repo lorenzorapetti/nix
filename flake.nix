@@ -20,7 +20,7 @@
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
     # NixOS profiles for different hardware
-    hardware.url = "github:NixOS/nixos-hardware";
+    hardware.url = "github:lorenzorapetti/nixos-hardware";
 
     # Map folder structure to flake outputs
     blueprint.url = "github:lorenzorapetti/blueprint";
