@@ -10,6 +10,11 @@ in {
   config = mkIf cfg.enable {
     programs.obsidian = {
       enable = true;
+
+      vaults.home = {
+        enable = true;
+        target = "Obsidian/Home";
+      };
     };
   };
 }
