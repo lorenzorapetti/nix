@@ -51,6 +51,7 @@
 #custom-power-menu,
 #power,
 #window,
+#privacy,
 #submap {
     margin: 0;
     padding: 5px 10px;
@@ -141,6 +142,10 @@ window#waybar.empty #window {
 #workspaces button.urgent,
 #temperature.critical {
     color: #dd7878;
+}
+
+#privacy {
+    border-color: @mauve;
 }
 
 #battery {
