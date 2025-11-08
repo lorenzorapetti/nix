@@ -24,4 +24,5 @@ in {
   ];
 
   services.tailscale.enable = mkDefault true;
+  programs.nix-ld.enable = mkDefault true;
 }
