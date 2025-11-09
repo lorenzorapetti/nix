@@ -17,6 +17,7 @@ in {
     nmap
     tailscale
     usbutils
+    lm_sensors
 
     # Nix
     home-manager

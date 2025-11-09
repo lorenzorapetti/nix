@@ -2,6 +2,7 @@
   inherit (lib) mkEnableOption;
 in {
   imports = [
+    ./monitors.nix
     ./stylix.nix
     ./bluetooth.nix
     ./sound.nix

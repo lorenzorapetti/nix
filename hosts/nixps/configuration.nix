@@ -74,6 +74,23 @@
   hardware.enableRedistributableFirmware = true;
   boot.kernelParams = ["i915.enable_guc=3"];
 
+  monitors = [
+    {
+      name = "eDP-1";
+
+      width = 2560;
+      height = 1600;
+      refresh = 120.0;
+
+      position = {
+        x = 0;
+        y = 0;
+      };
+
+      scale = 1.3;
+    }
+  ];
+
   users.users.lorenzo = {
     isNormalUser = true;
     description = "Lorenzo";

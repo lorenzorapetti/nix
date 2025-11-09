@@ -1,11 +1,13 @@
 {
   config,
+  osConfig,
   lib,
   pkgs,
   perSystem,
   ...
 }: let
   inherit (lib) map replaceStrings attrNames attrValues isList head tail concatMap listToAttrs;
+  inherit (osConfig) monitors;
 
   # This combines prefixes in the form
   #
@@ -104,6 +106,21 @@ in {
       warp-mouse-to-focus.enable = true;
       workspace-auto-back-and-forth = true;
     };
+
+    outputs = listToAttrs (map (monitor: {
+        inherit (monitor) name;
+        value = {
+          backdrop-color = config.lib.stylix.colors.base01;
+          background-color = config.lib.stylix.colors.base01;
+
+          mode = {
+            inherit (monitor) width height refresh;
+          };
+
+          inherit (monitor) position scale;
+        };
+      })
+      monitors);
 
     layout = {
       gaps = 12;
@@ -434,7 +451,7 @@ in {
           "Mod+Ctrl+WheelScrollLeft" = {action = move-column-left;};
         }
         (binds {
-          suffixes = builtins.listToAttrs (
+          suffixes = listToAttrs (
             map (n: {
               name = toString n;
               value = [
