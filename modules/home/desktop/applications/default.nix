@@ -12,7 +12,6 @@ in {
     ./alacritty.nix
     ./browsers.nix
     ./zen-browser.nix
-    ./zed.nix
     ./imv.nix
     ./mpv.nix
     ./desktop-entries.nix

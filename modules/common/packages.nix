@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  perSystem,
+  ...
+}: {
   # Base packages shared between Linux and MacOS that are not
   # in the home-manager common module.
   environment.systemPackages = with pkgs; [
@@ -26,7 +30,6 @@
 
     # Editors
     vim
-    neovim
     helix
 
     # Nix dev

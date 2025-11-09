@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./swayosd.nix];
+  imports = [./swayosd.nix ./fwupd.nix];
 }

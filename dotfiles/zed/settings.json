@@ -1,0 +1,59 @@
+{
+  "notification_panel": {
+    "button": true
+  },
+  "outline_panel": {
+    "button": false
+  },
+  "project_panel": {
+    "indent_guides": {
+      "show": "never"
+    }
+  },
+  "git_panel": {
+    "button": false
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "buffer_font_family": "GeistMono Nerd Font",
+  "vim_mode": true,
+  "vim": {
+    "toggle_relative_line_numbers": true
+  },
+  "ui_font_size": 13.333333333333334,
+  "buffer_font_size": 13.333333333333334,
+  "theme": {
+    "dark": "Catppuccin Mocha",
+    "light": "Catppuccin Latte",
+    "mode": "dark"
+  },
+  "auto_install_extensions": {
+    "json": true,
+    "nix": true,
+    "rust": true,
+    "toml": true,
+    "catppuccin": true
+  },
+  "auto_update": false,
+  "load_direnv": "shell_hook",
+  "languages": {
+    "Nix": {
+      "formatter": {
+        "external": {
+          "arguments": [
+            "--quiet",
+            "--"
+          ],
+          "command": "alejandra"
+        }
+      },
+      "language_servers": [
+        "nixd",
+        "!nil"
+      ]
+    }
+  },
+  "ui_font_family": "Noto Sans"
+}
