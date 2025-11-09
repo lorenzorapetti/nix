@@ -16,7 +16,7 @@
   udevmon = "${pkgs.interception-tools}/bin/udevmon";
 
   mkJob = device: ''
-    - JOB: ${intercept} -g ${device} | ${caps2esc} -m 1 | ${ralt2hypr} | ${uinput} -d ${device}
+    - JOB: ${intercept} -g ${device} | ${caps2esc} -m 1 | ${uinput} -d ${device}
       DEVICE:
         LINK: ${device}
         EVENTS:

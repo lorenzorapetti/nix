@@ -81,6 +81,7 @@ in {
 
         xkb = {
           layout = "us";
+          options = "compose:ralt";
         };
       };
 
