@@ -11,7 +11,7 @@
 
   intercept = "${pkgs.interception-tools}/bin/intercept";
   caps2esc = "${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc";
-  ralt2hypr = "${perSystem.self.ralt2hyper}/bin/ralt2hyper";
+  # ralt2hypr = "${perSystem.self.ralt2hyper}/bin/ralt2hyper";
   uinput = "${pkgs.interception-tools}/bin/uinput";
   udevmon = "${pkgs.interception-tools}/bin/udevmon";
 
