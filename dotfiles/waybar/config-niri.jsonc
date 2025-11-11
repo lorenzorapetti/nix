@@ -14,7 +14,7 @@
     "niri/window",
   ],
   "modules-center": ["niri/workspaces", "privacy"],
-  "modules-right": ["cpu", "memory", "temperature", "group/power"],
+  "modules-right": ["network", "cpu", "memory", "temperature", "group/power"],
   "clock#date": {
     // "on-click": "gnome-calendar",
     "format": "  {:%a %d %b %H:%M}",
@@ -83,6 +83,18 @@
       "(.*) — Mozilla Firefox": "  $1",
       "(.*) - fish": "> [$1]",
     },
+  },
+  "network": {
+    "format": "{bandwidthUpBytes}   {bandwidthDownBytes}  ",
+    "format-wifi": "󰖩  {bandwidthUpBytes}   {bandwidthDownBytes}  ",
+    "format-ethernet": "󰈀  {bandwidthUpBytes}   {bandwidthDownBytes}  ",
+    "format-disconnected": "",
+    "format-disabled": "",
+    "format-alt": "{ipaddr}",
+    "tooltip": true,
+    "tooltip-format": "Interface: {ifname}\nIP:        {ipaddr}\nGateway:   {gwaddr}",
+    "tooltip-format-wifi": "Connected to {essid} ({signalStrength}%)\n\nInterface: {ifname}\nIP:        {ipaddr}\nGateway:   {gwaddr}",
+    "tooltip-format-ethernet": "Connected to ethernet\n\nInterface: {ifname}\nIP:        {ipaddr}\nGateway:   {gwaddr}",
   },
   "cpu": {
     "format": "󰌢  {usage}% {max_frequency:0.1f}GHz",
