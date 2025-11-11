@@ -14,7 +14,13 @@
     "niri/window",
   ],
   "modules-center": ["niri/workspaces", "privacy"],
-  "modules-right": ["network", "cpu", "memory", "temperature", "group/power"],
+  "modules-right": [
+    "group/network-group",
+    "cpu",
+    "memory",
+    "temperature",
+    "group/power",
+  ],
   "clock#date": {
     // "on-click": "gnome-calendar",
     "format": "  {:%a %d %b %H:%M}",
@@ -160,6 +166,13 @@
     "on-click": "~/.config/waybar/modules/tlp.sh toggle",
     "on-click-right": "~/.config/waybar/modules/tlp.sh set auto",
   },
+  "custom/protonvpn": {
+    "exec": "~/.config/waybar/modules/protonvpn-status.sh",
+    "return-type": "json",
+    "interval": 60,
+    "on-click": "~/.config/waybar/modules/protonvpn-status.sh toggle",
+    "format": {},
+  },
   "power-profiles-daemon": {
     "format": "{icon}",
     "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
@@ -203,5 +216,9 @@
   "group/power": {
     "orientation": "inherit",
     "modules": ["battery", "power-profiles-daemon", "idle_inhibitor"],
+  },
+  "group/network-group": {
+    "orientation": "inherit",
+    "modules": ["custom/protonvpn", "network"],
   },
 }

@@ -40,7 +40,6 @@
 #wireplumber,
 #tray,
 #workspaces,
-#network,
 #cpu,
 #memory,
 #custom-gpu,
@@ -52,6 +51,7 @@
 #custom-power-menu,
 #power,
 #window,
+#network-group,
 #privacy,
 #submap {
     margin: 0;
@@ -88,9 +88,21 @@
     border-color: @green;
 }
 
-#network,
+#network-group,
 #window {
     border-color: @flamingo;
+}
+
+#custom-protonvpn {
+    margin-right: 12pt;
+}
+
+#custom-protonvpn.connected {
+    color: @green;
+}
+
+#custom-protonvpn.disconnected {
+    color: @red;
 }
 
 window#waybar.empty #window {
