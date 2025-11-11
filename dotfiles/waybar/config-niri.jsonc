@@ -91,6 +91,7 @@
     },
   },
   "network": {
+    "interval": 10,
     "format": "{bandwidthUpBytes}   {bandwidthDownBytes}  ",
     "format-wifi": "󰖩  {bandwidthUpBytes}   {bandwidthDownBytes}  ",
     "format-ethernet": "󰈀  {bandwidthUpBytes}   {bandwidthDownBytes}  ",
