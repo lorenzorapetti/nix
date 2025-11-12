@@ -10,6 +10,10 @@ in {
     flake.commonModules.packages
   ];
 
+  nixpkgs.overlays = [
+    flake.inputs.rust-overlay.overlays.default
+  ];
+
   environment.systemPackages = with pkgs; [
     btop
     gnumake
@@ -22,6 +26,13 @@ in {
     # Nix
     home-manager
     cachix
+    devenv
+
+    # Common languages
+    nodejs_24
+    bun
+    deno
+    rust-bin.stable.latest.default
   ];
 
   services.tailscale.enable = mkDefault true;

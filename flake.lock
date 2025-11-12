@@ -482,6 +482,7 @@
         "niri": "niri",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_3",
+        "rust-overlay": "rust-overlay_2",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "vicinae": "vicinae",
@@ -501,6 +502,26 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "rev": "63d22578600f70d293aede6bc737efef60ebd97f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_2": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1762915112,
+        "narHash": "sha256-d9j1g8nKmYDHy+/bIOPQTh9IwjRliqaTM0QLHMV92Ic=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "aa1e85921cfa04de7b6914982a94621fbec5cc02",
         "type": "github"
       },
       "original": {
