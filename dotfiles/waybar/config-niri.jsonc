@@ -64,7 +64,7 @@
     "spacing": 10,
   },
   "niri/workspaces": {
-    "all-outputs": true,
+    "all-outputs": false,
     "active-only": false,
     "format": "{}",
     "format-icons": {
