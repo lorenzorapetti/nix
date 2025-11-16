@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  imports = [./1password.nix];
+  imports = [./1password.nix ./steam.nix];
 
   environment.systemPackages = with pkgs; [
     nautilus
