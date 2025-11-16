@@ -19,6 +19,8 @@
     };
 
     kernelPackages = pkgs.linuxPackages_zen;
+
+    blacklistedKernelModules = ["dell-smm-hwmon"];
   };
 
   # Trim SSDs weekly (harmless on HDDs)
@@ -78,6 +80,20 @@
 
   monitors = [
     {
+      name = "DP-3";
+
+      width = 3840;
+      height = 2160;
+      refresh = 120.0;
+
+      position = {
+        x = 0;
+        y = 0;
+      };
+
+      scale = 1.25;
+    }
+    {
       name = "eDP-1";
 
       width = 2560;
@@ -85,7 +101,7 @@
       refresh = 120.0;
 
       position = {
-        x = 0;
+        x = 3072;
         y = 0;
       };
 
