@@ -5,6 +5,9 @@
     enableFishIntegration = true;
     daemon.enable = true;
     forceOverwriteSettings = true;
+    flags = [
+      "--disable-up-arrow"
+    ];
     settings = {
       update_check = false;
       enter_accept = true;
