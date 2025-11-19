@@ -49,17 +49,23 @@ in {
         if type -q lsd
             alias ls='lsd'
         end
+
         if type -q bat
             alias cat='bat'
         else if type -q batcat
             alias cat='batcat'
         end
+
         if type -q lazygit
             alias lg='lazygit'
         end
 
         if type -q cargo
             alias c='cargo'
+        end
+
+        if type -q helix
+          alias hx="helix"
         end
       '';
 
