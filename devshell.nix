@@ -11,7 +11,7 @@ perSystem.devshell.mkShell {
   commands = [
     {
       category = "development";
-      name = "switch";
+      name = "deploy";
       help = "Create a new generation";
       command = "sudo nixos-rebuild switch --flake .";
     }
