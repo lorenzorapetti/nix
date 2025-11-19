@@ -7,5 +7,6 @@
     ./fzf.nix
     ./zoxide.nix
     ./atuin.nix
+    ./carapace.nix
   ];
 }
