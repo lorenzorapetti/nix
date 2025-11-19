@@ -45,6 +45,7 @@ in {
       interactiveShellInit = ''
         set -g fish_greeting
         set -g TERM xterm-256color
+        set -gx ATUIN_NOBIND true
 
         if type -q lsd
             alias ls='lsd'
