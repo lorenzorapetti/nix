@@ -43,9 +43,10 @@
       "space e": "pane::RevealInProjectPanel",
       "alt-j": "editor::MoveLineDown",
       "alt-k": "editor::MoveLineUp",
-      "space c d": "diagnostics::Deploy",
       "] d": "editor::GoToDiagnostic",
       "[ d": "editor::GoToPreviousDiagnostic",
+      "] h": "editor::GoToHunk",
+      "[ h": "editor::GoToPreviousHunk",
       "space f s": "workspace::SaveWithoutFormat",
       "space u w": "editor::ToggleSoftWrap",
       "space u d": "editor::ToggleDiagnostics",
@@ -61,6 +62,7 @@
       "space p j": "workspace::ToggleBottomDock",
       "space g b": "git::Blame",
       "space g g": "git_panel::ToggleFocus",
+      "space c d": "diagnostics::Deploy",
       "space c l": "lsp_tool::ToggleMenu",
       "space c r": "buffer_search::DeployReplace",
       "space w h": "workspace::ToggleLeftDock",
@@ -72,7 +74,8 @@
       "space w n": "notification_panel::ToggleFocus",
       "space w a": "agent::ToggleFocus",
       "space w d": "debug_panel::ToggleFocus",
-      "space w t": "terminal_panel::ToggleFocus"
+      "space w t": "terminal_panel::ToggleFocus",
+      "space a a": "agent::ToggleFocus"
     }
   },
   {
