@@ -10,6 +10,7 @@ in {
   stylix.targets = {
     alacritty.enable = true;
     lazygit.enable = true;
+    fzf.enable = true;
     mako.enable = mkIf makoEnabled true;
   };
 }

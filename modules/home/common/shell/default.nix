@@ -1,3 +1,11 @@
 {...}: {
-  imports = [./bash.nix ./starship.nix];
+  imports = [
+    ./bash.nix
+    ./fish.nix
+    ./aliases.nix
+    ./starship.nix
+    ./fzf.nix
+    ./zoxide.nix
+    ./atuin.nix
+  ];
 }

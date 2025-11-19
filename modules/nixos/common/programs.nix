@@ -27,6 +27,7 @@ in {
     home-manager
     cachix
     devenv
+    sops
 
     # Common languages
     nodejs_24

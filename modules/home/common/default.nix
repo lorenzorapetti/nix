@@ -5,6 +5,7 @@
     ./lazygit.nix
     ./dotfiles.nix
     ./direnv.nix
+    ./ai.nix
   ];
 
   xdg.enable = true;

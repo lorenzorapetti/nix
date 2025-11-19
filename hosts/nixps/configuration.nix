@@ -8,6 +8,7 @@
     ./hardware-configuration.nix
     flake.inputs.hardware.nixosModules.dell-xps-13-9340
     flake.nixosModules.common
+    flake.nixosModules.lorenzo
     flake.nixosModules.niri
   ];
 

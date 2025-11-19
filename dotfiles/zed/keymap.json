@@ -138,7 +138,7 @@
     }
   },
   {
-    "context": "KeyContextView || Terminal || DebugPanel || AgentPanel || CollabPanel || (ProjectPanel && not_editing) || (GitPanel && !CommitEditor)",
+    "context": "KeyContextView || Terminal || DebugPanel || (AgentPanel && !Editor) || CollabPanel || (ProjectPanel && not_editing) || (GitPanel && !CommitEditor)",
     "bindings": {
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",

@@ -5,4 +5,6 @@
     flake.homeModules.niri
     flake.homeModules.lorenzo
   ];
+
+  programs.claude-code.enable = true;
 }
