@@ -72,12 +72,9 @@
 
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "iHD"; # Prefer the modern iHD backend
-    # VDPAU_DRIVER = "va_gl";      # Only if using libvdpau-va-gl
   };
 
-  # May help if FFmpeg/VAAPI/QSV init fails (esp. on Arc with i915):
   hardware.enableRedistributableFirmware = true;
-  boot.kernelParams = ["i915.enable_guc=3"];
 
   monitors = [
     {
