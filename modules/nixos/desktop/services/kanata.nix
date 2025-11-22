@@ -28,8 +28,8 @@ in {
           )
 
           (defvar
-            tap-time 180
-            hold-time 210
+            tap-time 150
+            hold-time 250
           )
 
           (deflayer default
