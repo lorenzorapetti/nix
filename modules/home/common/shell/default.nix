@@ -8,5 +8,6 @@
     ./zoxide.nix
     ./atuin.nix
     ./carapace.nix
+    ./btop.nix
   ];
 }
