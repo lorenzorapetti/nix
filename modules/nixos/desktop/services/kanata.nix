@@ -17,7 +17,7 @@ in {
         port = 6666;
 
         extraDefCfg = ''
-          process-unmapped-keys no
+          process-unmapped-keys yes
         '';
 
         config = ''
@@ -39,7 +39,7 @@ in {
           )
 
           (defalias
-            caps (tap-hold-press $tap-time $hold-time esc lctl)
+            caps (tap-hold $tap-time $hold-time esc lctl)
             space (tap-hold-press $tap-time $hold-time spc (multi lctl lalt lmet lsft))
           )
         '';
