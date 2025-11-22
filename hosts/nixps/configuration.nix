@@ -43,13 +43,15 @@
   hardware.ipu6.enable = true;
   hardware.ipu6.platform = "ipu6epmtl";
 
-  services.keyboard-interception = {
-    enable = true;
-    devices = [
-      "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
-      "/dev/input/gem-80-kbd"
-    ];
-  };
+  hardware.uinput.enable = true;
+
+  # services.keyboard-interception = {
+  #   enable = true;
+  #   devices = [
+  #     "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
+  #     "/dev/input/gem-80-kbd"
+  #   ];
+  # };
 
   services.protonvpn.enable = true;
 
@@ -107,6 +109,11 @@
     }
   ];
 
+  users.groups = {
+    input = {};
+    uinput = {};
+  };
+
   users.users.lorenzo = {
     isNormalUser = true;
     description = "Lorenzo";
@@ -114,6 +121,8 @@
       "networkmanager"
       "wheel"
       "docker"
+      "uinput"
+      "input"
     ];
   };
 }

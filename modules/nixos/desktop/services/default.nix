@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./swayosd.nix ./fwupd.nix];
+  imports = [./swayosd.nix ./fwupd.nix ./kanata.nix];
 }

@@ -13,7 +13,6 @@ in {
     ./kernel.nix
     ./nixpkgs.nix
     ./programs.nix
-    ./keyboard.nix
     ./protonvpn.nix
   ];
 
