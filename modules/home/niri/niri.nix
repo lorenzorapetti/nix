@@ -213,13 +213,9 @@ in {
           {app-id = "^quick-terminal";}
         ];
         open-floating = true;
-        default-floating-position = {
-          x = 200;
-          y = 126;
-          relative-to = "top-left";
-        };
-        min-width = 1500;
-        min-height = 1000;
+        open-maximized = true;
+        default-column-width.proportion = 0.9;
+        default-window-height.proportion = 0.8;
       }
       {
         matches = [
