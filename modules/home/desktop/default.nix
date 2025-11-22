@@ -11,6 +11,7 @@ in {
     ./dotfiles.nix
     ./applications
     ./programs.nix
+    ./yazi.nix
   ];
 
   options = {

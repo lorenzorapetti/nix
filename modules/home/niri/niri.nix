@@ -340,6 +340,7 @@ in {
           "Mod+Shift+Slash".action = show-hotkey-overlay;
           "Mod+Return" = bind "Open Terminal" (spawn "${getExe pkgs.alacritty}");
           "Mod+B" = bind "Open Browser" (spawn "${getExe pkgs.brave}");
+          "Mod+E" = bind "Open File Manager" (spawn-sh "alacritty --class quick-terminal -e yazi");
 
           "Mod+Q" = bind "Close Window" close-window;
           "Mod+Ctrl+E" = bind "Toggle Overview" toggle-overview;
@@ -348,7 +349,7 @@ in {
           "Mod+Shift+Space" = bind "Open 1Password Quick Access" (spawn "1password" "--quick-access");
           "Mod+Space" = bind "Open Launcher" (menu "toggle");
           "Mod+Y" = bind "Open Clipboard History" (menu "vicinae://extensions/vicinae/clipboard/history");
-          "Mod+E" = bind "Open Emoji Selector" (menu "vicinae://extensions/vicinae/vicinae/search-emojis");
+          "Mod+Shift+E" = bind "Open Emoji Selector" (menu "vicinae://extensions/vicinae/vicinae/search-emojis");
 
           "Mod+Ctrl+B" = bind "Open Bluetooth" (spawn "blueman-manager");
           "Mod+Ctrl+V" = bind "Open Volume Control" (spawn "pavucontrol");
