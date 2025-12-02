@@ -9,5 +9,7 @@
     cliphist
     playerctl
     brightnessctl
+
+    gemini-cli-bin
   ];
 }
