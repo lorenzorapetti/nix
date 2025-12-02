@@ -6,6 +6,71 @@ local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/s
 local config = wezterm.config_builder()
 local act = wezterm.action
 
+local function basename(s)
+	return string.gsub(s, "(.*[/\\])(.*)", "%2")
+end
+
+local get_last_folder_segment = function(cwd)
+	local default_value = "N/A"
+	if cwd == nil then
+		return default_value
+	end
+
+	if cwd.scheme == "file" then
+		local path = {}
+		for segment in string.gmatch(cwd.path, "[^/]+") do
+			table.insert(path, segment)
+		end
+		return path[#path]
+	else
+		return default_value
+	end
+end
+
+local function get_current_working_dir(tab)
+	local current_dir = tab.active_pane.current_working_dir or ""
+	return get_last_folder_segment(current_dir)
+end
+
+local function get_process(tab)
+	local process_icons = {
+		["bash"] = wezterm.nerdfonts.cod_terminal_bash,
+		["btm"] = wezterm.nerdfonts.mdi_chart_donut_variant,
+		["cargo"] = wezterm.nerdfonts.dev_rust,
+		["curl"] = wezterm.nerdfonts.mdi_flattr,
+		["docker"] = wezterm.nerdfonts.linux_docker,
+		["docker-compose"] = wezterm.nerdfonts.linux_docker,
+		["dotnet"] = wezterm.nerdfonts.md_language_csharp,
+		["fish"] = wezterm.nerdfonts.seti_powershell,
+		["gh"] = wezterm.nerdfonts.dev_github_badge,
+		["git"] = wezterm.nerdfonts.dev_git,
+		["go"] = wezterm.nerdfonts.seti_go,
+		["htop"] = wezterm.nerdfonts.mdi_chart_donut_variant,
+		["kubectl"] = wezterm.nerdfonts.linux_docker,
+		["kuberlr"] = wezterm.nerdfonts.linux_docker,
+		["lazydocker"] = wezterm.nerdfonts.linux_docker,
+		["lazygit"] = wezterm.nerdfonts.dev_git,
+		["lua"] = wezterm.nerdfonts.seti_lua,
+		["make"] = wezterm.nerdfonts.seti_makefile,
+		["node"] = wezterm.nerdfonts.dev_nodejs_small,
+		["nvim"] = wezterm.nerdfonts.custom_neovim,
+		["psql"] = wezterm.nerdfonts.dev_postgresql,
+		["pwsh"] = wezterm.nerdfonts.seti_powershell,
+		["ruby"] = wezterm.nerdfonts.cod_ruby,
+		["stern"] = wezterm.nerdfonts.linux_docker,
+		["sudo"] = wezterm.nerdfonts.fa_hashtag,
+		["tail"] = wezterm.nerdfonts.fa_file_text,
+		["vim"] = wezterm.nerdfonts.dev_vim,
+		["wget"] = wezterm.nerdfonts.mdi_arrow_down_box,
+		["zsh"] = wezterm.nerdfonts.dev_terminal,
+	}
+	local process_name = basename(tab.active_pane.foreground_process_name)
+
+	local icon = process_icons[process_name] or wezterm.nerdfonts.seti_checkbox_unchecked
+
+	return icon
+end
+
 -- Basic config
 
 config.color_scheme = "Catppuccin Mocha"
@@ -28,6 +93,38 @@ config.hide_tab_bar_if_only_one_tab = true
 config.show_new_tab_button_in_tab_bar = false
 config.tab_max_width = 30
 config.pane_focus_follows_mouse = true
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+	local active_pane = tab.active_pane
+
+	local process = get_process(tab)
+	local cwd = get_current_working_dir(tab)
+	local zoom_icon = active_pane.is_zoomed and wezterm.nerdfonts.cod_zoom_in .. " " or ""
+
+	local title = string.format(" %s ~ %s %s", process, cwd, zoom_icon)
+	return {
+		{ Text = title },
+	}
+end)
+
+wezterm.on("update-right-status", function(window, pane)
+	local workspace_or_leader = window:active_workspace()
+	-- Change the worspace name status if leader is active
+	if window:active_key_table() then
+		workspace_or_leader = window:active_key_table()
+	end
+	if window:leader_is_active() then
+		workspace_or_leader = "LEADER"
+	end
+
+	local time = wezterm.strftime("%H:%M")
+
+	window:set_right_status(wezterm.format({
+		{ Text = wezterm.nerdfonts.oct_table .. "  " .. workspace_or_leader },
+		{ Text = " | " },
+		{ Text = wezterm.nerdfonts.md_clock .. "  " .. time .. " " },
+	}))
+end)
 
 -- SSH
 
