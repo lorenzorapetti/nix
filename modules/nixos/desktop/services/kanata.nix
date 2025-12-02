@@ -24,7 +24,6 @@ in {
           (defsrc
             esc
             caps
-            spc
           )
 
           (defvar
@@ -35,12 +34,10 @@ in {
           (deflayer default
             caps
             @caps
-            @space
           )
 
           (defalias
             caps (tap-hold $tap-time $hold-time esc lctl)
-            space (tap-hold-press $tap-time $hold-time spc (multi lctl lalt lmet lsft))
           )
         '';
       };

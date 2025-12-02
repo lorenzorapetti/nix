@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./language.nix];
+  imports = [./language.nix ./shell.nix];
 }

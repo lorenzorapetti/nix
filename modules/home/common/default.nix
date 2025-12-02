@@ -5,6 +5,7 @@
     ./lazygit.nix
     ./dotfiles.nix
     ./direnv.nix
+    ./neovim.nix
     ./ai.nix
   ];
 

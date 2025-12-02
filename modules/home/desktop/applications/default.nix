@@ -10,6 +10,7 @@ in {
     inputs.zen-browser.homeModules.twilight
     ./vicinae.nix
     ./alacritty.nix
+    ./wezterm.nix
     ./browsers.nix
     ./zen-browser.nix
     ./imv.nix

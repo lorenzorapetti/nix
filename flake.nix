@@ -16,7 +16,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # System-wide colorscheming & typography
-    stylix.url = "github:danth/stylix/master";
+    stylix.url = "github:nix-community/stylix/master";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
     # NixOS profiles for different hardware
@@ -48,6 +48,10 @@
 
     # An Answer to your Wayland Wallpaper Woes
     awww.url = "git+https://codeberg.org/LGFae/awww";
+
+    # My neovim config
+    nvim-nix.url = "github:lorenzorapetti/nvim-nix";
+    nvim-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs: rec {

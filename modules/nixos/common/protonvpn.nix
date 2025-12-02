@@ -11,7 +11,7 @@ in {
       enable = mkEnableOption "Enable ProtonVPN (using Wireguard).";
 
       autostart = mkOption {
-        default = true;
+        default = false;
         example = "true";
         type = types.bool;
         description = "Automatically set up ProtonVPN when NixOS boots.";

@@ -17,6 +17,7 @@
   confDirs = link.linkConfDirs [
     "waybar"
     "zed"
+    "wezterm"
   ];
 
   links = mergeAttrsList (confDirs ++ confFiles);
