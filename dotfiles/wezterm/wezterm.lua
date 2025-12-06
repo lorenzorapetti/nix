@@ -6,6 +6,10 @@ local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/s
 local config = wezterm.config_builder()
 local act = wezterm.action
 
+local function is_mac()
+	return string.find(wezterm.target_triple, "darwin", 1, true) ~= nil
+end
+
 local function basename(s)
 	return string.gsub(s, "(.*[/\\])(.*)", "%2")
 end
@@ -75,7 +79,7 @@ end
 
 config.color_scheme = "Catppuccin Mocha"
 config.font = wezterm.font("GeistMono Nerd Font")
-config.font_size = 12
+config.font_size = is_mac() and 13 or 12
 config.use_cap_height_to_scale_fallback_fonts = true
 
 config.max_fps = 120
@@ -89,25 +93,29 @@ config.window_padding = {
 	bottom = 0,
 }
 config.use_fancy_tab_bar = false
-config.hide_tab_bar_if_only_one_tab = true
+-- config.hide_tab_bar_if_only_one_tab = true
 config.show_new_tab_button_in_tab_bar = false
 config.tab_max_width = 30
 config.pane_focus_follows_mouse = true
 
-wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+if is_mac() then
+	config.window_decorations = "RESIZE"
+end
+
+wezterm.on("format-tab-title", function(tab)
 	local active_pane = tab.active_pane
 
 	local process = get_process(tab)
 	local cwd = get_current_working_dir(tab)
 	local zoom_icon = active_pane.is_zoomed and wezterm.nerdfonts.cod_zoom_in .. " " or ""
 
-	local title = string.format(" %s ~ %s %s", process, cwd, zoom_icon)
+	local title = string.format(" %s %s %s", process, cwd, zoom_icon)
 	return {
 		{ Text = title },
 	}
 end)
 
-wezterm.on("update-right-status", function(window, pane)
+wezterm.on("update-right-status", function(window)
 	local workspace_or_leader = window:active_workspace()
 	-- Change the worspace name status if leader is active
 	if window:active_key_table() then
@@ -131,7 +139,7 @@ end)
 config.ssh_domains = {
 	{
 		name = "tyr",
-		remote_address = "10.0.1.11",
+		remote_address = "10.0.1.1",
 		username = "lorenzo",
 	},
 }
@@ -139,7 +147,7 @@ config.ssh_domains = {
 -- KEYMAPS
 
 -- config.disable_default_key_bindings = true
-config.leader = { key = "a", mods = "CTRL" }
+config.leader = { key = ";", mods = "CTRL" }
 config.keys = {
 	{
 		key = "t",
@@ -238,6 +246,19 @@ config.keys = {
 		action = workspace_switcher.switch_to_prev_workspace(),
 	},
 }
+
+for i = 1, 9 do
+	table.insert(config.keys, {
+		key = tostring(i),
+		mods = "LEADER",
+		action = act.ActivateTab(i - 1),
+	})
+
+	table.insert(config.keys, {
+		key = "F" .. tostring(i),
+		action = act.ActivateTab(i - 1),
+	})
+end
 
 config.key_tables = {
 	pane_movement = {
