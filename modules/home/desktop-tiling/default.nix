@@ -1,3 +1,10 @@
 {flake, ...}: {
-  imports = [flake.homeModules.desktop ./programs.nix ./hyprlock.nix ./mako.nix ./swayosd.nix ./satty.nix];
+  imports = [
+    flake.homeModules.desktop
+    ./programs.nix
+    ./services.nix
+    ./hyprlock.nix
+    ./mako.nix
+    ./swayosd.nix
+  ];
 }

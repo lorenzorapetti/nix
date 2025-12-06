@@ -9,12 +9,6 @@
   inherit (config.programs) chromium;
 in {
   config = {
-    # programs.firefox = mkIf firefox.enable {
-    #   profiles.default = {
-    #     "mousewheel.default.delta_multiplier_y" = 150; # scroll faster
-    #   };
-    # };
-
     xdg.mimeApps = let
       associations = builtins.listToAttrs (map (name: {
           inherit name;

@@ -13,6 +13,7 @@
     gcb = "git checkout -b";
     gcl = "git clone";
     gp = "git push";
+    gpl = "git pull";
     gl = "git log --oneline --graph --decorate --all";
     gld = "git log --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'";
   };

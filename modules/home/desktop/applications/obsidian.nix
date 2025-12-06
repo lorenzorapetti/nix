@@ -1,20 +1,19 @@
 {
-  osConfig,
+  config,
   lib,
   ...
 }: let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf mkMerge mkDefault;
 
-  cfg = osConfig.programs.obsidian;
+  cfg = config.programs.obsidian;
 in {
-  config = mkIf cfg.enable {
-    programs.obsidian = {
-      enable = true;
-
+  programs.obsidian = mkMerge [
+    {enable = mkDefault true;}
+    (mkIf cfg.enable {
       vaults.home = {
         enable = true;
         target = "Obsidian/Home";
       };
-    };
-  };
+    })
+  ];
 }

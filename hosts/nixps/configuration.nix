@@ -8,7 +8,6 @@
     ./hardware-configuration.nix
     flake.inputs.hardware.nixosModules.dell-xps-13-9340
     flake.nixosModules.common
-    flake.nixosModules.lorenzo
     flake.nixosModules.niri
   ];
 
@@ -45,13 +44,9 @@
 
   hardware.uinput.enable = true;
 
-  # services.keyboard-interception = {
-  #   enable = true;
-  #   devices = [
-  #     "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
-  #     "/dev/input/gem-80-kbd"
-  #   ];
-  # };
+  services.kanata.devices = [
+    "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
+  ];
 
   services.protonvpn.enable = true;
 

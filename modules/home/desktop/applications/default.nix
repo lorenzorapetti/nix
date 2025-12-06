@@ -10,7 +10,6 @@ in {
     inputs.zen-browser.homeModules.twilight
     ./vicinae.nix
     ./alacritty.nix
-    ./wezterm.nix
     ./browsers.nix
     ./zen-browser.nix
     ./imv.nix
@@ -19,7 +18,6 @@ in {
     ./mimeapps.nix
     ./obs.nix
     ./obsidian.nix
-    ./vesktop.nix
     ./webapps.nix
   ];
 
@@ -38,4 +36,6 @@ in {
   programs.firefox.enable = mkDefault true;
   programs.chromium.enable = mkDefault true;
   programs.zen-browser.enable = mkDefault true;
+  programs.vesktop.enable = mkDefault true;
+  programs.wezterm.enable = mkDefault true;
 }
