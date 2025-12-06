@@ -179,6 +179,7 @@ in {
     spawn-at-startup = [
       {sh = "mako";}
       {sh = "1password --silent";}
+      {sh = "awww-switch";}
       {argv = ["nm-applet" "--indicator"];}
     ];
 

@@ -22,6 +22,7 @@
 
     perSystem.self.screenshot
     perSystem.self.screenrecord
+    perSystem.self.awww-switch
   ];
 
   services.mako.enable = lib.mkDefault true;
