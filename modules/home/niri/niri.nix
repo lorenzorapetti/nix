@@ -335,7 +335,7 @@ in {
       lib.attrsets.mergeAttrsList [
         {
           "Mod+Shift+Slash".action = show-hotkey-overlay;
-          "Mod+Return" = bind "Open Terminal" (spawn "${getExe pkgs.alacritty}");
+          "Mod+Return" = bind "Open Terminal" (spawn "${getExe pkgs.wezterm}");
           "Mod+B" = bind "Open Browser" (spawn "${getExe pkgs.brave}");
           "Mod+E" = bind "Open File Manager" (spawn-sh "alacritty --class quick-terminal -e yazi");
 
