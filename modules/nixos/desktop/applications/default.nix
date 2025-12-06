@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  imports = [./1password.nix ./steam.nix];
+  imports = [./1password.nix ./steam.nix ./bambu-studio.nix];
 
   environment.systemPackages = with pkgs; [
     nautilus

@@ -26,7 +26,6 @@ in {
     telegram-desktop
     pinta
     localsend
-    bambu-studio
   ];
 
   services.vicinae.enable = mkDefault true;
