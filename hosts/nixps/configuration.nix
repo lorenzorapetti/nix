@@ -39,8 +39,8 @@
   networking.networkmanager.enable = true;
 
   hardware.bluetooth.enable = true;
-  hardware.ipu6.enable = true;
-  hardware.ipu6.platform = "ipu6epmtl";
+  # hardware.ipu6.enable = true;
+  # hardware.ipu6.platform = "ipu6epmtl";
 
   hardware.uinput.enable = true;
 
@@ -107,6 +107,7 @@
   users.groups = {
     input = {};
     uinput = {};
+    plugdev = {};
   };
 
   users.users.lorenzo = {
@@ -118,6 +119,7 @@
       "docker"
       "uinput"
       "input"
+      "plugdev"
     ];
   };
 }

@@ -19,6 +19,9 @@
     stylix.url = "github:nix-community/stylix/master";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Catppuccin theme
+    catppuccin.url = "github:catppuccin/nix";
+
     # NixOS profiles for different hardware
     hardware.url = "github:lorenzorapetti/nixos-hardware";
 

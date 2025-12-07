@@ -10,7 +10,7 @@
 in {
   config = mkMerge [
     {
-      features.v4l2loopback.enable = mkDefault true;
+      features.v4l2loopback.enable = mkDefault false;
     }
     (mkIf cfg.enable {
       environment.systemPackages = [

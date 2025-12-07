@@ -1,5 +1,7 @@
-{...}: {
+{flake, ...}: {
   imports = [
+    flake.inputs.catppuccin.nixosModules.catppuccin
+    ./theme.nix
     ./shell.nix
     ./monitors.nix
     ./stylix.nix
