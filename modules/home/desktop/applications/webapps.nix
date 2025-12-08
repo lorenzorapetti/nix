@@ -55,6 +55,15 @@ in {
         };
         url = "https://claude.ai";
       };
+
+      telegram = {
+        name = "Telegram";
+        icon = {
+          url = "https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/telegram.png";
+          sha256 = "sha256-jGUNFMpH62/XKqM0fZ1fKEAWt+rh47lgZVWzVNuTh/M=";
+        };
+        url = "https://web.telegram.org";
+      };
     };
   };
 
