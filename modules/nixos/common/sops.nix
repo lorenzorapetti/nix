@@ -13,6 +13,12 @@
       lorenzo-atuin-session = {
         owner = config.users.users.lorenzo.name;
       };
+      lorenzo-ssh-private-key = {
+        owner = config.users.users.lorenzo.name;
+      };
+      lorenzo-ssh-public-key = {
+        owner = config.users.users.lorenzo.name;
+      };
     };
   };
 
