@@ -153,20 +153,6 @@
     "format-icons": [" ", " ", " ", " ", " "],
     "justify": "center",
   },
-  "custom/tlp": {
-    "format": "{icon}",
-    "format-icons": {
-      "battery": "󰌪",
-      "AC": "󱐌",
-    },
-    "exec": "~/.config/waybar/modules/tlp.sh get --json",
-    "exec-on-event": true,
-    "return-type": "json",
-    // We need to run every now and then in case there are outside changes.
-    "interval": 20,
-    "on-click": "~/.config/waybar/modules/tlp.sh toggle",
-    "on-click-right": "~/.config/waybar/modules/tlp.sh set auto",
-  },
   "custom/protonvpn": {
     "exec": "~/.config/waybar/modules/protonvpn-status.sh",
     "return-type": "json",
