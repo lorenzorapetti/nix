@@ -17,6 +17,8 @@ in {
         mouse.hide_when_typing = true;
 
         terminal.shell = getExe pkgs.fish;
+
+        font.size = lib.mkForce 11;
       };
     };
   };
