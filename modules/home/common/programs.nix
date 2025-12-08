@@ -14,6 +14,7 @@ in {
     lazydocker # docker tui
     systemctl-tui
     gh # GitHub CLI
+    tea # Gitea CLI
 
     lsd # Better ls
     bat # Better cat
