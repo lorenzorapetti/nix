@@ -8,5 +8,6 @@
     ./applications
     ./programs.nix
     ./yazi.nix
+    ./bluetuith.nix
   ];
 }

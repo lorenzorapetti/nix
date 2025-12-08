@@ -293,6 +293,8 @@ in {
         "Shift+Ctrl+Alt+Super+${letter}" = bind "Focus Or Open ${app}" (spawn-sh "${perSystem.self.focus-or-open}/bin/focus-or-open ${app} --app-id ${id}");
       };
 
+      spawn-tui = pkg: spawn-sh "${getExe pkgs.alacritty} --class quick-terminal -e ${getExe pkg}";
+
       focusOrOpenBinds = apps: mergeAttrsList (map focus-or-open apps);
 
       swayosdEnabled = config.services.swayosd.enable;
@@ -335,9 +337,8 @@ in {
       lib.attrsets.mergeAttrsList [
         {
           "Mod+Shift+Slash".action = show-hotkey-overlay;
-          "Mod+Return" = bind "Open Terminal" (spawn "${getExe pkgs.wezterm}");
+          "Mod+Return" = bind "Open Terminal" (spawn "${getExe pkgs.alacritty}");
           "Mod+B" = bind "Open Browser" (spawn "${getExe pkgs.brave}");
-          "Mod+E" = bind "Open File Manager" (spawn-sh "alacritty --class quick-terminal -e yazi");
 
           "Mod+Q" = bind "Close Window" close-window;
           "Mod+Ctrl+E" = bind "Toggle Overview" toggle-overview;
@@ -348,8 +349,10 @@ in {
           "Mod+Y" = bind "Open Clipboard History" (menu "vicinae://extensions/vicinae/clipboard/history");
           "Mod+Shift+E" = bind "Open Emoji Selector" (menu "vicinae://extensions/vicinae/vicinae/search-emojis");
 
-          "Mod+Ctrl+B" = bind "Open Bluetooth" (spawn "blueman-manager");
-          "Mod+Ctrl+V" = bind "Open Volume Control" (spawn "pavucontrol");
+          "Mod+E" = bind "Open File Manager" (spawn-tui pkgs.yazi);
+          "Mod+D" = bind "Open Bluetooth" (spawn-tui pkgs.bluetuith);
+          "Mod+V" = bind "Open Volume Control" (spawn-tui pkgs.wiremix);
+          "Mod+P" = bind "Open Task Manager" (spawn-tui pkgs.btop);
         }
         # Media
         {

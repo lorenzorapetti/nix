@@ -10,6 +10,8 @@
     playerctl
     brightnessctl
 
+    wiremix
+
     gemini-cli-bin
   ];
 }
