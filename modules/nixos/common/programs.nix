@@ -21,6 +21,8 @@ in {
     nmap
     tailscale
     usbutils
+    pciutils
+    dnsutils
 
     # Nix
     home-manager
