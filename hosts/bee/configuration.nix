@@ -54,6 +54,15 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Unblock Bluetooth on boot
+  systemd.services.unblock-bluetooth = {
+    wantedBy = ["multi-user.target"];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.util-linux}/bin/rfkill unblock bluetooth";
+    };
+  };
+
   monitors = [
     {
       name = "HDMI-A-1";
