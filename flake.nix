@@ -15,6 +15,9 @@
     # Follow nixpkgs declared above instead of downloading another one
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    nh.url = "github:nix-community/nh";
+    nh.inputs.nixpkgs.follows = "nixpkgs";
+
     # System-wide colorscheming & typography
     stylix.url = "github:nix-community/stylix/master";
     stylix.inputs.nixpkgs.follows = "nixpkgs";

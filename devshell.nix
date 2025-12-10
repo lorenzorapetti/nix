@@ -13,7 +13,10 @@ perSystem.devshell.mkShell {
       category = "development";
       name = "deploy";
       help = "Create a new generation";
-      command = "sudo nixos-rebuild switch --flake .";
+      command =
+        if pkgs.stdenv.isLinux
+        then "nh os switch"
+        else "nh darwin switch";
     }
     {
       category = "development";
