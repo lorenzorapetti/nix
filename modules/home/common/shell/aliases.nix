@@ -1,5 +1,6 @@
 {...}: {
   home.shellAliases = {
+    n = "cd ~/nix && nvim";
     la = "ls -la";
     g = "git";
     gs = "git status";
