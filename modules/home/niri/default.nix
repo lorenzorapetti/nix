@@ -7,4 +7,8 @@
     ./waybar.nix
     ./awww.nix
   ];
+
+  home.sessionVariables = {
+    QT_QPA_PLATFORM = "wayland";
+  };
 }

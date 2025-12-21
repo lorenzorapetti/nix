@@ -20,6 +20,11 @@
       efi.canTouchEfiVariables = true;
     };
 
+    kernelParams = [
+      "amdgpu.dc=1"
+      "amdgpu.accel=1"
+    ];
+
     kernelPackages = pkgs.linuxPackages_zen;
   };
 
@@ -34,6 +39,9 @@
     enable32Bit = true;
   };
   hardware.amdgpu.initrd.enable = true;
+  services.xserver.videoDrivers = ["amdgpu"];
+
+  services.seatd.enable = true;
 
   # Trim SSDs weekly (harmless on HDDs)
   services.fstrim = {
@@ -80,6 +88,10 @@
     }
   ];
 
+  environment.systemPackages = with pkgs; [
+    mesa
+  ];
+
   users.groups = {
     input = {};
     uinput = {};
@@ -96,6 +108,8 @@
       "uinput"
       "input"
       "plugdev"
+      "render"
+      "seat"
     ];
   };
 }

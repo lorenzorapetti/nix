@@ -10,6 +10,7 @@ in {
       nerd-fonts.jetbrains-mono
       nerd-fonts.geist-mono
 
+      liberation_ttf
       eb-garamond
       fira-sans
       montserrat

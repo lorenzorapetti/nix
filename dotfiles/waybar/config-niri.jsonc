@@ -121,8 +121,9 @@
   "temperature": {
     "thermal-zone": 1,
     "interval": 3,
-    "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon/hwmon6",
-    "input-filename": "temp1_input",
+    "thermal-zone": "/sys/class/thermal/thermal_zone1",
+    // "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon/hwmon6",
+    // "input-filename": "temp1_input",
     "critical-threshold": 80,
     "format-critical": " {temperatureC}°C",
     "format": "{icon} {temperatureC}°C",
