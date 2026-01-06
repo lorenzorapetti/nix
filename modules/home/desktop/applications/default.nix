@@ -26,6 +26,7 @@ in {
     telegram-desktop
     pinta
     localsend
+    freecad
   ];
 
   services.vicinae.enable = mkDefault true;
