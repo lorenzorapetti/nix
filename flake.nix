@@ -57,6 +57,9 @@
     vicinae.url = "github:vicinaehq/vicinae";
     vicinae.inputs.nixpkgs.follows = "nixpkgs";
 
+    vicinae-extensions.url = "github:vicinaehq/extensions";
+    vicinae-extensions.inputs.nixpkgs.follows = "nixpkgs";
+
     # An Answer to your Wayland Wallpaper Woes
     awww.url = "git+https://codeberg.org/LGFae/awww";
 

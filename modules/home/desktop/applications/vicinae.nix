@@ -10,22 +10,36 @@
 in {
   config = {
     services.vicinae = mkIf cfg.enable {
-      autoStart = true;
+      systemd = {
+        enable = true;
+        autoStart = true;
+        environment = {
+          USE_LAYER_SHELL = 1;
+        };
+      };
 
       settings = {
-        closeOnFocusLoss = false;
-        faviconService = "twenty";
+        close_on_focus_loss = false;
+        favicon_service = "twenty";
         font = {
-          size = style.fonts.sizes.applications;
-          normal = style.fonts.sansSerif.name;
+          normal = {
+            size = style.fonts.sizes.applications;
+            normal = style.fonts.sansSerif.name;
+          };
         };
         theme = {
-          name = "catppuccin-mocha";
-          iconTheme = "Catppuccin Mocha Dark";
+          light = {
+            name = "catppuccin-latte";
+            iconTheme = "default";
+          };
+          dark = {
+            name = "catppuccin-mocha";
+            iconTheme = "Catppuccin Mocha Dark";
+          };
         };
-        rootSearch.searchFiles = false;
-        popToRootOnClose = true;
-        window = {
+        search_files_in_root = false;
+        pop_to_root_on_close = true;
+        launcher_window = {
           csd = true;
           opacity = 0.9;
           rounding = 10;
