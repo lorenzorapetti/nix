@@ -27,6 +27,8 @@ in {
     pinta
     localsend
     freecad
+
+    arduino-ide
   ];
 
   services.vicinae.enable = mkDefault true;

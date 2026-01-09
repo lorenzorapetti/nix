@@ -13,5 +13,6 @@
     wiremix
 
     gemini-cli-bin
+    arduino-cli
   ];
 }
