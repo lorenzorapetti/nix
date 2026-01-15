@@ -27,6 +27,7 @@ in {
     pinta
     localsend
     freecad
+    kicad
 
     arduino-ide
   ];
