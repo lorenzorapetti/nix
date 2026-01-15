@@ -86,6 +86,13 @@
 
       scale = 1.33334;
     }
+    {
+      name = "DP-3";
+
+      width = 2880;
+      height = 1800;
+      refresh = 120.0;
+    }
   ];
 
   environment.systemPackages = with pkgs; [
