@@ -8,7 +8,7 @@
   cfg = config.programs.obsidian;
 in {
   programs.obsidian = mkMerge [
-    {enable = mkDefault true;}
+    {enable = mkDefault false;}
     (mkIf cfg.enable {
       vaults.home = {
         enable = true;
