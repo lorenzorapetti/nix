@@ -6,7 +6,6 @@
     ./dotfiles.nix
     ./direnv.nix
     ./neovim.nix
-    ./ai.nix
   ];
 
   xdg.enable = true;

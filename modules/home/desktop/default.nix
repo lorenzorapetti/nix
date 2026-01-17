@@ -9,5 +9,6 @@
     ./programs.nix
     ./yazi.nix
     ./bluetuith.nix
+    ./ai.nix
   ];
 }
