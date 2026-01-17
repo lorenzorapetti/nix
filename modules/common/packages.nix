@@ -23,6 +23,7 @@
     file
     which
     tree
+    lsof
 
     # Editors
     vim
