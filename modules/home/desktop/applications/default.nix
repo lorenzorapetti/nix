@@ -26,7 +26,6 @@ in {
     telegram-desktop
     pinta
     localsend
-    freecad
     kicad
 
     arduino-ide
