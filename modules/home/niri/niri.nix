@@ -347,7 +347,8 @@ in {
           "Mod+Shift+Space" = bind "Open 1Password Quick Access" (spawn "1password" "--quick-access");
           "Mod+Space" = bind "Open Launcher" (menu "toggle");
           "Mod+Y" = bind "Open Clipboard History" (menu "vicinae://extensions/vicinae/clipboard/history");
-          "Mod+Shift+E" = bind "Open Emoji Selector" (menu "vicinae://extensions/vicinae/vicinae/search-emojis");
+          "Mod+Shift+E" = bind "Open Emoji Selector" (menu "vicinae://extensions/vicinae/core/search-emojis");
+          "Mod+Shift+Escape" = bind "Open Power Menu" (menu "vicinae://extensions/vicinae/power");
 
           "Mod+E" = bind "Open File Manager" (spawn-tui pkgs.yazi);
           "Mod+D" = bind "Open Bluetooth" (spawn-tui pkgs.bluetuith);
