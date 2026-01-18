@@ -473,10 +473,16 @@ in {
           "Mod+Ctrl+Shift+J".action = move-workspace-down;
           "Mod+Ctrl+Shift+K".action = move-workspace-up;
           "Mod+Ctrl+Shift+L".action = move-column-to-monitor-next;
+
           "Mod+Ctrl+Shift+Left".action = move-column-to-monitor-previous;
           "Mod+Ctrl+Shift+Down".action = move-workspace-down;
           "Mod+Ctrl+Shift+Up".action = move-workspace-up;
           "Mod+Ctrl+Shift+Right".action = move-column-to-monitor-next;
+
+          "Mod+Ctrl+Alt+Shift+H".action = move-workspace-to-monitor-previous;
+          "Mod+Ctrl+Alt+Shift+Left".action = move-workspace-to-monitor-previous;
+          "Mod+Ctrl+Alt+Shift+L".action = move-workspace-to-monitor-next;
+          "Mod+Ctrl+Alt+Shift+Right".action = move-workspace-to-monitor-next;
 
           "Mod+BracketLeft".action = consume-or-expel-window-left;
           "Mod+BracketRight".action = consume-or-expel-window-right;
