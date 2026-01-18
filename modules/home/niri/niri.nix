@@ -389,7 +389,6 @@ in {
           prefixes."Mod" = "focus";
           prefixes."Mod+Ctrl" = "move";
           prefixes."Mod+Shift" = "focus-monitor";
-          prefixes."Mod+Shift+Ctrl" = "move-column-to-monitor";
           substitutions."move-window-or-workspace-down" = "move-window-down-or-to-workspace-down";
           substitutions."move-window-or-workspace-up" = "move-window-up-or-to-workspace-up";
           substitutions."monitor-column" = "monitor";
@@ -469,6 +468,15 @@ in {
           "Mod+0".action.focus-workspace = 10;
           "Mod+Ctrl+0".action.move-column-to-workspace = 10;
           "Mod+Tab".action = focus-workspace-previous;
+
+          "Mod+Ctrl+Shift+H".action = move-column-to-monitor-previous;
+          "Mod+Ctrl+Shift+J".action = move-workspace-down;
+          "Mod+Ctrl+Shift+K".action = move-workspace-up;
+          "Mod+Ctrl+Shift+L".action = move-column-to-monitor-next;
+          "Mod+Ctrl+Shift+Left".action = move-column-to-monitor-previous;
+          "Mod+Ctrl+Shift+Down".action = move-workspace-down;
+          "Mod+Ctrl+Shift+Up".action = move-workspace-up;
+          "Mod+Ctrl+Shift+Right".action = move-column-to-monitor-next;
 
           "Mod+BracketLeft".action = consume-or-expel-window-left;
           "Mod+BracketRight".action = consume-or-expel-window-right;
