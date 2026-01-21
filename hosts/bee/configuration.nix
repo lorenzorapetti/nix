@@ -71,6 +71,11 @@
     };
   };
 
+  # Disable internal bluetooth device
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="8087", ATTRS{idProduct}=="0029", ATTR{authorized}="0"
+  '';
+
   monitors = [
     {
       name = "HDMI-A-1";
