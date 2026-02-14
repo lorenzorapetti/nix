@@ -78,7 +78,7 @@
 
   monitors = [
     {
-      name = "HDMI-A-1";
+      name = "Samsung Electric Company Odyssey G80SD H1AK500000";
 
       width = 3840;
       height = 2160;
@@ -89,21 +89,21 @@
         y = 0;
       };
 
-      scale = 1.333333;
+      scale = 1.25;
     }
     {
-      name = "DP-3";
+      name = "Audio Processing Technology  Ltd CX158 0x00000002";
 
       width = 2880;
       height = 1800;
       refresh = 120.0;
 
       position = {
-        x = 960;
-        y = 1620;
+        x = 0;
+        y = 1728;
       };
 
-      scale = 1.33334;
+      scale = 1.5;
     }
   ];
 

@@ -6,7 +6,7 @@
   perSystem,
   ...
 }: let
-  inherit (lib) map replaceStrings attrNames attrValues isList head tail concatMap listToAttrs;
+  inherit (lib) replaceStrings attrNames attrValues isList head tail concatMap listToAttrs;
   inherit (osConfig) monitors;
 
   # This combines prefixes in the form
@@ -481,8 +481,6 @@ in {
 
           "Mod+Ctrl+Alt+Shift+H".action = move-workspace-to-monitor-previous;
           "Mod+Ctrl+Alt+Shift+Left".action = move-workspace-to-monitor-previous;
-          "Mod+Ctrl+Alt+Shift+L".action = move-workspace-to-monitor-next;
-          "Mod+Ctrl+Alt+Shift+Right".action = move-workspace-to-monitor-next;
 
           "Mod+BracketLeft".action = consume-or-expel-window-left;
           "Mod+BracketRight".action = consume-or-expel-window-right;
