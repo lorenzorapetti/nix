@@ -205,7 +205,7 @@
     acMonitorTimeout = 600;
     acLockTimeout = 300;
     acSuspendTimeout = 1800;
-    acSuspendBehavior = 0;
+    acSuspendBehavior = 2;
     acProfileName = "";
     batteryMonitorTimeout = 0;
     batteryLockTimeout = 0;
@@ -213,7 +213,7 @@
     batterySuspendBehavior = 0;
     batteryProfileName = "";
     batteryChargeLimit = 100;
-    lockBeforeSuspend = true;
+    lockBeforeSuspend = false;
     loginctlLockIntegration = true;
     fadeToLockEnabled = true;
     fadeToLockGracePeriod = 5;
