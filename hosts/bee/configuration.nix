@@ -57,8 +57,6 @@
 
   services.kanata.enable = false;
 
-  services.protonvpn.enable = true;
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 

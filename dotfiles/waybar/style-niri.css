@@ -93,18 +93,6 @@
     border-color: @flamingo;
 }
 
-#custom-protonvpn {
-    margin-right: 12pt;
-}
-
-#custom-protonvpn.connected {
-    color: @green;
-}
-
-#custom-protonvpn.disconnected {
-    color: @red;
-}
-
 window#waybar.empty #window {
     background-color: transparent;
     border: 0px;

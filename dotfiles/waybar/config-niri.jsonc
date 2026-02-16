@@ -154,13 +154,6 @@
     "format-icons": [" ", " ", " ", " ", " "],
     "justify": "center",
   },
-  "custom/protonvpn": {
-    "exec": "~/.config/waybar/modules/protonvpn-status.sh",
-    "return-type": "json",
-    "interval": 60,
-    "on-click": "~/.config/waybar/modules/protonvpn-status.sh toggle",
-    "format": {},
-  },
   "power-profiles-daemon": {
     "format": "{icon}",
     "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
@@ -207,6 +200,6 @@
   },
   "group/network-group": {
     "orientation": "inherit",
-    "modules": ["custom/protonvpn", "network"],
+    "modules": ["network"],
   },
 }

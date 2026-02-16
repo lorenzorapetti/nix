@@ -8,6 +8,5 @@
     ./language.nix
     ./docker.nix
     ./programs.nix
-    ./protonvpn.nix
   ];
 }

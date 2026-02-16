@@ -48,8 +48,6 @@
     "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
   ];
 
-  services.protonvpn.enable = true;
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
