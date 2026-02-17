@@ -233,7 +233,7 @@ in {
       }
       {
         matches = [
-          {app-id = "^(brave-browser|dev\.zed\.Zed|firefox|zen|zen-twilight)$";}
+          {app-id = "^(brave-browser|dev\.zed\.Zed|firefox|zen|zen-twilight|helium)$";}
         ];
         open-maximized = true;
       }
@@ -338,7 +338,7 @@ in {
         {
           "Mod+Shift+Slash".action = show-hotkey-overlay;
           "Mod+Return" = bind "Open Terminal" (spawn "${getExe pkgs.alacritty}");
-          "Mod+B" = bind "Open Browser" (spawn "${getExe pkgs.brave}");
+          "Mod+B" = bind "Open Browser" (spawn "${getExe perSystem.helium.default}");
 
           "Mod+Q" = bind "Close Window" close-window;
           "Mod+Ctrl+E" = bind "Toggle Overview" toggle-overview;
@@ -400,11 +400,6 @@ in {
             app = "zeditor";
             letter = "Z";
             id = "dev.zed.Zed";
-          }
-          {
-            app = "brave";
-            letter = "B";
-            id = "brave-browser";
           }
           {
             app = "telegram-desktop";

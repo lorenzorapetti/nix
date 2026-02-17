@@ -29,6 +29,10 @@ in {
     kicad
 
     arduino-ide
+
+    # Work
+    slack
+    teams-for-linux
   ];
 
   services.vicinae.enable = mkDefault true;

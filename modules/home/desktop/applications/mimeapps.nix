@@ -3,7 +3,7 @@
   flake,
   ...
 }: let
-  inherit (lib) map mergeAttrsList;
+  inherit (lib) mergeAttrsList;
   inherit (builtins) listToAttrs;
 
   associations = value: mimes:
@@ -13,7 +13,7 @@
       mimes);
 in {
   xdg.mimeApps = let
-    browser = associations ["brave-browser.desktop"] flake.lib.mimeTypes.web;
+    browser = associations ["helium.desktop"] flake.lib.mimeTypes.web;
 
     images = associations ["imv.desktop"] [
       "image/png"

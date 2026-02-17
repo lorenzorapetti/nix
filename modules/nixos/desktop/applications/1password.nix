@@ -12,6 +12,7 @@
         zen
         zen-bin
         zen-twilight
+        helium
       '';
       mode = "0755";
     };
