@@ -40,7 +40,6 @@ in {
   programs.alacritty.enable = mkDefault true;
   programs.zed-editor.enable = mkDefault true;
   programs.firefox.enable = mkDefault true;
-  programs.chromium.enable = mkDefault true;
   programs.zen-browser.enable = mkDefault true;
   programs.vesktop.enable = mkDefault true;
   programs.wezterm.enable = mkDefault true;
