@@ -46,8 +46,8 @@ in {
         set -g fish_greeting
         set -g TERM xterm-256color
 
-        if type -q lsd
-            alias ls='lsd'
+        if type -q eza
+            alias ls='eza'
         end
 
         if type -q bat

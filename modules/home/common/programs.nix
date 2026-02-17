@@ -16,7 +16,7 @@ in {
     gh # GitHub CLI
     tea # Gitea CLI
 
-    lsd # Better ls
+    eza # Better ls
     bat # Better cat
     dust # Better du
     fd # Better find
