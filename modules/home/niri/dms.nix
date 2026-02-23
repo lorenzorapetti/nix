@@ -41,11 +41,7 @@
     };
 
     plugins = {
-      dockerManager.enable = true;
-      homeAssistantMonitor.enable = true;
       powerOptions.enable = true;
-      dankPomodoroTimer.enable = true;
-      tailscale.enable = true;
     };
   };
 }

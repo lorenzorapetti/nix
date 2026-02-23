@@ -2,11 +2,8 @@
   programs.dank-material-shell.settings = {
     currentThemeName = "blue";
     currentThemeCategory = "generic";
-    customThemeFile = "";
-    registryThemeVariants = {};
     matugenScheme = "scheme-tonal-spot";
     runUserMatugenTemplates = true;
-    matugenTargetMonitor = "";
     popupTransparency = 1;
     dockTransparency = 1;
     widgetBackgroundColor = "sch";
@@ -167,7 +164,7 @@
         type = "regex";
       }
     ];
-    centeringMode = "index";
+    centeringMode = "geometric";
     clockDateFormat = "";
     lockDateFormat = "";
     mediaSize = 1;
@@ -294,6 +291,7 @@
     osdPosition = 5;
     osdVolumeEnabled = true;
     osdMediaVolumeEnabled = true;
+    osdMediaPlaybackEnabled = false;
     osdBrightnessEnabled = true;
     osdIdleInhibitorEnabled = true;
     osdMicMuteEnabled = true;
@@ -345,25 +343,12 @@
           }
         ];
         centerWidgets = [
-          "music"
           "clock"
           "weather"
         ];
         rightWidgets = [
           {
             id = "systemTray";
-            enabled = true;
-          }
-          {
-            id = "clipboard";
-            enabled = true;
-          }
-          {
-            id = "vpn";
-            enabled = true;
-          }
-          {
-            id = "tailscale";
             enabled = true;
           }
           {
@@ -375,7 +360,7 @@
             enabled = true;
           }
           {
-            id = "dockerManager";
+            id = "network_speed_monitor";
             enabled = true;
           }
           {
