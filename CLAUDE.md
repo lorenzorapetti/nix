@@ -1,162 +1,107 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for Claude Code when working in this repository.
 
-## Overview
+## What this repo is
 
-This is a personal NixOS/nix-darwin configuration repository using Nix flakes. It manages system configurations for multiple hosts (Linux and macOS) with a modular architecture powered by the Blueprint flake for automatic structure mapping.
+Personal Nix configuration for multiple machines (NixOS + nix-darwin + home-manager),
+built as a single flake. The repo is currently being rewritten from a traditional
+`hosts/` + `modules/` layout onto the **dendritic pattern**, implemented with the
+**den framework**. Previous hosts (for reference, may not exist yet in the new layout):
+`nixps` and `bee` (NixOS), `mac14` (nix-darwin).
 
-## Essential Commands
+Read these before making structural decisions — don't guess at conventions:
 
-### Building and Deploying
-
-```bash
-# Rebuild NixOS system (Linux)
-sudo nixos-rebuild switch --flake .
-
-# Build without applying (test configuration)
-sudo nixos-rebuild build --flake .
-
-# Update flake inputs
-nix flake update
-
-# Update specific input
-nix flake lock --update-input <input-name>
-```
-
-### Development Shell
-
-The repository includes a devshell configuration (`devshell.nix`) that provides:
-
-```bash
-# Enter development shell
-nix develop
-
-# From within devshell:
-switch   # Shortcut for nixos-rebuild switch --flake .
-browse   # Browse flake with nix-inspect
-```
-
-### Formatting and Linting
-
-```bash
-# Format all Nix files with alejandra
-nix fmt
-
-# Lint with statix
-statix check
-```
-
-### Secrets Management
-
-This repository uses sops-nix for secrets:
-
-- Secrets are stored in `secrets/secrets.yaml` (encrypted)
-- Age key configuration in `.sops.yaml`
-- System age key is auto-generated at `/var/lib/sops-nix/age.agekey`
-- To edit secrets: ensure `SOPS_AGE_KEY_FILE` is set and use `sops secrets/secrets.yaml`
+- Dendritic pattern: https://github.com/mightyiam/dendritic/blob/master/README.md
+- Den framework overview: https://den.denful.dev/overview/
+- NixOS and Flakes book: https://nixos-and-flakes.thiscute.world/
+- NixOS manual: https://nixos.org/manual/nixos/stable/
 
 ## Architecture
 
-### Blueprint-Based Module System
+The flake wires together `flake-parts`, `import-tree`, and `den`:
 
-The flake uses the [Blueprint](https://github.com/lorenzorapetti/blueprint) system which automatically maps directory structure to flake outputs:
-
-- `hosts/` → `nixosConfigurations` (host-specific configurations)
-- `modules/nixos/` → `nixosModules` (NixOS system modules)
-- `modules/home/` → `homeModules` (home-manager modules)
-- `modules/common/` → `modules.common` (shared modules)
-- `packages/` → `packages` (custom packages)
-
-### Module Organization
-
-**NixOS Modules** (`modules/nixos/`):
-- `common/` - Base system configuration (nix settings, kernel, programs, sops, keyboard)
-- `desktop/` - Desktop environment base
-- `niri/` - Niri window manager configuration
-- `lorenzo/` - User-specific system settings
-
-**Home Manager Modules** (`modules/home/`):
-- `common/` - Base user configuration (programs, shell, lazygit, direnv, AI tools)
-- `desktop/` - Desktop application configurations
-- `desktop-tiling/` - Tiling WM utilities (satty, mako, swayosd, hyprlock)
-- `niri/` - Niri-specific user configuration (includes waybar, hypridle, awww)
-- `lorenzo/` - User-specific home settings
-
-### Host Configuration Pattern
-
-Each host (e.g., `hosts/nixps/`) contains:
-- `configuration.nix` - System configuration importing common modules
-- `hardware-configuration.nix` - Hardware-specific settings
-- `users/<username>.nix` - Per-user home-manager configuration
-
-Host configurations import modules using flake references:
 ```nix
-imports = [
-  flake.nixosModules.common
-  flake.nixosModules.niri
-];
+{
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; }
+    (inputs.import-tree ./modules);
+
+  inputs = {
+    den.url = "github:denful/den";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
+    home-manager.url = "github:nix-community/home-manager";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # ... follows, theming, hardware, app-specific inputs
+  };
+}
 ```
 
-User configurations similarly import home modules:
-```nix
-imports = [
-  flake.homeModules.common
-  flake.homeModules.niri
-  flake.homeModules.lorenzo
-];
-```
+`import-tree ./modules` recursively imports **every** `.nix` file under `modules/`
+except ones prefixed with `_`. This means:
 
-### Current Hosts
+- There is no manual registry of module imports anywhere — dropping a file under
+  `modules/` is enough to activate it.
+- File paths are just organization, not semantics. Any file can be renamed, merged,
+  or split without changing behavior.
+- Files prefixed `_` (e.g. `modules/_nixos/configuration.nix`) are skipped by
+  `import-tree` — use that prefix for plain files that are `imports`-ed manually
+  from elsewhere rather than auto-loaded (e.g. hardware-configuration.nix-style files).
 
-- `nixps` - Dell XPS 13 9340 with NixOS, Niri window manager, dual monitors
-- `mac14` - macOS system (currently minimal configuration)
+### Dendritic rules to follow
 
-### Custom Packages
+- **Every file is a top-level module.** A file implements one feature and may
+  contribute to NixOS, home-manager, and darwin config for that feature all at once
+  — don't split "the nixos half" and "the home-manager half" of one feature into
+  unrelated directories unless there's a real reason to.
+- **Don't thread values through `specialArgs`.** Share values via `config` (declare
+  a custom option under `den`/your own namespace and read it elsewhere) instead of
+  passing ad-hoc arguments into module functions.
+- **Don't add `enable` options for your own modules.** Importing/activating a file
+  (or including an aspect) should be what turns the feature on. `enable` flags are
+  for upstream options you don't control, not something to reintroduce yourself.
+- **Prefer merging related config under one aspect/module name** over inventing many
+  narrowly-named modules — `deferredModule`-style merging is expected.
+- **Declare custom options when nixpkgs/home-manager doesn't have the right one** to
+  model something (e.g. describing a host's role) instead of working around it.
+- Treat all of the above as pragmatic defaults, not absolute law — reasonable
+  exceptions are fine when they clearly reduce complexity.
 
-Located in `packages/`, includes utilities like:
-- `mkScript.nix` - Helper for creating shell scripts
-- Screenshot/screenrecord utilities
-- `ralt2hyper.nix` - Keyboard remapping tool
-- `focus-or-open.nix` - Window management utility
+### Den concepts (from https://den.denful.dev/overview/)
 
-### Key Dependencies
+Den layers four concerns on top of the dendritic module tree:
 
-- **Stylix** - System-wide color schemes and typography
-- **sops-nix** - Secret management with age encryption
-- **Niri** - Scrolling window manager (primary desktop environment)
-- **Blueprint** - Automatic flake structure mapping
-- **nix-darwin** - macOS system management
-- **Zen Browser** - Firefox-based browser
+- **Entities** — hosts and users declared under `den.hosts.<system>.<hostname>.users.<user>`
+  and `den.homes`. This is "what exists."
+- **Aspects** (`den.aspects.<name>`) — composable bundles of config spanning multiple
+  Nix classes (`nixos`, `homeManager`, `darwin`, ...) in one place. This is "what a
+  feature does." Aspects can `includes` other aspects or **batteries** (den's
+  built-in aspects, e.g. `den.batteries.hostname`).
+- **Policies** — determine how entities relate/route (e.g. host → its users → their
+  homes), i.e. "how things connect."
+- **Quirks/pipes** — structured data aspects emit and share with each other without
+  direct coupling.
 
-### Display Configuration
+Aspect functions take typed context parameters (`{ host, user, ... }`) instead of
+booleans/conditionals — Den decides whether an aspect applies based on whether its
+declared parameters are available in a given context, not via `lib.mkIf`/`enable`
+flags.
 
-Monitor setup is configured in host `configuration.nix` using a `monitors` array:
-```nix
-monitors = [
-  {
-    name = "DP-3";
-    width = 3840;
-    height = 2160;
-    refresh = 120.0;
-    position = { x = 0; y = 0; };
-    scale = 1.25;
-  }
-];
-```
+Building/deploying still works the normal way once hosts are declared:
+`nixos-rebuild switch --flake .#<host>`, `darwin-rebuild switch --flake .#<host>`.
 
-## Development Workflow
+## Working in this repo
 
-1. Make changes to relevant module files in `modules/`
-2. Test with `sudo nixos-rebuild build --flake .`
-3. Apply with `sudo nixos-rebuild switch --flake .` or `switch` in devshell
-4. Format code with `nix fmt` before committing
-5. Run `statix check` to catch common Nix issues
-
-## Important Notes
-
-- The flake follows the unstable channel (`nixos-unstable`)
-- Hardware-specific configurations use a custom hardware modules fork
-- Docker is enabled by default but doesn't auto-start (`enableOnBoot = false`)
-- The system uses zram swap with zstd compression
-- Intel graphics configuration includes modern iHD VA-API driver setup
+- This repo is **mid-migration**: most of the tree was deleted in the working
+  directory as part of moving to the dendritic/den layout. Before assuming a file
+  exists, check the actual working tree, not just git history.
+- New config should go under `modules/` as dendritic files, not recreate the old
+  `hosts/<name>/configuration.nix` + `modules/<category>/*.nix` split.
+- Prefer extending an existing aspect/module over creating a new one when the
+  feature is closely related.
+- Validate changes with `nix flake check` and, where practical, a `nixos-rebuild
+  build` / `darwin-rebuild build` (or `home-manager build`) dry run for an affected
+  host before considering a change done — this repo has no CI to catch eval errors.
+- `statix.toml` disables the `repeated_keys` and `empty_pattern` lints repo-wide;
+  don't "fix" those if `statix` flags them elsewhere.
