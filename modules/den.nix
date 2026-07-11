@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    inputs.den.flakeModules.strict
+    inputs.den.flakeModules
   ];
 
   # Apply this configuration to all hosts and users.
@@ -53,7 +53,7 @@
   };
 
   den.schema = {
-    host = {lib, ...}: {
+    host = {
       home-manager.enable = true;
     };
     user.classes = lib.mkDefault ["homeManager"];
