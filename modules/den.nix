@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    inputs.den.flakeModules
+    inputs.den.flakeModule
   ];
 
   # Apply this configuration to all hosts and users.
