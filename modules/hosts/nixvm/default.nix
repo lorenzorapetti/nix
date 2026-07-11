@@ -7,7 +7,7 @@
       theming.catppuccin
     ];
 
-    imports = [
+    nixos.imports = [
       ./_hardware-configuration.nix
     ];
   };
