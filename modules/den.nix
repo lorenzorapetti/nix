@@ -44,7 +44,7 @@
 
       nix = {
         settings = {
-          experimentalFeatures = [
+          experimental-features = [
             "nix-command"
             "flakes"
           ];
