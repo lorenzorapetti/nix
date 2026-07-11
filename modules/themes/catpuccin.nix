@@ -5,7 +5,7 @@ in {
   den.aspects.theming.catppuccin = {
     nixos = {
       imports = [
-        inputs.catppuccin.nixosModule.catppuccin
+        inputs.catppuccin.nixosModules.catppuccin
       ];
 
       catppuccin = {
