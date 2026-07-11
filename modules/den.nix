@@ -41,6 +41,15 @@
     };
 
     nixpkgs.config.allowUnfree = true;
+
+    nix = {
+      experimentalFeatures = [
+        "nix-command"
+        "flakes"
+      ];
+
+      trusted-users = ["root" "@wheel"];
+    };
   };
 
   den.schema = {
