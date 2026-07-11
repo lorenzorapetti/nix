@@ -12,6 +12,7 @@
         accent = "lavender";
 
         limine.enable = true;
+        tty.enable = true;
       };
     };
 

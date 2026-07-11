@@ -3,10 +3,8 @@
 
   den.aspects.nixvm = {
     includes = with den.aspects; [
-      boot.kernel-latest
-      boot.limine
+      base
       theming.catppuccin
-      networking.networkmanager
     ];
   };
 }

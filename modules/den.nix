@@ -8,7 +8,7 @@
     inputs.den.flakeModule
   ];
 
-  # Apply this configuration to all hosts and users.
+  # Special aspect that applies the configuration to all hosts, users and homes.
   den.default = {
     includes = [
       # Sets the system hostname as defined in `den.hosts.<name>.hostName`
@@ -43,13 +43,26 @@
       nixpkgs.config.allowUnfree = true;
 
       nix = {
+        optimise.automatic = true;
+
         settings = {
+          use-xdg-base-directories = true;
           experimental-features = [
             "nix-command"
             "flakes"
           ];
+          auto-optimise-store = true;
 
           trusted-users = ["root" "@wheel"];
+
+          warn-dirty = false;
+          tarball-ttl = 60 * 60 * 24;
+          # From https://jackson.dev/post/nix-reasonable-defaults/
+          connect-timeout = 5;
+          log-lines = 50;
+          min-free = 128000000;
+          max-free = 1000000000;
+          fallback = true;
         };
       };
     };

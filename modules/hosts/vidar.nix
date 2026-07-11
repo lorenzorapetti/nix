@@ -5,10 +5,10 @@
 
   den.aspects.vidar = {
     includes = with den.aspects; [
-      boot.kernel-latest
-      boot.limine
+      base
+      hardware.cpu-amd
+      hardware.igpu-amd
       theming.catppuccin
-      networking.networkmanager
     ];
   };
 }

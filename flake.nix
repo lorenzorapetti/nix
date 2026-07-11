@@ -18,6 +18,11 @@
     import-tree.url = "github:vic/import-tree";
     nixpkgs-lib.follows = "nixpkgs";
 
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     catppuccin.url = "github:catppuccin/nix";
   };
 }
