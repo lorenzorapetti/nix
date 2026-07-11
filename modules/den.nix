@@ -21,37 +21,40 @@
       den.batteries.self'
     ];
 
-    nixos.system.stateVersion = "26.05";
-    homeManager.home.stateVersion = "26.05";
+    nixos = {
+      system.stateVersion = "26.05";
 
-    time.timeZone = "Europe/Rome";
+      time.timeZone = "Europe/Rome";
 
-    i18n.defaultLocale = "en_US.UTF-8";
+      i18n.defaultLocale = "en_US.UTF-8";
 
-    i18n.extraLocaleSettings = {
-      LC_ADDRESS = "it_IT.UTF-8";
-      LC_IDENTIFICATION = "it_IT.UTF-8";
-      LC_MEASUREMENT = "it_IT.UTF-8";
-      LC_MONETARY = "it_IT.UTF-8";
-      LC_NAME = "it_IT.UTF-8";
-      LC_NUMERIC = "it_IT.UTF-8";
-      LC_PAPER = "it_IT.UTF-8";
-      LC_TELEPHONE = "it_IT.UTF-8";
-      LC_TIME = "it_IT.UTF-8";
-    };
+      i18n.extraLocaleSettings = {
+        LC_ADDRESS = "it_IT.UTF-8";
+        LC_IDENTIFICATION = "it_IT.UTF-8";
+        LC_MEASUREMENT = "it_IT.UTF-8";
+        LC_MONETARY = "it_IT.UTF-8";
+        LC_NAME = "it_IT.UTF-8";
+        LC_NUMERIC = "it_IT.UTF-8";
+        LC_PAPER = "it_IT.UTF-8";
+        LC_TELEPHONE = "it_IT.UTF-8";
+        LC_TIME = "it_IT.UTF-8";
+      };
 
-    nixpkgs.config.allowUnfree = true;
+      nixpkgs.config.allowUnfree = true;
 
-    nix = {
-      settings = {
-        experimentalFeatures = [
-          "nix-command"
-          "flakes"
-        ];
+      nix = {
+        settings = {
+          experimentalFeatures = [
+            "nix-command"
+            "flakes"
+          ];
 
-        trusted-users = ["root" "@wheel"];
+          trusted-users = ["root" "@wheel"];
+        };
       };
     };
+
+    homeManager.home.stateVersion = "26.05";
   };
 
   den.schema = {
