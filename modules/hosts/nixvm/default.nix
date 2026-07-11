@@ -6,5 +6,9 @@
       base
       theming.catppuccin
     ];
+
+    imports = [
+      ./_hardware-configuration.nix
+    ];
   };
 }
