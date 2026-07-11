@@ -1,7 +1,4 @@
-{inputs, ...}: let
-  accent = "lavender";
-  flavor = "mocha";
-in {
+{inputs, ...}: {
   den.aspects.theming.catppuccin = {
     nixos = {
       imports = [
@@ -9,11 +6,11 @@ in {
       ];
 
       catppuccin = {
-        limine = {
-          enable = true;
-          accent = accent;
-          flavor = flavor;
-        };
+        autoEnable = false;
+        flavor = "mocha";
+        accent = "lavender";
+
+        limine.enable = true;
       };
     };
 
