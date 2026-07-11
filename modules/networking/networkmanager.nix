@@ -10,7 +10,9 @@
       boot.initrd.systemd.network.wait-online.enable = false;
       services.resolved.enable = true;
 
-      users.extraGroups = ["networkmanager"];
+      users.groups = {
+        networkmanager = {};
+      };
     };
   };
 }
