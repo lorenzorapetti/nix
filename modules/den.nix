@@ -1,0 +1,52 @@
+{
+  inputs,
+  lib,
+  den,
+  ...
+}: {
+  imports = [
+    inputs.den.flakeModules.strict
+  ];
+
+  # Apply this configuration to all hosts and users.
+  den.default = {
+    includes = [
+      # Sets the system hostname as defined in `den.hosts.<name>.hostName`
+      den.batteries.hostname
+
+      # Provides inputs' (the flake’s inputs with system pre-selected) as a top-level module argument.
+      den.batteries.inputs'
+
+      # Provides self' (the flake’s self outputs with system pre-selected) as a top-level module argument.
+      den.batteries.self'
+    ];
+
+    nixos.system.stateVersion = "26.05";
+    homeManager.home.stateVersion = "26.05";
+
+    time.timeZone = "Europe/Rome";
+
+    i18n.defaultLocale = "en_US.UTF-8";
+
+    i18n.extraLocaleSettings = {
+      LC_ADDRESS = "it_IT.UTF-8";
+      LC_IDENTIFICATION = "it_IT.UTF-8";
+      LC_MEASUREMENT = "it_IT.UTF-8";
+      LC_MONETARY = "it_IT.UTF-8";
+      LC_NAME = "it_IT.UTF-8";
+      LC_NUMERIC = "it_IT.UTF-8";
+      LC_PAPER = "it_IT.UTF-8";
+      LC_TELEPHONE = "it_IT.UTF-8";
+      LC_TIME = "it_IT.UTF-8";
+    };
+
+    nixpkgs.config.allowUnfree = true;
+  };
+
+  den.schema = {
+    host = {lib, ...}: {
+      home-manager.enable = true;
+    };
+    user.classes = lib.mkDefault ["homeManager"];
+  };
+}

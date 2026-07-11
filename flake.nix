@@ -1,0 +1,23 @@
+{
+  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
+
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    den.url = "github:denful/den";
+
+    flake-parts = {
+      inputs.nixpkgs-lib.follows = "nixpkgs-lib";
+      url = "github:hercules-ci/flake-parts";
+    };
+
+    home-manager = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager";
+    };
+
+    import-tree.url = "github:vic/import-tree";
+    nixpkgs-lib.follows = "nixpkgs";
+
+    catppuccin.url = "github:catppuccin/nix";
+  };
+}

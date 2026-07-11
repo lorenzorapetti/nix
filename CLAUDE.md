@@ -10,6 +10,9 @@ built as a single flake. The repo is currently being rewritten from a traditiona
 **den framework**. Previous hosts (for reference, may not exist yet in the new layout):
 `nixps` and `bee` (NixOS), `mac14` (nix-darwin).
 
+The `bee` host will be called `vidar` in the new layout. The `mac14` host is being
+deleted and will not be present in the new layout.
+
 Read these before making structural decisions — don't guess at conventions:
 
 - Dendritic pattern: https://github.com/mightyiam/dendritic/blob/master/README.md
