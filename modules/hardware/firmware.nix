@@ -1,7 +1,7 @@
 {
   den.aspects.hardware.firmware = {
     nixos = {
-      fwupd = {
+      services.fwupd = {
         enable = true;
       };
     };
