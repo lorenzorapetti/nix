@@ -11,7 +11,7 @@
       pkgs,
       ...
     }: {
-      enviroment.systemPackages = with pkgs; [
+      environment.systemPackages = with pkgs; [
         runapp
       ];
 
