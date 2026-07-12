@@ -5,8 +5,9 @@
     ...
   }: {
     name = "extra-groups(${user.userName}@${host.name})";
-    nixos = lib.optionalAttrs (lib.elem "wheel" users.users.${user.userName}.extraGroups) {
-      users.users.${user.userName}.extraGroups = groups;
-    };
+    nixos = {config, ...}:
+      lib.optionalAttrs (lib.elem "wheel" config.users.users.${user.userName}.extraGroups) {
+        users.users.${user.userName}.extraGroups = groups;
+      };
   };
 }
