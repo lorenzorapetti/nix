@@ -3,7 +3,7 @@
     nixos = {user, ...}: {
       programs._1password-gui = {
         enable = true;
-        polkitPolicyOwners = [user.meta.username];
+        polkitPolicyOwners = [user.userName];
       };
 
       environment.etc = {
