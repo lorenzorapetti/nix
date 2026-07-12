@@ -1,9 +1,5 @@
 {den, ...}: {
   den.aspects.docker = {
-    includes = [
-      (den.batteries.extra-groups "docker")
-    ];
-
     nixos = {
       virtualisation.docker = {
         enable = true;
@@ -16,5 +12,7 @@
         enable = true;
       };
     };
+
+    user.extraGroups = ["docker"];
   };
 }

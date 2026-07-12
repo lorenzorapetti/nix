@@ -7,6 +7,7 @@
 
     nixos = {pkgs, ...}: {
       environment.systemPackages = with pkgs; [
+        alacritty
         nautilus
         file-roller
       ];
