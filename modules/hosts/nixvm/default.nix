@@ -5,6 +5,7 @@
     includes = with den.aspects; [
       base
       theming.catppuccin
+      desktop.hyprland
     ];
 
     nixos.imports = [

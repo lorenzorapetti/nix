@@ -8,7 +8,10 @@
       base
       hardware.cpu-amd
       hardware.igpu-amd
+      hardware.firmware
       theming.catppuccin
+      desktop.bluetooth
+      desktop.hyprland
     ];
   };
 }
