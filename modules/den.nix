@@ -79,9 +79,6 @@
   };
 
   den.schema = {
-    host = {
-      home-manager.enable = true;
-    };
     user.classes = lib.mkDefault ["homeManager"];
   };
 }
