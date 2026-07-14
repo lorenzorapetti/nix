@@ -9,6 +9,10 @@
       # On Darwin, sets system.primaryUser. On WSL, sets defaultUser.
       den.batteries.primary-user
 
+      # Projects user-relevant classes (like homeManager) from the host’s aspect tree onto users who opt in.
+      # Any homeManager key defined in the host aspect is forwarded to the user’s home-manager evaluation.
+      den.batteries.host-aspects
+
       # Sets the user’s login shell at both OS and Home Manager levels.
       # Enables programs.<shell>.enable and sets users.users.<name>.shell.
       (den.batteries.user-shell "fish")
