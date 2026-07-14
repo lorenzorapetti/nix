@@ -23,8 +23,6 @@
         # Browsers
         firefox
         inputs'.helium.packages.default
-
-        bambu-studio
       ];
 
       programs.obs-studio.enable = true;
