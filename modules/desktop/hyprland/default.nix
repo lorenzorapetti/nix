@@ -58,12 +58,16 @@
 
         configType = "lua";
         extraLuaFiles = {
-          "input.lua" = ./input.lua;
-          "keybinds.lua" = ./keybinds.lua;
-          "rules.lua" = ./rules.lua;
-          "style.lua" = ./style.lua;
+          "input.lua" = ./config/input.lua;
+          "keybinds.lua" = ./config/keybinds.lua;
+          "rules.lua" = ./config/rules.lua;
+          "style.lua" = ./config/style.lua;
         };
         extraConfig = ''
+          require("keybinds")
+          require("rules")
+          require("input")
+          require("style")
         '';
       };
 

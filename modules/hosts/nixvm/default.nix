@@ -6,7 +6,7 @@
       base
       theming.catppuccin
       desktop.hyprland
-      docker
+      development
     ];
 
     nixos.imports = [
