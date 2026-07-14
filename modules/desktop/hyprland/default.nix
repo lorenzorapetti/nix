@@ -31,11 +31,7 @@
       };
     };
 
-    homeManager = {
-      pkgs,
-      inputs',
-      ...
-    }: {
+    homeManager = {pkgs, ...}: {
       # xdg.configFile."hypr/vars.lua".text = ''
       #   return {
       #     terminal = "${lib.getExe pkgs.alacritty}",
