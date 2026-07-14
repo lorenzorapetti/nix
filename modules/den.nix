@@ -42,6 +42,8 @@
 
       nixpkgs.config.allowUnfree = true;
 
+      services.openssh.enable = true;
+
       nix = {
         optimise.automatic = true;
 

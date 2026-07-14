@@ -11,12 +11,6 @@
       ...
     }: {
       environment.systemPackages = with pkgs; [
-        # Terminal emulators
-        alacritty
-        kitty
-        wezterm
-        ghostty
-
         imv
         mpv
 

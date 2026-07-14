@@ -15,5 +15,9 @@
       development
       docker
     ];
+
+    nixos = {
+      hardware.facter.reportPath = ./facter.json;
+    };
   };
 }

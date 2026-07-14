@@ -42,6 +42,10 @@
         starship.enable = config.programs.starship.enable;
       };
 
+      programs.opencode.settings = lib.mkIf config.programs.opencode.enable {
+        theme = "catppuccin";
+      };
+
       xdg.configFile = lib.mkIf config.wayland.windowManager.hyprland.enable {
         "hypr/themes/theme.lua".text = ''
           local colors = require("themes.catppuccin")
