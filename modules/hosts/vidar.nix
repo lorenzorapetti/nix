@@ -12,6 +12,8 @@
       theming.catppuccin
       desktop.bluetooth
       desktop.hyprland
+      development
+      docker
     ];
   };
 }

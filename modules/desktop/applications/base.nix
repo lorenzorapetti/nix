@@ -5,12 +5,30 @@
       desktop._1password
     ];
 
-    nixos = {pkgs, ...}: {
+    nixos = {
+      pkgs,
+      inputs',
+      ...
+    }: {
       environment.systemPackages = with pkgs; [
+        # Terminal emulators
         alacritty
-        nautilus
-        file-roller
+        kitty
+        wezterm
+        ghostty
+
+        imv
+        mpv
+
+        # Browsers
+        firefox
+        inputs'.helium.packages.default
+
+        bambu-studio
       ];
+
+      programs.obs-studio.enable = true;
+      programs.thunderbird.enable = true;
     };
   };
 }

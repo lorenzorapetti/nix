@@ -21,6 +21,10 @@
         dust
         bat
         btop
+        zoxide
+        eza
+        systemctl-tui
+        fastfetch
 
         jq
         fzf
