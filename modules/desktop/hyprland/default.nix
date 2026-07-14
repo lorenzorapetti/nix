@@ -6,7 +6,6 @@
   den.aspects.desktop.hyprland = {
     includes = with den.aspects; [
       desktop
-      desktop.fonts
       desktop.wm
       desktop.base-applications
       desktop.agnostic-applications
