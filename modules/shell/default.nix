@@ -102,11 +102,59 @@
         starship = {
           enable = true;
           enableFishIntegration = true;
+
+          settings = {
+            add_newline = true;
+            format = "$directory$git_branch$git_status$git_state$line_break$character";
+
+            character = {
+              error_symbol = "[](bold red)";
+              success_symbol = "[](bold green)";
+              vimcmd_replace_one_symbol = "[](bold purple)";
+              vimcmd_replace_symbol = "[](bold purple)";
+              vimcmd_symbol = "[](bold green)";
+              vimcmd_visual_symbol = "[](bold yellow)";
+            };
+
+            git_branch = {
+              format = "[$symbol$branch(:$remote_branch)]($style) ";
+            };
+          };
         };
 
         television = {
           enable = true;
           enableFishIntegration = true;
+
+          channels = {
+            zellij = {
+              metadata = {
+                name = "zellij";
+                description = "List zellij sessions, layouts, and zoxide paths";
+                requirements = ["zellij" "zoxide"];
+              };
+              source = {
+                command = "zellij-sesh";
+                no_sort = true;
+              };
+              preview = {
+                command = "zellij-sesh preview '{}'";
+              };
+              keybindings = {
+                enter = "actions:open";
+              };
+              actions.open = {
+                description = "Open entry: switch if inside zellij, else attach/launch (session, layout, or zoxide path)";
+                mode = "execute";
+                command = "zellij-sesh open {}";
+              };
+            };
+          };
+        };
+
+        nix-search-tv = {
+          enable = true;
+          enableTelevisionIntegration = true;
         };
 
         yazi = {
@@ -115,11 +163,6 @@
         };
 
         zellij = {
-          enable = true;
-          enableFishIntegration = true;
-        };
-
-        zoxide = {
           enable = true;
           enableFishIntegration = true;
         };

@@ -35,6 +35,7 @@
             cursor-style = "block";
             mouse-hide-while-typing = true;
             scrollbar = "never";
+            quit-after-last-window-closed = false;
           };
         };
       };

@@ -39,10 +39,12 @@
         gtk.icon.enable = true;
         hyprland.enable = config.wayland.windowManager.hyprland.enable;
         lazygit.enable = config.programs.lazygit.enable;
+        opencode.enable = config.programs.opencode.enable;
         starship.enable = config.programs.starship.enable;
+        zellij.enable = true;
       };
 
-      programs.opencode.settings = lib.mkIf config.programs.opencode.enable {
+      programs.television.settings = lib.mkIf config.programs.television.enable {
         theme = "catppuccin";
       };
 
