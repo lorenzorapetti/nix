@@ -53,7 +53,6 @@
         CLUTTER_BACKEND = "wayland";
 
         UWSM_MANAGED = "1";
-        TODO_DIR = "$HOME/notes";
       };
 
       xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh"; 
