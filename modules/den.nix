@@ -44,6 +44,11 @@
 
       services.openssh.enable = true;
 
+      home-manager = {
+        useUserPackages = true;
+        useGlobalPkgs = true;
+      };
+
       nix = {
         optimise.automatic = true;
 
