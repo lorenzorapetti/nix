@@ -37,6 +37,8 @@
         gh-dash.enable = config.programs.gh-dash.enable;
         ghostty.enable = true;
         gtk.icon.enable = true;
+        imv.enable = config.programs.imv.enable;
+        mpv.enable = config.programs.mpv.enable;
         hyprland.enable = config.wayland.windowManager.hyprland.enable;
         lazygit.enable = config.programs.lazygit.enable;
         opencode.enable = config.programs.opencode.enable;

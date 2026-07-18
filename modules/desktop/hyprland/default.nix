@@ -11,6 +11,7 @@
       desktop.agnostic-applications
       desktop.noctalia-greeter
       desktop.noctalia
+      desktop.wlr-which-key
     ];
 
     nixos = {
@@ -52,10 +53,23 @@
       #     bluetui = "${lib.getExe pkgs.bluetui}",
       #   }
       # '';
+      xdg.configFile."uwsm/env".text = ''
+        export QT_QPA_PLATFORMTHEME=qt6ct
+        export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+        export ELECTRON_OZONE_PLATFORM_HINT=auto
+
+        export GDK_BACKEND=wayland
+        export QT_QPA_PLATFORM=wayland;xcb
+        export SDL_VIDEODRIVER=wayland
+        export CLUTTER_BACKEND=wayland
+
+        export UWSM_MANAGED=1
+        export TODO_DIR="$HOME/notes"
+      '';
 
       wayland.windowManager.hyprland = {
         enable = true;
-        systemd.enable = true;
+        systemd.enable = false;
         systemd.enableXdgAutostart = true;
         xwayland.enable = true;
 

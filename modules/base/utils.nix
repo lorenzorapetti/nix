@@ -15,6 +15,7 @@
         xz
         unzip
         p7zip
+        wl-clipboard
 
         ripgrep
         fd

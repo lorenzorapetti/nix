@@ -11,9 +11,6 @@
       ...
     }: {
       environment.systemPackages = with pkgs; [
-        imv
-        mpv
-
         # Browsers
         firefox
         inputs'.helium.packages.default
@@ -21,6 +18,28 @@
 
       programs.obs-studio.enable = true;
       programs.thunderbird.enable = true;
+    };
+
+    homeManager = {
+      programs = {
+        imv = {
+          enable = true;
+          settings = {
+            aliases = {
+              x = "close";
+            };
+
+            binds = {
+              "<Ctrl+y>" = "exec wl-copy < \"$imv_current_file\"";
+              y = "exec wl-copy \"$imv_current_file\"";
+            };
+          };
+        };
+
+        mpv = {
+          enable = true;
+        };
+      };
     };
   };
 }
