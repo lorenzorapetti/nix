@@ -41,30 +41,30 @@
     }: {
       home.packages = [self'.packages.system-action];
 
-      # start all wayland home-manager services (noctalia, hyprmoncfgd, ...) with Hyprland
-      wayland.systemd.target = "hyprland-session.target";
+      home.sessionVariables = {
+        QT_QPA_PLATFORMTHEME = "qt6ct";
+        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+        ELECTRON_OZONE_PLATFORM_HINT = "auto";
 
-      # xdg.configFile."hypr/vars.lua".text = ''
-      #   return {
-      #     terminal = "${lib.getExe pkgs.alacritty}",
-      #     browser = "${lib.getExe inputs'.helium.packages.default}",
-      #     file_manager = "${lib.getExe pkgs.nautilus}",
-      #     yazi = "${lib.getExe pkgs.yazi}",
-      #     bluetui = "${lib.getExe pkgs.bluetui}",
-      #   }
-      # '';
-      xdg.configFile."uwsm/env".text = ''
-        export QT_QPA_PLATFORMTHEME=qt6ct
-        export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-        export ELECTRON_OZONE_PLATFORM_HINT=auto
+        GDK_BACKEND = "wayland";
+        QT_QPA_PLATFORM = "wayland;xcb";
+        SDL_VIDEODRIVER = "wayland";
+        CLUTTER_BACKEND = "wayland";
 
-        export GDK_BACKEND=wayland
-        export QT_QPA_PLATFORM=wayland;xcb
-        export SDL_VIDEODRIVER=wayland
-        export CLUTTER_BACKEND=wayland
+        UWSM_MANAGED = "1";
+        TODO_DIR = "$HOME/notes";
+      };
 
-        export UWSM_MANAGED=1
-        export TODO_DIR="$HOME/notes"
+      xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh"; 
+
+      xdg.configFile."hypr/vars.lua".text = ''
+        return {
+          terminal = "${lib.getExe pkgs.ghostty}",
+          browser = "${lib.getExe inputs'.helium.packages.default}",
+          file_manager = "${lib.getExe pkgs.nautilus}",
+          yazi = "${lib.getExe pkgs.yazi}",
+          bluetui = "${lib.getExe pkgs.bluetui}",
+        }
       '';
 
       wayland.windowManager.hyprland = {

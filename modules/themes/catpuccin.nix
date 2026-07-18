@@ -35,7 +35,6 @@
         fish.enable = true;
         fzf.enable = true;
         gh-dash.enable = config.programs.gh-dash.enable;
-        ghostty.enable = true;
         gtk.icon.enable = true;
         imv.enable = config.programs.imv.enable;
         mpv.enable = config.programs.mpv.enable;
@@ -48,6 +47,10 @@
 
       programs.television.settings = lib.mkIf config.programs.television.enable {
         theme = "catppuccin";
+      };
+
+      programs.ghostty.settings = lib.mkIf config.programs.ghostty.enable {
+        theme = "Catppuccin Mocha";
       };
 
       xdg.configFile = lib.mkIf config.wayland.windowManager.hyprland.enable {
