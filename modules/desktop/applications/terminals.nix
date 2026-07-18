@@ -1,5 +1,5 @@
 {
-  den.aspects.base-applications = {
+  den.aspects.desktop.base-applications = {
     homeManager = {
       programs = {
         alacritty = {
