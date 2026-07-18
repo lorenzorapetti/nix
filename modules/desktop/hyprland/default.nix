@@ -8,7 +8,7 @@
       desktop
       desktop.wm
       desktop.base-applications
-      desktop.agnostic-applications
+      desktop.wm-applications
       desktop.noctalia-greeter
       desktop.noctalia
       desktop.wlr-which-key
