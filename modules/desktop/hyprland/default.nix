@@ -37,6 +37,7 @@
       pkgs,
       config,
       self',
+      inputs',
       ...
     }: {
       home.packages = [self'.packages.system-action];
