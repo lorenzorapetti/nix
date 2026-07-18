@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  den.aspects.vidar.nixos = {
+  den.aspects.zagreus.nixos = {
     imports = [inputs.disko.nixosModules.disko];
 
     disko.devices = {

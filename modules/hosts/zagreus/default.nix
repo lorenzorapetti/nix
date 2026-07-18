@@ -1,9 +1,9 @@
 {den, ...}: {
-  # Vidar host with user Lorenzo.
-  # It will automatically create a den.aspects.vidar and den.aspects.lorenzo
-  den.hosts.x86_64-linux.vidar.users.lorenzo = {};
+  # Zagreus host with user Lorenzo.
+  # It will automatically create a den.aspects.zagreus and den.aspects.lorenzo
+  den.hosts.x86_64-linux.zagreus.users.lorenzo = {};
 
-  den.aspects.vidar = {
+  den.aspects.zagreus = {
     includes = with den.aspects; [
       base
       hardware.cpu-amd
