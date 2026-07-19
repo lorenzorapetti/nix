@@ -124,6 +124,7 @@
                   locked_inactive = theme.groupbar_locked_inactive,
                 },
               },
+            },
           }
         '';
       };
