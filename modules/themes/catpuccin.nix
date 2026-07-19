@@ -58,6 +58,21 @@
         zellij.enable = config.programs.zellij.enable;
       };
 
+      programs.noctalia = lib.mkIf config.programs.noctalia.enable {
+        settings = {
+          theme = {
+            source = "builtin";
+            mode = "dark";
+            builtin = "Catppuccin";
+
+            templates = {
+              enable_builtin_templates = false;
+              enable_community_templates = false;
+            };
+          };
+        };
+      };
+
       xdg.configFile = lib.mkIf config.wayland.windowManager.hyprland.enable {
         "hypr/themes/theme.lua".text = ''
           local colors = require("themes.catppuccin")

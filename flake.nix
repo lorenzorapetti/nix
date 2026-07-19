@@ -39,5 +39,10 @@
       url = "github:schembriaiden/helium-browser-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nvim-nix = {
+      url = "github:lorenzorapetti/nvim-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }

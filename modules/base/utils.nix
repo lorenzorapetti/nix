@@ -37,5 +37,13 @@
         neovim
       ];
     };
+
+    homeManager = {inputs', ...}: {
+      home.packages = [
+        inputs'.nvim-nix.packages.default
+      ];
+
+      home.sessionVariables.EDITOR = "nvim";
+    };
   };
 }
