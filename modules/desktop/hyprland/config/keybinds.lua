@@ -1,3 +1,5 @@
+local programs = require("programs")
+
 hl.config({
 	binds = {
 		hide_special_on_workspace_change = true,
@@ -7,13 +9,10 @@ hl.config({
 	},
 })
 
-local browser = "helium-browser"
-local terminal = "alacritty"
-local file_manager = "nautilus"
 local main_mod = "SUPER"
 
 local function quick_terminal(command)
-	return string.format('quick-terminal "%s"', command)
+	return string.format(programs.quick_terminal .. ' "%s"', command)
 end
 
 local function vicinae_app(app)
@@ -33,11 +32,11 @@ local function exec(cmd)
 end
 
 local function run_app(app)
-	return exec("runapp " .. app)
+	return exec(programs.runapp .. " " .. app)
 end
 
 local function system_action(action)
-	return exec("system-action " .. action)
+	return exec(programs.system_action .. " " .. action)
 end
 
 local function define_submap(name, callback)
@@ -59,17 +58,17 @@ end
 --------------------- Programs ---------------------
 bindm("RETURN", run_app(terminal), "Open Terminal")
 bindm("B", exec(vicinae_app("helium")), "Open Browser")
-bindm("E", exec(quick_terminal("yazi")), "Open Terminal File Manager")
-bindm("D", exec(quick_terminal("bluetui")), "Open Bluetooth Settings")
-bindm("V", exec(quick_terminal("wiremix")), "OpenVolume Control")
+bindm("E", exec(quick_terminal(programs.yazi)), "Open Terminal File Manager")
+bindm("D", exec(quick_terminal(programs.bluetui)), "Open Bluetooth Settings")
+bindm("V", exec(quick_terminal(programs.wiremix)), "OpenVolume Control")
 bindm("GRAVE", exec("vicinae vicinae://launch/@nino-mau/store.vicinae.hypr/windows"), "Switch Windows")
 bindm("SHIFT + E", exec(vicinae_app("org.gnome.Nautilus")), "Open File Manager")
 
 --------------------- Launchers ---------------------
 bindm("SPACE", exec("vicinae toggle"), "Toggle Launcher")
-bindm("SHIFT + SPACE", run_app("1password --quick-access"), "Toggle 1Password")
+bindm("SHIFT + SPACE", run_app(programs._1password .. " --quick-access"), "Toggle 1Password")
 bindm("Y", exec("vicinae vicinae://extensions/vicinae/clipboard/history"), "Toggle Clipboard History")
-bindm("O", exec("wlr-which-key"), "Which Key")
+bindm("O", exec(programs.wlr_which_key), "Which Key")
 
 bindm("ESCAPE", system_action("session lock"), "Lock Screen")
 bindm("CAPS_LOCK", system_action("session lock"), "Lock Screen")
@@ -95,7 +94,7 @@ define_submap("screenshot", function()
 end)
 
 --------------------- Apps ---------------------
-bindm("A", exec("wlr-which-key --initial-keys a"), "Apps")
+bindm("A", exec(programs.wlr_which_key .. " --initial-keys a"), "Apps")
 
 --------------------- Windows ---------------------
 bindm("Q", hl.dsp.window.close(), "Close Current Window")
@@ -234,7 +233,7 @@ bindm("CTRL + PERIOD", hl.dsp.workspace.move({ monitor = "+1" }), "Move Workspac
 bindm("CTRL + COMMA", hl.dsp.workspace.move({ monitor = "-1" }), "Move Workspace to Previous Monitor")
 
 --------------------- Notifications ---------------------
-bindm("N", exec("wlr-which-key --initial-keys n"), "Notifications")
+bindm("N", exec(programs.wlr_which_key .. " --initial-keys n"), "Notifications")
 
 --------------------- Media ---------------------
 -- Laptop multimedia keys for volume and LCD brightness
