@@ -65,9 +65,19 @@
           local inactiveAlpha = colors.overlay0 .. 'aa'
           local baseAlpha = colors.base .. 'ee'
 
+          local function color(hex)
+            if hex:sub(1, 1) == '#' then
+              return hex
+            elseif #hex == 8 then
+              return 'rgba(' .. hex .. ')'
+            else
+              return 'rgb(' .. hex .. ')'
+            end
+          end
+
           local function gradient(color_start, color_end, angle)
             return {
-              colors = { M.color(color_start), M.color(color_end) },
+              colors = { color(color_start), color(color_end) },
               angle = angle or 0,
             }
           end
