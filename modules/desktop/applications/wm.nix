@@ -1,6 +1,10 @@
-{
+{den, ...}: {
   # Applications that are agnostic to the desktop environment, but are necessary.
   den.aspects.desktop.wm-applications = {
+    includes = [
+      den.aspects.desktop.vicinae
+    ];
+
     nixos = {pkgs, ...}: {
       environment.systemPackages = with pkgs; [
         nautilus
@@ -25,9 +29,9 @@
               default-hide-toolbars = false;
               primary-highlighter = "block";
               disable-notifications = true;
-              actions-on-right-click = [ ];
-              actions-on-enter = [ "save-to-clipboard" ];
-              actions-on-escape = [ "exit" ];
+              actions-on-right-click = [];
+              actions-on-enter = ["save-to-clipboard"];
+              actions-on-escape = ["exit"];
               no-window-decoration = true;
               brush-smooth-history-size = 10;
             };

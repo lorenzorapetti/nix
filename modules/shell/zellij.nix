@@ -8,6 +8,8 @@
 
       programs.zellij = {
         plugins = with pkgs.zellijPlugins; [vim-zellij-navigator];
+        # Don't autostart on fish start
+        enableFishIntegration = false;
 
         settings = {
           keybinds = {

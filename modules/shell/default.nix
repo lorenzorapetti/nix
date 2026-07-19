@@ -11,7 +11,7 @@
         shellAliases = {
           ls = "eza";
           la = "ls -la";
-          bat = "cat";
+          cat = "bat";
           lg = "lazygit";
           c = "cargo";
           du = "dust";
@@ -158,11 +158,6 @@
         };
 
         yazi = {
-          enable = true;
-          enableFishIntegration = true;
-        };
-
-        zellij = {
           enable = true;
           enableFishIntegration = true;
         };

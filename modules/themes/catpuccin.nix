@@ -23,14 +23,39 @@
       };
     };
 
-    homeManager = {config, ...}: {
+    homeManager = {
+      config,
+      pkgs,
+      ...
+    }: {
       imports = [
         inputs.catppuccin.homeModules.catppuccin
       ];
 
-      gtk = lib.mkIf isDesktop {
-        colorScheme = "dark";
-      };
+      gtk = let
+        iconTheme = {
+          name = "Adwaita";
+          package = pkgs.adwaita-icon-theme;
+        };
+      in
+        lib.mkIf isDesktop {
+          enable = true;
+          colorScheme = "dark";
+
+          gtk2 = {
+            enable = true;
+            iconTheme = iconTheme;
+          };
+
+          gtk3 = {
+            enable = true;
+            iconTheme = iconTheme;
+          };
+
+          gtk4.iconTheme = iconTheme;
+        };
+
+      home.pointerCursor.size = 24;
 
       catppuccin = {
         enable = true;
@@ -68,6 +93,16 @@
             templates = {
               enable_builtin_templates = false;
               enable_community_templates = false;
+            };
+          };
+        };
+      };
+
+      programs.vicinae = lib.mkIf config.programs.vicinae.enable {
+        settings = {
+          theme = {
+            dark = {
+              name = "catppuccin-mocha";
             };
           };
         };
