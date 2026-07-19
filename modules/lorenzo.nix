@@ -21,6 +21,7 @@ in {
 
       den.aspects.shell
       den.aspects.ai
+      den.aspects.sops
     ];
 
     # user can provide NixOS configurations
@@ -33,10 +34,26 @@ in {
       username = "lorenzo";
     };
 
+    nixos = {
+      sops.secrets = {
+        lorenzo_password = {
+          neededForUsers = true;
+        };
+        lorenzo_ssh_key = {
+          owner = "lorenzo";
+          mode = "0600";
+          path = "/home/lorenzo/.ssh/id_ed25519";
+        };
+      };
+    };
+
     homeManager = {
+      home.file.".ssh/id_ed25519.pub".text = sshKey;
+
       programs = {
         ssh = {
           enable = true;
+          enableDefaultConfig = false;
           settings."*" = {
             AddKeysToAgent = "yes";
             IdentityFile = "~/.ssh/id_ed25519";
@@ -154,7 +171,9 @@ in {
       };
     };
 
-    user = {
+    user = {config, ...}: {
+      hashedPasswordFile = config.sops.secrets.lorenzo_password.path;
+
       openssh.authorizedKeys.keys = [
         sshKey
       ];
