@@ -68,8 +68,8 @@
           wiremix = "${lib.getExe pkgs.wiremix}",
           quick_terminal = "${lib.getExe self'.packages.quick-terminal}",
           system_action = "${lib.getExe self'.packages.system-action}",
-          runapp = ${lib.getExe pkgs.runapp},
-          wlr_which_key = ${lib.getExe pkgs.wlr-which-key},
+          runapp = "${lib.getExe pkgs.runapp}",
+          wlr_which_key = "${lib.getExe pkgs.wlr-which-key}",
         }
       '';
 
