@@ -62,8 +62,8 @@
         "hypr/themes/theme.lua".text = ''
           local colors = require("themes.catppuccin")
 
-          local inactiveAlpha = colors.overlay0 .. 'aa'
-          local baseAlpha = colors.base .. 'ee'
+          local inactiveAlpha = colors.overlay0Alpha .. 'aa'
+          local baseAlpha = colors.baseAlpha .. 'ee'
 
           local function color(hex)
             if hex:sub(1, 1) == '#' then
