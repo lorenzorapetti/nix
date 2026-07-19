@@ -56,7 +56,7 @@ local function submap_bind(key, action, description)
 end
 
 --------------------- Programs ---------------------
-bindm("RETURN", run_app(terminal), "Open Terminal")
+bindm("RETURN", run_app(programs.terminal), "Open Terminal")
 bindm("B", exec(vicinae_app("helium")), "Open Browser")
 bindm("E", exec(quick_terminal(programs.yazi)), "Open Terminal File Manager")
 bindm("D", exec(quick_terminal(programs.bluetui)), "Open Bluetooth Settings")
