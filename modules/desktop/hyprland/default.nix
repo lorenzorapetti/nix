@@ -57,22 +57,6 @@
 
       xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh"; 
 
-      xdg.configFile."hypr/programs.lua".text = ''
-        return {
-          _1password = "${lib.getExe pkgs._1password-gui}",
-          terminal = "${lib.getExe pkgs.ghostty}",
-          browser = "${lib.getExe inputs'.helium.packages.default}",
-          file_manager = "${lib.getExe pkgs.nautilus}",
-          yazi = "${lib.getExe pkgs.yazi}",
-          bluetui = "${lib.getExe pkgs.bluetui}",
-          wiremix = "${lib.getExe pkgs.wiremix}",
-          quick_terminal = "${lib.getExe self'.packages.quick-terminal}",
-          system_action = "${lib.getExe self'.packages.system-action}",
-          runapp = "${lib.getExe pkgs.runapp}",
-          wlr_which_key = "${lib.getExe pkgs.wlr-which-key}",
-        }
-      '';
-
       wayland.windowManager.hyprland = {
         enable = true;
         systemd.enable = false;
@@ -89,8 +73,27 @@
           "keybinds" = ./config/keybinds.lua;
           "rules" = ./config/rules.lua;
           "style" = ./config/style.lua;
+          "programs" = {
+            autoLoad = false;
+            content = ''
+              return {
+                _1password = "${lib.getExe pkgs._1password-gui}",
+                terminal = "${lib.getExe pkgs.ghostty}",
+                browser = "${lib.getExe inputs'.helium.packages.default}",
+                file_manager = "${lib.getExe pkgs.nautilus}",
+                yazi = "${lib.getExe pkgs.yazi}",
+                bluetui = "${lib.getExe pkgs.bluetui}",
+                wiremix = "${lib.getExe pkgs.wiremix}",
+                quick_terminal = "${lib.getExe self'.packages.quick-terminal}",
+                system_action = "${lib.getExe self'.packages.system-action}",
+                runapp = "${lib.getExe pkgs.runapp}",
+                wlr_which_key = "${lib.getExe pkgs.wlr-which-key}",
+              }
+            '';
+          };
         };
         extraConfig = ''
+          require("colors")
           require("keybinds")
           require("rules")
           require("input")
