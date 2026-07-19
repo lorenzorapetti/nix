@@ -47,7 +47,6 @@
         fish.enable = true;
         fzf.enable = true;
         gh-dash.enable = config.programs.gh-dash.enable;
-        gtk.icon.enable = isDesktop;
         ghostty.enable = isDesktop && config.programs.ghostty.enable;
         imv.enable = isDesktop && config.programs.imv.enable;
         mpv.enable = isDesktop && config.programs.mpv.enable;
