@@ -63,7 +63,7 @@
           local colors = require("themes.catppuccin")
 
           local function color(hex)
-            if hex:sub(1, 1) == '#' then
+            if hex:sub(1, 1) == '#' or hex:sub(1, 3) == 'rgb' then
               return hex
             elseif #hex == 8 then
               return 'rgba(' .. hex .. ')'
