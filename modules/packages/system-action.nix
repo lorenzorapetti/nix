@@ -17,6 +17,8 @@
         # | system-action mic mute                    | noctalia msg mic-mute                                           | wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle                    |
         # | system-action brightness up               | noctalia msg brightness-up 5%                                   | brightnessctl -e4 -n2 set 5%+                                   |
         # | system-action brightness down             | noctalia msg brightness-down 5%                                 | brightnessctl -e4 -n2 set 5%-                                   |
+        # | system-action brightness set <number>     | N/A                                                            | brightnessctl set -s <number>                                   |
+        # | system-action brightness restore          | N/A                                                            | brightnessctl -r                                                |
         # | system-action idle toggle                 | noctalia msg caffeine-toggle                                    | N/A                                                             |
         # | system-action dpms on                     | noctalia msg dpms-on                                            | hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })'           |
         # | system-action dpms off                    | noctalia msg dpms-off                                           | hyprctl dispatch 'hl.dsp.dpms({ action = "disable" })'          |
@@ -58,7 +60,7 @@
         Subcommands:
           volume        up | down | mute
           mic           mute
-          brightness    up | down
+          brightness    up | down | set <number> | restore
           idle          toggle
           dpms          on | off
           panel-toggle  settings | wallpaper | control-center
@@ -95,13 +97,27 @@
         }
 
         brightness() {
+          # brightnessctl is usable only when present AND a backlight device exists
+          # (e.g. laptop panel, or an external monitor via ddcci-backlight). If not,
+          # the whole brightness subcommand is a silent no-op.
+          if ! command -v brightnessctl >/dev/null 2>&1 \
+            || [[ -z "$(brightnessctl -l -c backlight -m 2>/dev/null)" ]]; then
+            return
+          fi
           case "''${ACTION}" in
           up)
             if noctalia_running; then noctalia msg brightness-up 5%; else brightnessctl -e4 -n2 set 5%+; fi ;;
           down)
             if noctalia_running; then noctalia msg brightness-down 5%; else brightnessctl -e4 -n2 set 5%-; fi ;;
+          set)
+            if [[ -z "''${ARG}" ]]; then
+              echo "Usage: system-action brightness set <number>" >&2; exit 1
+            fi
+            brightnessctl set -s "''${ARG}" ;;
+          restore)
+            brightnessctl -r ;;
           *)
-            echo "Usage: system-action brightness <up|down>" >&2; exit 1 ;;
+            echo "Usage: system-action brightness <up|down|set <number>|restore>" >&2; exit 1 ;;
           esac
         }
 
