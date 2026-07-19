@@ -1,9 +1,12 @@
 {
   inputs,
   lib,
+  den,
   ...
 }: {
-  den.aspects.theming.catppuccin = {
+  den.aspects.theming.catppuccin = {host, ...}: let
+    isDesktop = host.hasAspect den.aspects.desktop;
+  in {
     nixos = {
       imports = [
         inputs.catppuccin.nixosModules.catppuccin
@@ -25,31 +28,35 @@
         inputs.catppuccin.homeModules.catppuccin
       ];
 
+      gtk = lib.mkIf isDesktop {
+        colorScheme = "dark";
+      };
+
       catppuccin = {
         enable = true;
         autoEnable = false;
         flavor = "mocha";
         accent = "lavender";
 
-        alacritty.enable = true;
+        alacritty.enable = isDesktop;
         bat.enable = true;
         btop.enable = true;
-        cursors.enable = true;
+        cursors.enable = isDesktop;
         eza.enable = true;
-        fcitx5.enable = true;
+        fcitx5.enable = isDesktop;
         fish.enable = true;
         fzf.enable = true;
         gh-dash.enable = config.programs.gh-dash.enable;
-        gtk.icon.enable = true;
-        ghostty.enable = config.programs.ghostty.enable;
-        imv.enable = config.programs.imv.enable;
-        mpv.enable = config.programs.mpv.enable;
-        hyprland.enable = config.wayland.windowManager.hyprland.enable;
+        gtk.icon.enable = isDesktop;
+        ghostty.enable = isDesktop && config.programs.ghostty.enable;
+        imv.enable = isDesktop && config.programs.imv.enable;
+        mpv.enable = isDesktop && config.programs.mpv.enable;
+        hyprland.enable = isDesktop && config.wayland.windowManager.hyprland.enable;
         lazygit.enable = config.programs.lazygit.enable;
         opencode.enable = config.programs.opencode.enable;
         starship.enable = config.programs.starship.enable;
         television.enable = config.programs.television.enable;
-        zellij.enable = true;
+        zellij.enable = config.programs.zellij.enable;
       };
 
       xdg.configFile = lib.mkIf config.wayland.windowManager.hyprland.enable {
