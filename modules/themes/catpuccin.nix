@@ -62,9 +62,6 @@
         "hypr/themes/theme.lua".text = ''
           local colors = require("themes.catppuccin")
 
-          local inactiveAlpha = colors.overlay0Alpha .. 'aa'
-          local baseAlpha = colors.baseAlpha .. 'ee'
-
           local function color(hex)
             if hex:sub(1, 1) == '#' then
               return hex
@@ -74,6 +71,9 @@
               return 'rgb(' .. hex .. ')'
             end
           end
+
+          local inactiveAlpha = color(colors.overlay0Alpha .. 'aa')
+          local baseAlpha = color(colors.baseAlpha .. 'ee')
 
           local function gradient(color_start, color_end, angle)
             return {
