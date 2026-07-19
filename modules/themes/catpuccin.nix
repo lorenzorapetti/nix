@@ -26,6 +26,11 @@
       ];
 
       catppuccin = {
+        enable = true;
+        autoEnable = false;
+        flavor = "mocha";
+        accent = "lavender";
+
         alacritty.enable = true;
         bat.enable = true;
         btop.enable = true;
@@ -36,21 +41,15 @@
         fzf.enable = true;
         gh-dash.enable = config.programs.gh-dash.enable;
         gtk.icon.enable = true;
+        ghostty.enable = config.programs.ghostty.enable;
         imv.enable = config.programs.imv.enable;
         mpv.enable = config.programs.mpv.enable;
         hyprland.enable = config.wayland.windowManager.hyprland.enable;
         lazygit.enable = config.programs.lazygit.enable;
         opencode.enable = config.programs.opencode.enable;
         starship.enable = config.programs.starship.enable;
+        television.enable = config.programs.television.enable;
         zellij.enable = true;
-      };
-
-      programs.television.settings = lib.mkIf config.programs.television.enable {
-        theme = "catppuccin";
-      };
-
-      programs.ghostty.settings = lib.mkIf config.programs.ghostty.enable {
-        theme = "Catppuccin Mocha";
       };
 
       xdg.configFile = lib.mkIf config.wayland.windowManager.hyprland.enable {
