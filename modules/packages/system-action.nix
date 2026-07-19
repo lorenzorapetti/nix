@@ -2,6 +2,7 @@
   perSystem = {pkgs, ...}: {
     packages.system-action = pkgs.writeShellApplication {
       name = "system-action";
+      runtimeInputs = [pkgs.gawk];
       text = ''
         # system-action: route desktop actions through noctalia (v5) when it is
         # running, otherwise fall back to a compositor/tool-native command.
@@ -19,6 +20,9 @@
         # | system-action brightness down             | noctalia msg brightness-down 5%                                 | brightnessctl -e4 -n2 set 5%-                                   |
         # | system-action brightness set <number>     | N/A                                                            | brightnessctl set -s <number>                                   |
         # | system-action brightness restore          | N/A                                                            | brightnessctl -r                                                |
+        # | system-action kbd-backlight on            | N/A                                                            | brightnessctl -sd "<device>" set "100%"                         |
+        # | system-action kbd-backlight off           | N/A                                                            | brightnessctl -sd "<device>" set 0                              |
+        # | system-action kbd-backlight restore       | N/A                                                            | brightnessctl -rd "<device>"                                    |
         # | system-action idle toggle                 | noctalia msg caffeine-toggle                                    | N/A                                                             |
         # | system-action dpms on                     | noctalia msg dpms-on                                            | hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })'           |
         # | system-action dpms off                    | noctalia msg dpms-off                                           | hyprctl dispatch 'hl.dsp.dpms({ action = "disable" })'          |
@@ -61,6 +65,7 @@
           volume        up | down | mute
           mic           mute
           brightness    up | down | set <number> | restore
+          kbd-backlight on | off | restore
           idle          toggle
           dpms          on | off
           panel-toggle  settings | wallpaper | control-center
@@ -118,6 +123,29 @@
             brightnessctl -r ;;
           *)
             echo "Usage: system-action brightness <up|down|set <number>|restore>" >&2; exit 1 ;;
+          esac
+        }
+
+        kbd_backlight() {
+          # Find the keyboard backlight LED device (e.g. asus::kbd_backlight); if none
+          # exists (or brightnessctl is missing) the subcommand is a silent no-op.
+          local device
+          if ! command -v brightnessctl >/dev/null 2>&1; then
+            return
+          fi
+          device="$(brightnessctl -lm 2>/dev/null | awk -F, '/kbd_backlight/ { print $1; exit }')"
+          if [[ -z "''${device}" ]]; then
+            return
+          fi
+          case "''${ACTION}" in
+          on)
+            brightnessctl -sd "''${device}" set "100%" ;;
+          off)
+            brightnessctl -sd "''${device}" set 0 ;;
+          restore)
+            brightnessctl -rd "''${device}" ;;
+          *)
+            echo "Usage: system-action kbd-backlight <on|off|restore>" >&2; exit 1 ;;
           esac
         }
 
@@ -241,6 +269,7 @@
         volume) volume ;;
         mic) mic ;;
         brightness) brightness ;;
+        kbd-backlight) kbd_backlight ;;
         idle) idle ;;
         dpms) dpms ;;
         panel-toggle) panel_toggle ;;
