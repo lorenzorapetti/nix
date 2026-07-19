@@ -48,6 +48,8 @@ in {
     };
 
     homeManager = {
+      home.file.".face.icon".source = ./.face.icon;
+      home.file."profile.png".source = ./.face.icon;
       home.file.".ssh/id_ed25519.pub".text = sshKey;
 
       programs = {

@@ -50,6 +50,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    wallpapers = {
+      url = "github:lorenzorapetti/wallpapers";
+      flake = false;
+    };
+
     vicinae.url = "github:vicinaehq/vicinae";
 
     vicinae-extensions = {

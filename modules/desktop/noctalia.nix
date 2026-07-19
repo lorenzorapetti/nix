@@ -154,6 +154,7 @@
           };
 
           shell = {
+            avatar_path = "~/profile.png";
             clipboard_enabled = false;
             font_family = "GeistMono Nerd Font Mono";
             launch_apps_as_systemd_services = true;

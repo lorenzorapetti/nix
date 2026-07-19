@@ -23,7 +23,7 @@
         /CachyOS
             comment: Chainload CachyOS's own limine bootloader
             protocol: efi
-            path: guid(a19d13ab-1f78-4bf8-8e0f-c5c9f33d8217):/EFI/limine/limine_x86-64-efi.efi
+            path: guid(a19d13ab-1f78-4bf8-8e0f-c5c9f33d8217):/EFI/limine/limine_x64.efi
       '';
     };
 

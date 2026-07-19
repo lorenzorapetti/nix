@@ -859,7 +859,8 @@
         "nvim-nix": "nvim-nix",
         "sops-nix": "sops-nix",
         "vicinae": "vicinae",
-        "vicinae-extensions": "vicinae-extensions"
+        "vicinae-extensions": "vicinae-extensions",
+        "wallpapers": "wallpapers"
       }
     },
     "sops-nix": {
@@ -1044,6 +1045,22 @@
       "original": {
         "owner": "vicinaehq",
         "repo": "vicinae",
+        "type": "github"
+      }
+    },
+    "wallpapers": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1784495593,
+        "narHash": "sha256-ke0yeCkahiJhigrHp/bElcg1sFpDdBhqq81rctAqCGU=",
+        "owner": "lorenzorapetti",
+        "repo": "wallpapers",
+        "rev": "99a201178cfa180bd36f66640fa5d167b4bc8924",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lorenzorapetti",
+        "repo": "wallpapers",
         "type": "github"
       }
     },
