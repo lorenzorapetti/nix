@@ -9,7 +9,7 @@
         '';
 
         binds = {
-          "alt-r" = "tv zellij"
+          "alt-r" = "tv zellij";
         };
 
         functions = {
