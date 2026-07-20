@@ -5,6 +5,7 @@
         lazydocker
         gh
         tea
+        just
       ];
     };
 
@@ -28,7 +29,6 @@
       };
 
       programs.lazygit.enable = true;
-      catppuccin.lazygit.enable = true;
     };
   };
 }
