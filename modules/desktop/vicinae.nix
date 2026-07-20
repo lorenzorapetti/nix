@@ -6,7 +6,7 @@
       programs.vicinae.input-server.enable = true;
     };
 
-    homeManager = {
+    homeManager = {inputs', ...}: {
       imports = [inputs.vicinae.homeManagerModules.default];
 
       programs.vicinae = {
@@ -33,6 +33,11 @@
             };
           };
         };
+
+        extensions = with inputs'.vicinae-extensions.packages; [
+          nix
+          nerdfont-search
+        ];
       };
     };
   };

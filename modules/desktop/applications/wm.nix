@@ -12,7 +12,15 @@
       ];
     };
 
-    homeManager = {
+    homeManager = {config, ...}: {
+      xdg.configFile."gtk-3.0/bookmarks".text = ''
+        file:///home/${config.home.username}/Documents Documents
+        file:///home/${config.home.username}/Downloads Downloads
+        file:///home/${config.home.username}/Pictures Pictures
+        file:///home/${config.home.username}/Videos Videos
+        file:///home/${config.home.username}/code Code
+      '';
+
       programs = {
         satty = {
           enable = true;

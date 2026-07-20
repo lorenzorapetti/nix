@@ -94,6 +94,24 @@ flags.
 Building/deploying still works the normal way once hosts are declared:
 `nixos-rebuild switch --flake .#<host>`, `darwin-rebuild switch --flake .#<host>`.
 
+## Commands
+
+The root `justfile` wraps the nix commands used to build/apply this flake so they
+don't need to be retyped. Host defaults to the current machine's hostname
+(read from `/etc/hostname`) unless given explicitly.
+
+- `just build [host]` — `nix run .#<host> -- build`, builds the config without
+  activating it. This is the safe, side-effect-free command — use it to verify
+  changes.
+- `just switch [host]` (alias `just s`) — `nix run .#<host> -- switch`, builds
+  *and activates* the config on the machine. Bare `just` defaults to this for the
+  current host. Treat like other hard-to-reverse/system-affecting actions: only
+  run it when the user explicitly asks to switch/apply, not to verify a change.
+- `just repl [host]` — `nix run .#<host> -- repl`, opens a nix repl scoped to
+  that host's config, useful for inspecting `config`/option values while debugging.
+- `just secrets` — `sops modules/secrets/secrets.yaml`, opens the sops-encrypted
+  secrets file for editing.
+
 ## Working in this repo
 
 - This repo is **mid-migration**: most of the tree was deleted in the working
@@ -103,8 +121,12 @@ Building/deploying still works the normal way once hosts are declared:
   `hosts/<name>/configuration.nix` + `modules/<category>/*.nix` split.
 - Prefer extending an existing aspect/module over creating a new one when the
   feature is closely related.
-- Validate changes with `nix flake check` and, where practical, a `nixos-rebuild
-  build` / `darwin-rebuild build` (or `home-manager build`) dry run for an affected
-  host before considering a change done — this repo has no CI to catch eval errors.
+- Validate changes with `nix flake check` and `just build [host]` (see
+  [Commands](#commands)) for an affected host before considering a change done —
+  this repo has no CI to catch eval errors. Prefer `just build` over raw
+  `nixos-rebuild`/`darwin-rebuild`/`home-manager build` invocations so
+  verification matches how the user drives this repo. Don't run `just switch`
+  (or bare `just`) to verify a change — that activates the config on the
+  machine; only run it if the user explicitly asks to switch/apply.
 - `statix.toml` disables the `repeated_keys` and `empty_pattern` lints repo-wide;
   don't "fix" those if `statix` flags them elsewhere.

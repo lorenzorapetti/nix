@@ -14,6 +14,8 @@
         # Browsers
         firefox
         inputs'.helium.packages.default
+
+        ticktick
       ];
 
       programs.obs-studio.enable = true;

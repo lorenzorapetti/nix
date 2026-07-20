@@ -2,7 +2,7 @@ hostname := `cat /etc/hostname | tr -d '\n'`
 
 alias s := switch
 
-default: (switch "{{hostname}}")
+default: (switch hostname)
 
 switch host=hostname:
   nix run .#{{host}} -- switch

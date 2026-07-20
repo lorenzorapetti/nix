@@ -4,6 +4,10 @@
       programs.fish = {
         enable = true;
 
+        binds = {
+          "alt-r".command = "tv zellij";
+        };
+
         shellInit = ''
           set -g fish_greeting
         '';

@@ -24,6 +24,7 @@
         # | system-action kbd-backlight off           | N/A                                                            | brightnessctl -sd "<device>" set 0                              |
         # | system-action kbd-backlight restore       | N/A                                                            | brightnessctl -rd "<device>"                                    |
         # | system-action idle toggle                 | noctalia msg caffeine-toggle                                    | N/A                                                             |
+        # | system-action window-switcher             | noctalia msg window-switcher                                    | N/A                                                             |
         # | system-action dpms on                     | noctalia msg dpms-on                                            | hyprctl dispatch 'hl.dsp.dpms({ action = "enable" })'           |
         # | system-action dpms off                    | noctalia msg dpms-off                                           | hyprctl dispatch 'hl.dsp.dpms({ action = "disable" })'          |
         # | system-action panel-toggle settings       | noctalia msg settings-toggle                                    | N/A                                                             |
@@ -67,6 +68,7 @@
           brightness    up | down | set <number> | restore
           kbd-backlight on | off | restore
           idle          toggle
+          window-switcher
           dpms          on | off
           panel-toggle  settings | wallpaper | control-center
           wallpaper     random | set <path>
@@ -156,6 +158,10 @@
           *)
             echo "Usage: system-action idle <toggle>" >&2; exit 1 ;;
           esac
+        }
+
+        window_switcher() {
+          if noctalia_running; then noctalia msg window-switcher; fi
         }
 
         dpms() {
@@ -271,6 +277,7 @@
         brightness) brightness ;;
         kbd-backlight) kbd_backlight ;;
         idle) idle ;;
+        window-switcher) window_switcher ;;
         dpms) dpms ;;
         panel-toggle) panel_toggle ;;
         wallpaper) wallpaper ;;

@@ -31,6 +31,7 @@
           gld = "git log --pretty=format:\"%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s\"";
           v = "nvim";
           notes = "cd ~/notes && nvim";
+          ns = "tv nix-search-tv";
         };
       };
 

@@ -61,13 +61,13 @@ bindm("B", exec(vicinae_app("helium")), "Open Browser")
 bindm("E", exec(quick_terminal(programs.yazi)), "Open Terminal File Manager")
 bindm("D", exec(quick_terminal(programs.bluetui)), "Open Bluetooth Settings")
 bindm("V", exec(quick_terminal(programs.wiremix)), "OpenVolume Control")
-bindm("GRAVE", exec("vicinae vicinae://launch/@nino-mau/store.vicinae.hypr/windows"), "Switch Windows")
+bindm("GRAVE", system_action("window-switcher"), "Switch Windows")
 bindm("SHIFT + E", exec(vicinae_app("org.gnome.Nautilus")), "Open File Manager")
 
 --------------------- Launchers ---------------------
 bindm("SPACE", exec("vicinae toggle"), "Toggle Launcher")
 bindm("SHIFT + SPACE", run_app(programs._1password .. " --quick-access"), "Toggle 1Password")
-bindm("Y", exec("vicinae vicinae://extensions/vicinae/clipboard/history"), "Toggle Clipboard History")
+bindm("Y", exec("vicinae vicinae://launch/clipboard/history"), "Toggle Clipboard History")
 bindm("O", exec(programs.wlr_which_key), "Which Key")
 
 bindm("ESCAPE", system_action("session lock"), "Lock Screen")
