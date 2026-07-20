@@ -4,6 +4,7 @@
   den.aspects.nixvm = {
     includes = with den.aspects; [
       base
+      boot.kernel-latest
       theming.catppuccin
       desktop.hyprland
       development
