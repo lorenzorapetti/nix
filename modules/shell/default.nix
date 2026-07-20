@@ -34,38 +34,6 @@
       };
 
       programs = {
-        fish = {
-          enable = true;
-
-          functions = {
-            mkcd = {
-              body = ''
-                mkdir -p $argv
-                and cd $argv
-              '';
-            };
-
-            zn = {
-              body = ''
-                set path (zoxide query --interactive)
-
-                if test -n "$path"
-                    cd $path
-                    nvim
-                else
-                    echo "No path found."
-                end
-              '';
-            };
-
-            zellij_layouts = {
-              body = ''
-                tv zellij
-              '';
-            };
-          };
-        };
-
         carapace = {
           enable = true;
           enableFishIntegration = true;
