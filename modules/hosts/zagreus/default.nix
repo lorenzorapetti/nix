@@ -9,6 +9,10 @@
       hardware.cpu-amd
       hardware.igpu-amd
       hardware.firmware
+      networking
+      networking.networkmanager
+      networking.firewall
+      networking.tailscale
       theming.catppuccin
       desktop.bluetooth
       desktop.hyprland

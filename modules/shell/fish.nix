@@ -8,10 +8,6 @@
           set -g fish_greeting
         '';
 
-        binds = {
-          "alt-r" = "tv zellij";
-        };
-
         functions = {
           mkcd = {
             body = ''

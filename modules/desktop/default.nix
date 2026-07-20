@@ -20,5 +20,9 @@
       # cache -- appropriate when swap is compressed RAM. Range 0-200 (kernel >=5.8).
       boot.kernel.sysctl."vm.swappiness" = 180;
     };
+
+    homeManager = {
+      home.pointerCursor.enable = true;
+    };
   };
 }

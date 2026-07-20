@@ -7,7 +7,10 @@
         rulesProvider = pkgs.ananicy-rules-cachyos;
       };
 
-      fileSystems."/sys/kernel/tracing" = { device = "tracefs"; fsType = "tracefs"; };
-    }
+      fileSystems."/sys/kernel/tracing" = {
+        device = "tracefs";
+        fsType = "tracefs";
+      };
+    };
   };
 }

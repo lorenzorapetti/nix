@@ -15,6 +15,7 @@
           lg = "lazygit";
           c = "cargo";
           du = "dust";
+          j = "just";
           g = "git";
           gs = "git status";
           ga = "git add";

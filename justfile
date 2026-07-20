@@ -13,3 +13,6 @@ build host=hostname:
 repl host=hostname:
   nix run .#{{host}} -- repl
 
+secrets:
+  sops modules/secrets/secrets.yaml
+
