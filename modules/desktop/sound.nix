@@ -76,6 +76,8 @@
       environment.systemPackages = with pkgs; [
         wiremix
         pwvucontrol
+        sone
+        easyeffects
       ];
     };
 
