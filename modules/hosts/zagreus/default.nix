@@ -12,6 +12,7 @@
       theming.catppuccin
       desktop.bluetooth
       desktop.hyprland
+      desktop.gaming
       development
       docker
     ];
