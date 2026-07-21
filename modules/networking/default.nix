@@ -1,9 +1,18 @@
 {
   den.aspects.networking = {
-    nixos = {
+    nixos = {pkgs, ...}: {
       networking.nftables.enable = true;
       systemd.network.wait-online.enable = false;
       boot.initrd.systemd.network.wait-online.enable = false;
+
+      services.avahi = {
+        enable = true;
+        nssmdns4 = true;
+      };
+
+      environment.systemPackages = with pkgs; [
+        cifs-utils
+      ];
     };
   };
 }

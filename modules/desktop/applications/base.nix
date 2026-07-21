@@ -1,4 +1,17 @@
-{den, ...}: {
+{den, ...}: let
+  imvMimeTypes = [
+    "image/png"
+    "image/jpeg"
+    "image/jpg"
+    "image/gif"
+    "image/bmp"
+    "image/webp"
+    "image/tiff"
+    "image/x-xcf"
+    "image/x-portable-pixmap"
+    "image/x-xbitmap"
+  ];
+in {
   # Absolutely necessary apps for every machine
   den.aspects.desktop.base-applications = {
     includes = with den.aspects; [
@@ -16,13 +29,25 @@
         inputs'.helium.packages.default
 
         ticktick
+        cine # Video player
       ];
 
       programs.obs-studio.enable = true;
       programs.thunderbird.enable = true;
+      programs.evince.enable = true;
     };
 
     homeManager = {
+      xdg.desktopEntries.imv = {
+        name = "Image Viewer";
+        exec = "imv %F";
+        icon = "imv";
+        type = "Application";
+        mimeType = imvMimeTypes;
+        terminal = false;
+        categories = ["Graphics" "Viewer"];
+      };
+
       programs = {
         imv = {
           enable = true;
@@ -43,5 +68,35 @@
         };
       };
     };
+
+    mimeApps = [
+      {
+        mimes = [
+          "video/mp4"
+          "video/x-matroska"
+          "video/x-msvideo"
+          "video/webm"
+          "video/quicktime"
+          "video/x-flv"
+          "video/x-ms-wmv"
+          "video/mpeg"
+          "video/ogg"
+        ];
+        app = "io.github.diegopvlk.Cine.desktop";
+      }
+      {
+        mimes = imvMimeTypes;
+        app = "imv.desktop";
+      }
+      {
+        mimes = [
+          "application/pdf"
+          "application/x-pdf"
+          "application/vnd.pdf"
+          "application/x-bzpdf"
+        ];
+        app = "org.gnome.Evince.desktop";
+      }
+    ];
   };
 }

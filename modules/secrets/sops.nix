@@ -9,9 +9,13 @@
         sops
       ];
 
+      environment.sessionVariables = {
+        SOPS_AGE_KEY_FILE = "/var/lib/sops-nix/keys.txt";
+      };
+
       sops = {
         defaultSopsFile = ./secrets.yaml;
-        age.keyFile = "/var/lib/sops-nix/key.txt";
+        age.keyFile = "/var/lib/sops-nix/keys.txt";
       };
     };
   };

@@ -172,3 +172,8 @@ hl.window_rule({
 	},
 	float = true,
 })
+
+hl.workspace_rule({
+	workspace = "special:tasks",
+	on_created_empty = "runapp ticktick",
+})

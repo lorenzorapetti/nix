@@ -3,6 +3,8 @@
   den.aspects.desktop.wm = {
     nixos = {pkgs, ...}: {
       services.gnome.gnome-keyring.enable = true;
+      services.gvfs.enable = true;
+      services.samba-wsdd.enable = true;
       services.udisks2 = {
         enable = true;
       };

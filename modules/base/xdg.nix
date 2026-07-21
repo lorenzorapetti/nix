@@ -1,6 +1,14 @@
-{
+{lib, ...}: {
   den.aspects.base = {
-    homeManager = {
+    homeManager = {mimeApps ? [], ...}: let
+      mimes = lib.listToAttrs (lib.flatten (lib.map (entry:
+        lib.map (mime: {
+          name = mime;
+          value = entry.app;
+        })
+        entry.mimes)
+      mimeApps));
+    in {
       xdg = {
         enable = true;
         mime.enable = true;
@@ -14,7 +22,8 @@
 
         mimeApps = {
           enable = true;
-          # TODO: Add default mime apps
+          associations.added = mimes;
+          defaultApplications = mimes;
         };
 
         userDirs = {

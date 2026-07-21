@@ -11,22 +11,11 @@
       ];
     };
 
-    homeManager = {
-      inputs',
-      config,
-      ...
-    }: let
-      helium = inputs'.helium.packages.default;
-      browserMimes = lib.listToAttrs (lib.map
-        (mime: {
-          name = mime;
-          value = ["helium.desktop"];
-        }) ["text/html" "text/xml" "application/xhtml+xml" "x-scheme-handler/http" "x-scheme-handler/https"]);
-    in {
-      xdg.mimeApps = lib.mkIf config.xdg.mimeApps.enable {
-        associations.added = browserMimes;
-        defaultApplications = browserMimes;
-      };
-    };
+    mimeApps = [
+      {
+        mimes = ["text/html" "text/xml" "application/xhtml+xml" "x-scheme-handler/http" "x-scheme-handler/https"];
+        app = "helium.desktop";
+      }
+    ];
   };
 }

@@ -136,8 +136,8 @@ git repo** — never commit it:
 
 ```sh
 mkdir -p /tmp/extra-files/var/lib/sops-nix
-cp ~/.config/sops/age/keys.txt /tmp/extra-files/var/lib/sops-nix/key.txt
-chmod 600 /tmp/extra-files/var/lib/sops-nix/key.txt
+cp ~/.config/sops/age/keys.txt /tmp/extra-files/var/lib/sops-nix/keys.txt
+chmod 600 /tmp/extra-files/var/lib/sops-nix/keys.txt
 ```
 
 This matches the path sops-nix expects on the target (see `modules/secrets/sops.nix`'s
