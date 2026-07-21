@@ -54,6 +54,7 @@
       hardware.enableRedistributableFirmware = true;
 
       nix = {
+        nixPath = ["nixpkgs=${inputs.nixpkgs}"];
         optimise.automatic = true;
 
         settings = {
