@@ -5,7 +5,7 @@
         wlr-which-key
       ];
 
-      xdg.configFile."wlr-which-key/config.toml".text = ''
+      xdg.configFile."wlr-which-key/config.yaml".text = ''
         font: GeistMono Nerd Font Mono 12
         background: "#1e1e2e"
         color: "#ffffff"
@@ -60,25 +60,25 @@
                 cmd: vicinae vicinae://extensions/vicinae/core/search-emojis
               - key: "e"
                 desc: File Manager
-                cmd: quick_terminal yazi
+                cmd: quick-terminal yazi
               - key: "p"
                 desc: Task Manager
-                cmd: quick_terminal btop
+                cmd: quick-terminal btop
               - key: "t"
                 desc: Todo
-                cmd: quick_terminal tuxedo
+                cmd: quick-terminal tuxedo
               - key: "b"
                 desc: Bluetooth
-                cmd: quick_terminal bluetui
+                cmd: quick-terminal bluetui
               - key: "v"
                 desc: Volume
-                cmd: quick_terminal wiremix
+                cmd: quick-terminal wiremix
               - key: "c"
                 desc: Color Picker
                 cmd: hyprpicker | wl-copy
               - key: "s"
                 desc: Systemd Services
-                cmd: quick_terminal systemctl-tui -s user
+                cmd: quick-terminal systemctl-tui -s user
           - key: "s"
             desc: Screenshot
             submenu:

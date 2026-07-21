@@ -3,6 +3,7 @@
     includes = with den.aspects; [
       hardware.firmware
       desktop.sound
+      desktop.printing
     ];
 
     nixos = {

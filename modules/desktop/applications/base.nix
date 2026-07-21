@@ -30,6 +30,8 @@ in {
 
         ticktick
         cine # Video player
+
+        libreoffice-fresh
       ];
 
       programs.obs-studio.enable = true;

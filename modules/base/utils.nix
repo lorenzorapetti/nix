@@ -21,7 +21,6 @@
         fd
         dust
         bat
-        btop
         zoxide
         eza
         systemctl-tui

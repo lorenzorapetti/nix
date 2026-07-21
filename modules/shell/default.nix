@@ -36,6 +36,10 @@
       };
 
       programs = {
+        btop = {
+          enable = true;
+        };
+
         carapace = {
           enable = true;
           enableFishIntegration = true;

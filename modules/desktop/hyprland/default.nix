@@ -9,6 +9,7 @@
       desktop.wm
       desktop.base-applications
       desktop.wm-applications
+      desktop.wlr-which-key
       desktop.noctalia-greeter
       desktop.noctalia
       desktop.wlr-which-key
