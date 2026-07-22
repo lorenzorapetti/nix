@@ -7,7 +7,7 @@
   den.aspects.theming.catppuccin = {host, ...}: let
     isDesktop = host.hasAspect den.aspects.desktop;
   in {
-    nixos = {
+    nixos = {config, ...}: {
       imports = [
         inputs.catppuccin.nixosModules.catppuccin
       ];
@@ -20,6 +20,7 @@
 
         limine.enable = true;
         tty.enable = true;
+        plymouth.enable = config.boot.plymouth.enable;
       };
     };
 

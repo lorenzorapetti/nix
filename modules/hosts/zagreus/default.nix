@@ -6,6 +6,7 @@
   den.aspects.zagreus = {
     includes = with den.aspects; [
       base
+      boot.plymouth
       hardware.cpu-amd
       hardware.igpu-amd
       hardware.firmware
