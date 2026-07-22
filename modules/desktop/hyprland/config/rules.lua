@@ -177,3 +177,68 @@ hl.workspace_rule({
 	workspace = "special:tasks",
 	on_created_empty = "runapp ticktick",
 })
+
+-- Gaming
+
+hl.window_rule({
+	name = "steam-tweaks",
+	match = {
+		class = "steam",
+		float = true,
+	},
+	min_size = "1 1",
+	rounding = 0,
+})
+
+hl.window_rule({
+	name = "proton-game-tag",
+	match = {
+		xdg_tag = "proton-game",
+	},
+	tag = "+game",
+})
+hl.window_rule({
+	name = "steam-apps-tag",
+	match = {
+		initial_class = "steam_app_.*",
+	},
+	tag = "+game",
+})
+hl.window_rule({
+	name = "gamescope-tag",
+	match = {
+		class = "gamescope",
+	},
+	tag = "+game",
+})
+
+hl.window_rule({
+	name = "games",
+	match = {
+		tag = "game",
+		fullscreen = true,
+	},
+	border_size = 0,
+	rounding = 0,
+	decorate = false,
+	force_rgbx = true,
+	sync_fullscreen = true,
+	no_anim = true,
+	no_blur = true,
+	no_dim = true,
+	no_max_size = true,
+	no_shadow = true,
+	persistent_size = true,
+	focus_on_activate = true,
+	immediate = true,
+})
+hl.window_rule({
+	name = "game-popups",
+	match = {
+		tag = "game",
+	},
+	content = "game",
+	workspace = 3,
+	center = true,
+	idle_inhibit = "always",
+})
