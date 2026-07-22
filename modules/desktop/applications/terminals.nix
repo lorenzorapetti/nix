@@ -27,7 +27,6 @@
 
           systemd.enable = true;
 
-          clearDefaultKeybinds = true;
           settings = {
             language = "en";
             font-family = "GeistMono Nerd Font Mono";
