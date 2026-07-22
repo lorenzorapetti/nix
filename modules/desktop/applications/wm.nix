@@ -12,7 +12,7 @@
       ];
     };
 
-    homeManager = {config, ...}: {
+    homeManager = {config, osConfig, ...}: {
       xdg.configFile."gtk-3.0/bookmarks".text = ''
         file:///home/${config.home.username}/Documents Documents
         file:///home/${config.home.username}/Downloads Downloads
@@ -45,7 +45,7 @@
             };
 
             font = {
-              family = "Roboto";
+              family = osConfig.fonts.sans;
               style = "Bold";
             };
 

@@ -37,6 +37,17 @@ in {
       programs.obs-studio.enable = true;
       programs.thunderbird.enable = true;
       programs.evince.enable = true;
+
+      # Ports for KDE Connect
+      networking.firewall = rec {
+        allowedTCPPortRanges = [
+          {
+            from = 1714;
+            to = 1764;
+          }
+        ];
+        allowedUDPPortRanges = allowedTCPPortRanges;
+      };
     };
 
     homeManager = {
@@ -69,6 +80,8 @@ in {
           enable = true;
         };
       };
+
+      services.kdeconnect.enable = true;
     };
 
     mimeApps = [

@@ -1,6 +1,6 @@
 {
   den.aspects.shell = {
-    homeManager = {pkgs, ...}: {
+    homeManager = {pkgs, osConfig, ...}: {
       programs.zoxide = {
         enable = true;
         enableFishIntegration = true;
@@ -423,7 +423,7 @@
         }
 
         web_client {
-            font "GeistMono Nerd Font Mono"
+            font "${osConfig.fonts.mono}"
         }
 
         // Use a simplified UI without special fonts (arrow glyphs)

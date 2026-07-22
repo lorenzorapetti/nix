@@ -7,6 +7,10 @@
   den.aspects.theming.catppuccin = {host, ...}: let
     isDesktop = host.hasAspect den.aspects.desktop;
   in {
+    includes = [
+      den.aspects.theming.base
+    ];
+
     nixos = {config, ...}: {
       imports = [
         inputs.catppuccin.nixosModules.catppuccin
@@ -24,37 +28,10 @@
       };
     };
 
-    homeManager = {
-      config,
-      pkgs,
-      ...
-    }: {
+    homeManager = {config, ...}: {
       imports = [
         inputs.catppuccin.homeModules.catppuccin
       ];
-
-      gtk = let
-        iconTheme = {
-          name = "Adwaita";
-          package = pkgs.adwaita-icon-theme;
-        };
-      in
-        lib.mkIf isDesktop {
-          enable = true;
-          colorScheme = "dark";
-
-          gtk2 = {
-            enable = true;
-            iconTheme = iconTheme;
-          };
-
-          gtk3 = {
-            enable = true;
-            iconTheme = iconTheme;
-          };
-
-          gtk4.iconTheme = iconTheme;
-        };
 
       home.pointerCursor.size = 24;
 
@@ -81,6 +58,7 @@
         opencode.enable = config.programs.opencode.enable;
         starship.enable = config.programs.starship.enable;
         television.enable = config.programs.television.enable;
+        vesktop.enable = isDesktop && config.programs.vesktop.enable;
         zellij.enable = config.programs.zellij.enable;
       };
 

@@ -1,12 +1,12 @@
 {
   den.aspects.desktop.wlr-which-key = {
-    homeManager = {pkgs, ...}: {
+    homeManager = {pkgs, osConfig, ...}: {
       home.packages = with pkgs; [
         wlr-which-key
       ];
 
       xdg.configFile."wlr-which-key/config.yaml".text = ''
-        font: GeistMono Nerd Font Mono 12
+        font: ${osConfig.fonts.nerd} 12
         background: "#1e1e2e"
         color: "#ffffff"
         border: "#b4befe"

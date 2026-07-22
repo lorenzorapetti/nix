@@ -38,6 +38,7 @@
     homeManager = {
       pkgs,
       config,
+      osConfig,
       self',
       inputs',
       ...
@@ -45,7 +46,6 @@
       home.packages = [self'.packages.system-action];
 
       home.sessionVariables = {
-        QT_QPA_PLATFORMTHEME = "qt6ct";
         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
         ELECTRON_OZONE_PLATFORM_HINT = "auto";
 
@@ -75,6 +75,17 @@
           "keybinds" = ./config/keybinds.lua;
           "rules" = ./config/rules.lua;
           "style" = ./config/style.lua;
+          "fonts" = {
+            autoLoad = false;
+            content = ''
+              return {
+                serif = "${osConfig.fonts.serif}",
+                sans = "${osConfig.fonts.sans}",
+                mono = "${osConfig.fonts.mono}",
+                nerd = "${osConfig.fonts.nerd}",
+              }
+            '';
+          };
           "programs" = {
             autoLoad = false;
             content = ''

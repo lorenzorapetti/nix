@@ -1727,7 +1727,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 56
+            "address": 57
           },
           {
             "type": "io",
@@ -1909,7 +1909,7 @@
         "resources": [
           {
             "type": "hwaddr",
-            "address": 56
+            "address": 57
           },
           {
             "type": "phwaddr",

@@ -1,3 +1,5 @@
+local fonts = require("fonts")
+
 hl.config({
 	general = {
 		gaps_in = 6,
@@ -46,7 +48,7 @@ hl.config({
 	misc = {
 		force_default_wallpaper = 0,
 		disable_hyprland_logo = true,
-		font_family = "GeistMono Nerd Font Mono",
+		font_family = fonts.nerd,
 		mouse_move_enables_dpms = true,
 		key_press_enables_dpms = true,
 		focus_on_activate = true,

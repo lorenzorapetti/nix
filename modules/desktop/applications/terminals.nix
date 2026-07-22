@@ -1,6 +1,6 @@
 {
   den.aspects.desktop.base-applications = {
-    homeManager = {
+    homeManager = {osConfig, ...}: {
       programs = {
         alacritty = {
           enable = true;
@@ -13,7 +13,7 @@
 
             font = {
               normal = {
-                family = "GeistMono Nerd Font Mono";
+                family = osConfig.fonts.mono;
                 style = "Regular";
               };
             };
@@ -29,7 +29,7 @@
 
           settings = {
             language = "en";
-            font-family = "GeistMono Nerd Font Mono";
+            font-family = osConfig.fonts.mono;
             font-size = 11;
             cursor-style = "block";
             mouse-hide-while-typing = true;

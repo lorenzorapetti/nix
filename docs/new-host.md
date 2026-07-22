@@ -136,12 +136,12 @@ git repo** — never commit it:
 
 ```sh
 mkdir -p /tmp/extra-files/var/lib/sops-nix
-cp ~/.config/sops/age/keys.txt /tmp/extra-files/var/lib/sops-nix/keys.txt
+op read --out-file /tmp/extra-files/var/lib/sops-nix/keys.txt op://Homelab/AGE_KEY/age.agekey
 chmod 600 /tmp/extra-files/var/lib/sops-nix/keys.txt
 ```
 
 This matches the path sops-nix expects on the target (see `modules/secrets/sops.nix`'s
-`age.keyFile = "/var/lib/sops-nix/key.txt";`), so secrets decrypt on first activation.
+`age.keyFile = "/var/lib/sops-nix/keys.txt";`), so secrets decrypt on first activation.
 
 ## 6. Run nixos-anywhere
 

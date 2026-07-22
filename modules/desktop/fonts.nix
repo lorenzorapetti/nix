@@ -1,6 +1,10 @@
 {
   den.aspects.desktop = {
-    nixos = {pkgs, ...}: {
+    nixos = {
+      pkgs,
+      config,
+      ...
+    }: {
       fonts = {
         packages = with pkgs; [
           nerd-fonts.jetbrains-mono
@@ -24,9 +28,9 @@
         ];
 
         fontconfig.defaultFonts = {
-          serif = ["Noto Serif" "Noto Serif CJK JP"];
-          sansSerif = ["Noto Sans" "Noto Sans CJK JP"];
-          monospace = ["GeistMono Nerd Font Mono" "Noto Sans Mono" "Noto Sans Mono CJK J"];
+          serif = [config.fonts.serif] ++ config.fonts.fallbackSerif;
+          sansSerif = [config.fonts.sans] ++ config.fonts.fallbackSans;
+          monospace = [config.fonts.mono] ++ config.fonts.fallbackMono;
         };
       };
     };
