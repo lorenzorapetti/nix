@@ -34,7 +34,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "float-apps",
 	match = {
-		class = "(org.gnome.Nautilus|1password|org.pulseaudio.pavucontrol|blueman-manager|com.gabm.satty|org.gnome.FileRoller)",
+		class = "(org.gnome.Nautilus|1password|org.pulseaudio.pavucontrol|blueman-manager|com.gabm.satty|org.gnome.FileRoller|com.nextcloud.desktopclient.nextcloud)",
 	},
 	float = true,
 	size = {

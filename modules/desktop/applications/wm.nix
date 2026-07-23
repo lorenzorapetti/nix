@@ -12,13 +12,19 @@
       ];
     };
 
-    homeManager = {config, osConfig, ...}: {
+    homeManager = {
+      config,
+      osConfig,
+      ...
+    }: {
       xdg.configFile."gtk-3.0/bookmarks".text = ''
+        file:///home/${config.home.username}/Desktop Desktop
         file:///home/${config.home.username}/Documents Documents
         file:///home/${config.home.username}/Downloads Downloads
         file:///home/${config.home.username}/Pictures Pictures
         file:///home/${config.home.username}/Videos Videos
         file:///home/${config.home.username}/code Code
+        file:///home/${config.home.username}/Nextcloud Nextcloud
       '';
 
       programs = {
