@@ -7,7 +7,7 @@ hl.config({
 		float_gaps = 10,
 		border_size = 1,
 		resize_on_border = true,
-		allow_tearing = false,
+		allow_tearing = true,
 		no_focus_fallback = true,
 
 		layout = "scrolling",

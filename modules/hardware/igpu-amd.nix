@@ -4,7 +4,6 @@
       boot.kernelParams = [
         "amdgpu.dc=1"
         "amdgpu.accel=1"
-        "amdgpu.ppfeaturemask=0xffffffff"
       ];
 
       hardware = {

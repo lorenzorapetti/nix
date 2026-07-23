@@ -32,7 +32,7 @@
                     };
                     "@home" = {
                       mountpoint = "/home";
-                      mountOptions = ["compress=zstd" "noatime"];
+                      mountOptions = ["compress=zstd:1" "noatime"];
                     };
                     "@nix" = {
                       mountpoint = "/nix";

@@ -30,7 +30,6 @@
 
       boot.kernelParams = [
         "nowatchdog"
-        "threadirqs"
         "mitigations=off"
       ];
 
