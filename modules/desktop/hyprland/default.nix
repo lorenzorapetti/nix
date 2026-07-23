@@ -23,7 +23,6 @@
       environment.systemPackages = with pkgs; [
         runapp
         hyprmoncfg
-        hyprshutdown
       ];
 
       programs.hyprland = {

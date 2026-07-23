@@ -81,7 +81,15 @@ in {
         };
       };
 
-      services.kdeconnect.enable = true;
+      services.kdeconnect = {
+        enable = true;
+        indicator = true;
+      };
+
+      services.nextcloud-client = {
+        enable = true;
+        startInBackground = true;
+      };
     };
 
     mimeApps = [

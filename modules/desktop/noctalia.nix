@@ -197,14 +197,12 @@
               {
                 action = "reboot";
                 enabled = true;
-                command = "hyprshutdown -p 'reboot'";
                 shortcut = "r";
                 variant = "default";
               }
               {
                 action = "shutdown";
                 enabled = true;
-                command = "hyprshutdown -p 'shutdown -P 0'";
                 shortcut = "s";
                 variant = "destructive";
               }

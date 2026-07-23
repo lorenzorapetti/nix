@@ -76,10 +76,6 @@ bindm("CAPS_LOCK", system_action("session lock"), "Lock Screen")
 bindm("SHIFT + ESCAPE", system_action("session menu-toggle"), "Power Menu")
 bindm("SHIFT + CAPS_LOCK", system_action("session menu-toggle"), "Power Menu")
 
-local exit_hyprland = 'command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch "hl.dsp.exit()"'
-bindm("CTRL + ESCAPE", exec(exit_hyprland), "Exit Hyprland")
-bindm("CTRL + CAPS_LOCK", exec(exit_hyprland), "Exit Hyprland")
-
 --------------------- Screenshot ---------------------
 bind("PRINT", system_action("screenshot region"), "Screenshot of region")
 bind("SHIFT + PRINT", exec("screenshot window"), "Screenshot of window")
