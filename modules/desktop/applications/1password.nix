@@ -1,10 +1,16 @@
 {
   den.aspects.desktop._1password = {
+    host,
+    user,
+    ...
+  }: {
     nixos = {
       programs._1password.enable = true;
       programs._1password-gui = {
         enable = true;
-        # polkitPolicyOwners = [];
+        polkitPolicyOwners = [
+          user.name
+        ];
       };
 
       environment.etc = {
