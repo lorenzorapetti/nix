@@ -45,6 +45,10 @@ in {
           path = "/home/lorenzo/.ssh/id_ed25519";
         };
       };
+
+      boot.initrd.network.ssh.authorizedKeys = [
+        sshKey
+      ];
     };
 
     homeManager = {
