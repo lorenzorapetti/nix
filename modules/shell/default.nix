@@ -79,7 +79,7 @@
 
           settings = {
             add_newline = true;
-            format = "$directory$git_branch$git_status$git_state$line_break$character";
+            format = "$directory$git_branch$git_status$git_state$nix_shell$line_break$character";
 
             character = {
               error_symbol = "[](bold red)";
@@ -92,6 +92,10 @@
 
             git_branch = {
               format = "[$symbol$branch(:$remote_branch)]($style) ";
+            };
+
+            nix_shell = {
+              format = "[$symbol]($style) ";
             };
           };
         };

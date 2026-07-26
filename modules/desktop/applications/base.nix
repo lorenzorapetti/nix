@@ -32,6 +32,7 @@ in {
         cine # Video player
 
         libreoffice-fresh
+        streamcontroller
       ];
 
       programs.obs-studio.enable = true;

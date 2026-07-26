@@ -6,6 +6,8 @@
       ];
 
       environment.systemPackages = with pkgs; [
+        gcc
+        udev
         tea
         just
 
