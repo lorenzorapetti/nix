@@ -49,6 +49,10 @@ in {
       boot.initrd.network.ssh.authorizedKeys = [
         sshKey
       ];
+
+      users.users.root.openssh.authorizedKeys.keys = [
+        sshKey
+      ];
     };
 
     homeManager = {
