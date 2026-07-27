@@ -1,5 +1,7 @@
-{
+{den, ...}: {
   den.aspects.networking = {
+    includes = with den.aspects; [networking.networkmanager networking.firewall networking.tailscale];
+
     nixos = {pkgs, ...}: {
       systemd.network.wait-online.enable = false;
       boot.initrd.systemd.network.wait-online.enable = false;

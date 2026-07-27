@@ -1,0 +1,69 @@
+{
+  "name": "home-dual",
+  "created_at": "2026-07-19T18:16:54.34538402Z",
+  "updated_at": "2026-07-19T18:32:01.137213459Z",
+  "outputs": [
+    {
+      "key": "audio processing technology ltd|hdmi|0x00000055",
+      "match_key": "audio processing technology ltd|hdmi|0x00000055",
+      "name": "HDMI-A-1",
+      "description": "Audio Processing Technology  Ltd HDMI 0x00000055",
+      "make": "Audio Processing Technology  Ltd",
+      "model": "HDMI",
+      "serial": "0x00000055",
+      "enabled": true,
+      "mode": "2880x1800@100.00Hz",
+      "width": 2880,
+      "height": 1800,
+      "refresh": 100,
+      "x": 540,
+      "y": 1728,
+      "scale": 1.5,
+      "transform": 0,
+      "bitdepth": 8,
+      "cm": "srgb",
+      "sdr_brightness": 1,
+      "sdr_saturation": 1,
+      "sdr_min_luminance": 0.2,
+      "sdr_max_luminance": 80,
+      "min_luminance": 0
+    },
+    {
+      "key": "samsung electric company|odyssey g80sd|h1ak500000",
+      "match_key": "samsung electric company|odyssey g80sd|h1ak500000",
+      "name": "DP-1",
+      "description": "Samsung Electric Company Odyssey G80SD H1AK500000",
+      "make": "Samsung Electric Company",
+      "model": "Odyssey G80SD",
+      "serial": "H1AK500000",
+      "enabled": true,
+      "mode": "3840x2160@119.88Hz",
+      "width": 3840,
+      "height": 2160,
+      "refresh": 119.88,
+      "x": 0,
+      "y": 0,
+      "scale": 1.25,
+      "vrr": 1,
+      "transform": 0,
+      "bitdepth": 10,
+      "cm": "srgb",
+      "sdr_brightness": 1,
+      "sdr_saturation": 1,
+      "sdr_min_luminance": 0.2,
+      "sdr_max_luminance": 80,
+      "min_luminance": 0
+    }
+  ],
+  "workspaces": {
+    "enabled": true,
+    "strategy": "sequential",
+    "max_workspaces": 10,
+    "group_size": 5,
+    "monitor_order": [
+      "samsung electric company|odyssey g80sd|h1ak500000",
+      "audio processing technology ltd|hdmi|0x00000055"
+    ]
+  },
+  "exec": ""
+}

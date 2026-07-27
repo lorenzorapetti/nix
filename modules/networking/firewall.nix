@@ -5,9 +5,11 @@
       lib,
       ...
     }: {
-      networking.firewall.enable = true;
-
-      networking.firewall.allowedTCPPorts = lib.concatMap (f: f.ports or []) firewall;
+      networking.firewall = {
+        enable = true;
+        allowedTCPPorts = lib.concatMap (f: f.ports.tcp or []) firewall;
+        allowedUDPPorts = lib.concatMap (f: f.ports.udp or []) firewall;
+      };
     };
   };
 }

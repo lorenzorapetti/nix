@@ -11,8 +11,10 @@
         hardware.igpu-intel
         hardware.firmware
         networking
-        networking.tailscale
-        docker
+
+        traefik
+        technitium
+        glance
       ]
       ++ [
         (den.batteries.wake-on-lan "enp2s0")
