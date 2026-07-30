@@ -602,6 +602,26 @@
         "type": "github"
       }
     },
+    "libfprint-cs9711": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785329924,
+        "narHash": "sha256-wdz+MqrbJfcXIpFzRA2pTTKtVxZYPqUjhvUZhvkFsek=",
+        "owner": "lorenzorapetti",
+        "repo": "libfprint-cs9711",
+        "rev": "fa46ceb48ec912eac7a75d6a99ed9dceba079302",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lorenzorapetti",
+        "repo": "libfprint-cs9711",
+        "type": "github"
+      }
+    },
     "mnw": {
       "locked": {
         "lastModified": 1784154424,
@@ -975,6 +995,7 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "import-tree": "import-tree",
+        "libfprint-cs9711": "libfprint-cs9711",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nix-gaming-edge": "nix-gaming-edge",
         "nixos-hardware": "nixos-hardware",
