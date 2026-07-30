@@ -80,6 +80,11 @@ in {
         mpv = {
           enable = true;
         };
+
+        obsidian = {
+          enable = true;
+          cli.enable = true;
+        };
       };
 
       services.kdeconnect = {
