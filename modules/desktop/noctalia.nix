@@ -9,16 +9,6 @@
       desktop.noctalia-greeter
     ];
 
-    nixos = {
-      imports = [
-        inputs.noctalia.nixosModules.default
-      ];
-
-      programs.noctalia = {
-        enable = true;
-      };
-    };
-
     homeManager = {osConfig, ...}: {
       imports = [
         inputs.noctalia.homeModules.default
