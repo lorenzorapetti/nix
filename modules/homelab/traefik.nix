@@ -102,5 +102,17 @@
     firewall = {
       ports.tcp = [80 443];
     };
+
+    traefik = {
+      jetkvm = {
+        rule = "Host(`jetkvm.home.lorenzorapetti.com`)";
+        url = "http://10.0.0.86";
+      };
+
+      pikvm = {
+        rule = "Host(`pikvm.home.lorenzorapetti.com`)";
+        url = "http://10.0.0.70";
+      };
+    };
   };
 }
