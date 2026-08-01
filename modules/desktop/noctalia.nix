@@ -114,11 +114,11 @@
 
           lockscreen = {
             blurred_desktop = true;
-            fingerprint = false;
+            fingerprint = lib.mkDefault false;
           };
 
           lockscreen_widgets = {
-            enabled = false;
+            enabled = lib.mkDefault false;
             schema_version = 2;
           };
 

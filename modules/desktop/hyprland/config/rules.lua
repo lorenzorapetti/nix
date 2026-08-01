@@ -44,6 +44,18 @@ hl.window_rule({
 })
 
 hl.window_rule({
+	name = "huddle",
+	match = {
+		title = "^Huddle",
+	},
+	float = true,
+	size = {
+		"monitor_w*0.8",
+		"monitor_h*0.7",
+	},
+})
+
+hl.window_rule({
 	name = "maximised-apps",
 	match = {
 		class = "(helium)",
