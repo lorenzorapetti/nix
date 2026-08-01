@@ -251,15 +251,6 @@
             };
 
             weather.show_condition = false;
-
-            workspaces = {
-              active_pill_size = 2.0;
-              display = "name";
-              empty_color = "primary";
-              focused_color = "tertiary";
-              hide_when_empty = true;
-              occupied_color = "primary";
-            };
           };
         };
       };
