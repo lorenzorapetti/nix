@@ -5,6 +5,8 @@
         inputs.rust-overlay.overlays.default
       ];
 
+      programs.nix-ld.enable = true;
+
       environment.systemPackages = with pkgs; [
         gcc
         udev
