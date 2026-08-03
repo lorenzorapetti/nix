@@ -15,6 +15,9 @@
         traefik
         technitium
         glance
+        loki
+        grafana
+        alloy
       ]
       ++ [
         (den.batteries.wake-on-lan "enp2s0")
@@ -25,6 +28,8 @@
 
       sops.secrets.nyx_tailscale_key = {};
       services.tailscale.authKeyFile = config.sops.secrets.nyx_tailscale_key.path;
+
+      observability.lokiEndpoint = "http://nyx.local:8004/loki/api/v1/push";
     };
   };
 }

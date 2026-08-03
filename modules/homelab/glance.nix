@@ -1,7 +1,7 @@
 {
   den.aspects.glance = {
     traefik.glance = {
-      rule = "Host(`home.lorenzorapetti.com`)";
+      rule = "Host(`home.lorenzolab.com`)";
       url = "http://127.0.0.1:8001";
     };
 

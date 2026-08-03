@@ -10,4 +10,8 @@
   den.quirks.traefik = {
     description = "Traefik dynamic routes: router + load-balancer service per key";
   };
+
+  den.quirks.logging = {
+    description = "Alloy config fragments (River syntax) appended to config.alloy";
+  };
 }
