@@ -1,6 +1,10 @@
 {
   den.aspects.desktop.wlr-which-key = {
-    homeManager = {pkgs, osConfig, ...}: {
+    homeManager = {
+      pkgs,
+      osConfig,
+      ...
+    }: {
       home.packages = with pkgs; [
         wlr-which-key
       ];
@@ -57,7 +61,7 @@
             submenu:
               - key: "w"
                 desc: Emoji Selector
-                cmd: vicinae vicinae://extensions/vicinae/core/search-emojis
+                cmd: vicinae vicinae://launch/core/search-emojis
               - key: "e"
                 desc: File Manager
                 cmd: quick-terminal yazi

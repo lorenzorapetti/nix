@@ -64,6 +64,7 @@ bindm("V", exec(quick_terminal(programs.wiremix)), "OpenVolume Control")
 bindm("T", hl.dsp.workspace.toggle_special("tasks"), "Open Tasks")
 bindm("GRAVE", system_action("window-switcher"), "Switch Windows")
 bindm("SHIFT + E", exec(vicinae_app("org.gnome.Nautilus")), "Open File Manager")
+bindm("CTRL + E", exec("vicinae vicinae://launch/core/search-emojis"), "Open Emoji Search")
 
 --------------------- Launchers ---------------------
 bindm("SPACE", exec("vicinae toggle"), "Toggle Launcher")
