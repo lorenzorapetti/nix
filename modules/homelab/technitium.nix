@@ -10,16 +10,6 @@
         enable = true;
       };
 
-      # DynamicUser stores StateDirectory/LogsDirectory under
-      # /var/{lib,log}/private/<name>, which is root:root mode 0700 — no
-      # other user can traverse into it no matter what the target directory's
-      # own permissions are. Switch to a static user/group (same pattern as
-      # traefik) so Alloy can actually read the logs via group membership.
-      #
-      # NOTE: this moves the state directory too. Existing DNS zone data
-      # under /var/lib/private/technitium-dns-server must be migrated to
-      # /var/lib/technitium-dns-server before switching, or the server will
-      # start fresh/empty. See chat for the exact migration commands.
       systemd.services.technitium-dns-server.serviceConfig = {
         DynamicUser = lib.mkForce false;
         User = "technitium";
