@@ -9,6 +9,11 @@
     nixos = {
       programs.dconf.enable = true;
 
+      security.polkit = {
+        enable = true;
+        enablePkexecWrapper = true;
+      };
+
       # Fast, compressed, RAM-backed swap. Default zram priority (5) is higher than a
       # disk swapfile, so runtime swapping hits zram first; only allocates as used.
       zramSwap = {

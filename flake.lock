@@ -194,6 +194,26 @@
         "type": "github"
       }
     },
+    "gaze": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785870515,
+        "narHash": "sha256-2wkTYFdfGHH3yj5XSDU5XFCrcGEnbP6/k8vBeqi+yVE=",
+        "owner": "GunduLabs",
+        "repo": "gaze",
+        "rev": "7e963a674d67a8ec9715a08052e028c0d6d6a980",
+        "type": "github"
+      },
+      "original": {
+        "owner": "GunduLabs",
+        "repo": "gaze",
+        "type": "github"
+      }
+    },
     "helium": {
       "inputs": {
         "nixpkgs": [
@@ -957,6 +977,7 @@
         "den": "den",
         "disko": "disko",
         "flake-parts": "flake-parts",
+        "gaze": "gaze",
         "helium": "helium",
         "home-manager": "home-manager",
         "hyprland": "hyprland",

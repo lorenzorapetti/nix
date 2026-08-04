@@ -17,7 +17,9 @@
       hardware.btrfs
       networking
       theming.catppuccin
+      desktop
       desktop.bluetooth
+      desktop.face-unlock
       desktop.hyprland
       desktop.gaming
       desktop.messaging

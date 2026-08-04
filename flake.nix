@@ -89,5 +89,10 @@
         home-manager.follows = "home-manager";
       };
     };
+
+    gaze = {
+      url = "github:GunduLabs/gaze";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 }
