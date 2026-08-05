@@ -1,6 +1,22 @@
 {
-  den.aspects.base.nixos = {
-    # Cap NIX_BUILD_CORES so a single heavy derivation (e.g. a template-heavy C++
-    # build) can't grab every core at once and blow through RAM+swap.
+  inputs,
+  lib,
+  ...
+}: {
+  den.aspects.base.homeManager = {
+    imports = [
+      inputs.nix-index-database.homeModules.default
+    ];
+
+    programs = {
+      command-not-found.enable = lib.mkForce false;
+      nix-index = {
+        enable = true;
+        enableBashIntegration = true;
+        enableZshIntegration = true;
+        enableFishIntegration = true;
+      };
+      nix-index-database.comma.enable = true;
+    };
   };
 }
