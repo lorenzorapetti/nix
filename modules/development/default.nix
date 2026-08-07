@@ -37,7 +37,9 @@
         libunwind
       ];
 
-      environment.etc."udev/rules.d/69-probe-rs.rules".source = "${pkgs.probe-rs-tools}/lib/udev/rules.d/69-probe-rs.rules";
+      services.udev.packages = [
+        pkgs.probe-rs-tools
+      ];
     };
 
     homeManager = {config, ...}: {
