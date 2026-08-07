@@ -23,6 +23,7 @@
             "thumbv7em-none-eabihf"
             "thumbv7m-none-eabi"
             "thumbv8m.main-none-eabihf"
+            "riscv32imac-unknown-none-elf"
           ];
         })
         cargo-binutils
@@ -32,8 +33,11 @@
 
         gdb
         minicom
+        picotool
         libunwind
       ];
+
+      environment.etc."udev/rules.d/69-probe-rs.rules".source = "${pkgs.probe-rs-tools}/lib/udev/rules.d/69-probe-rs.rules";
     };
 
     homeManager = {config, ...}: {
