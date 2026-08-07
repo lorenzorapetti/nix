@@ -33,6 +33,7 @@ in {
 
         libreoffice-fresh
         streamcontroller
+        protonmail-desktop
       ];
 
       programs.obs-studio.enable = true;
