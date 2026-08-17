@@ -1,5 +1,9 @@
 {inputs, ...}: {
   den.aspects.development = {
+    host,
+    user,
+    ...
+  }: {
     nixos = {pkgs, ...}: {
       nixpkgs.overlays = [
         inputs.rust-overlay.overlays.default
@@ -40,6 +44,11 @@
       services.udev.packages = [
         pkgs.probe-rs-tools
       ];
+
+      users.groups = {
+        plugdev = {};
+        docker = {};
+      };
     };
 
     homeManager = {config, ...}: {
@@ -68,5 +77,7 @@
         gh-dash.enable = true;
       };
     };
+
+    user.extraGroups = ["plugdev" "docker"];
   };
 }

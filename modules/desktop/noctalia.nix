@@ -30,19 +30,18 @@
                 "cpu"
                 "ram"
                 "network"
+                "tailscale"
               ]
               ++ lib.optional osConfig.hardware.bluetooth.enable "bluetooth"
               ++ [
                 "notifications"
                 "screenshot"
                 "recorder"
-                "wallpaper"
                 "caffeine"
                 "volume"
               ]
               ++ lib.optional osConfig.services.power-profiles-daemon.enable "battery"
               ++ [
-                "control-center"
                 "session"
               ];
             margin_edge = 0;
@@ -61,7 +60,21 @@
 
           calendar.enabled = true;
 
+          control_center = {
+            width = 900;
+            shortcuts = [
+              {type = "wallpaper";}
+              {type = "caffeine";}
+              {type = "notification";}
+              {type = "power_profile";}
+              {type = "wifi";}
+              {type = "bluetooth";}
+            ];
+          };
+
           desktop_widgets.enabled = true;
+
+          hooks.session_locked = "1password --lock";
 
           idle = {
             pre_action_fade_seconds = 0;
@@ -113,6 +126,7 @@
           location.address = "Latina, Italia";
 
           lockscreen = {
+            allow_empty_password = true;
             blurred_desktop = true;
             fingerprint = lib.mkDefault false;
           };
@@ -136,11 +150,18 @@
             reserve_space = false;
           };
 
-          plugins.enabled = ["noctalia/screen_recorder"];
+          plugins.enabled = ["noctalia/screen_recorder" "davemhammer/tailscale"];
 
-          plugin_settings."noctalia/screen_recorder" = {
-            color_range = "full";
-            copy_to_clipboard = true;
+          plugin_settings = {
+            "davemhammer/tailscale" = {
+              manager_open_near_click = false;
+              manager_placement = "attached";
+            };
+
+            "noctalia/screen_recorder" = {
+              color_range = "full";
+              copy_to_clipboard = true;
+            };
           };
 
           shell = {
@@ -215,7 +236,10 @@
 
             battery.display_mode = "graphic";
             clock.format = "%a %e %b %H:%M";
-            cpu.show_label = false;
+            cpu = {
+              show_label = false;
+              show_value = false;
+            };
 
             media = {
               hide_when_no_media = true;
@@ -230,10 +254,18 @@
 
             ram = {
               show_label = false;
+              show_value = false;
               stat = "ram_pct";
             };
 
             recorder.type = "noctalia/screen_recorder:recorder";
+
+            tailscale = {
+              glyph = "brand-openvpn";
+              type = "custom_button";
+
+              actions.left = "panel-toggle davemhammer/tailscale:manager";
+            };
 
             taskbar = {
               empty_color = "primary";

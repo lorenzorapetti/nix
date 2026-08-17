@@ -97,6 +97,6 @@
   };
 
   den.schema = {
-    user.classes = lib.mkDefault ["homeManager"];
+    user.classes = lib.mkDefault ["homeManager" "user"];
   };
 }
