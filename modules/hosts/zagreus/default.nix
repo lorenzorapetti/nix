@@ -25,6 +25,7 @@
       desktop.messaging
       desktop.work
       desktop.bambu-studio
+      desktop.kicad
       development
       docker
     ];
