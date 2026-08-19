@@ -29,7 +29,11 @@
         inputs.nixos-hardware.nixosModules.framework-intel-core-ultra-series3
       ];
 
-      hardware.facter.reportPath = ./facter.json;
+      hardware = {
+        facter.reportPath = ./facter.json;
+        graphics.enable = true;
+        intelgpu.driver = "xe";
+      };
 
       nix.settings.cores = 10;
 
