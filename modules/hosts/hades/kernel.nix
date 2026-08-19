@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  den.aspects.zagreus = {
+  den.aspects.hades = {
     includes = [
       den.aspects.boot.kernel-cachyos
     ];
@@ -14,8 +14,7 @@
       ];
 
       boot.kernelPackages = let
-        kernel = pkgs.cachyosKernels.linux-cachyos-bore-lto-zen4.override {
-          performanceGovernor = true;
+        kernel = pkgs.cachyosKernels.linux-cachyos-bore-lto-x86_64-v3.override {
           bbr3 = true;
         };
 
@@ -25,7 +24,6 @@
 
       boot.kernelParams = [
         "nowatchdog"
-        "mitigations=off"
       ];
     };
   };
