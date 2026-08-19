@@ -1,6 +1,6 @@
 {
   den.aspects.ai = {
-    homeManager = {
+    homeManager = {lib, ...}: {
       programs = {
         mcp.servers = {
           linear = {
@@ -32,6 +32,10 @@
           };
         };
       };
+
+      home.activation.createClaudeWorkDir = lib.hm.dag.entryAfter ["writeBoundary"] ''
+        mkdir -p "$HOME/.claude-work"
+      '';
     };
   };
 }
