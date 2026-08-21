@@ -27,6 +27,7 @@
       desktop.bambu-studio
       desktop.kicad
       development
+      development.embedded
       docker
     ];
 

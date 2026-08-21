@@ -1,14 +1,10 @@
-{inputs, ...}: {
+{den, ...}: {
   den.aspects.development = {
-    host,
-    user,
-    ...
-  }: {
-    nixos = {pkgs, ...}: {
-      nixpkgs.overlays = [
-        inputs.rust-overlay.overlays.default
-      ];
+    includes = [
+      den.aspects.development.rust
+    ];
 
+    nixos = {pkgs, ...}: {
       programs.nix-ld.enable = true;
 
       environment.systemPackages = with pkgs; [
@@ -20,35 +16,9 @@
         nodejs_26
         deno
         bun
-
-        (rust-bin.stable.latest.default.override {
-          extensions = ["llvm-tools"];
-          targets = [
-            "thumbv7em-none-eabihf"
-            "thumbv7m-none-eabi"
-            "thumbv8m.main-none-eabihf"
-            "riscv32imac-unknown-none-elf"
-          ];
-        })
-        cargo-binutils
-        cargo-generate
-        probe-rs-tools
-        rust-analyzer
-
-        gdb
-        minicom
-        picotool
-        libunwind
       ];
 
-      services.udev.packages = [
-        pkgs.probe-rs-tools
-      ];
-
-      users.groups = {
-        plugdev = {};
-        docker = {};
-      };
+      users.groups.docker = {};
     };
 
     homeManager = {config, ...}: {
@@ -78,6 +48,6 @@
       };
     };
 
-    user.extraGroups = ["plugdev" "docker"];
+    user.extraGroups = ["docker"];
   };
 }
