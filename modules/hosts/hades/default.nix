@@ -46,6 +46,8 @@
         MemoryHigh = "18G";
         MemoryMax = "22G";
       };
+
+      services.power-profiles-daemon.enable = true;
     };
   };
 }

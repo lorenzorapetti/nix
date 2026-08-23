@@ -5,7 +5,6 @@
     disko.devices = {
       disk = {
         nvme0n1 = {
-          # TODO: Change this with the right device path
           device = "/dev/nvme0n1";
           type = "disk";
           content = {
