@@ -31,7 +31,7 @@ in {
         ticktick
         cine # Video player
 
-        libreoffice-fresh
+        libreoffice-stable
         streamcontroller
         protonmail-desktop
       ];

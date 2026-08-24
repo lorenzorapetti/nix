@@ -47,7 +47,15 @@
         MemoryMax = "22G";
       };
 
-      services.power-profiles-daemon.enable = true;
+      services = {
+        power-profiles-daemon.enable = true;
+        upower.enable = true;
+      };
+    };
+
+    homeManager = {config, ...}: {
+      xdg.configFile."hyprmoncfg/profiles".source =
+        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/modules/hosts/hades/hyprmoncfg";
     };
   };
 }
