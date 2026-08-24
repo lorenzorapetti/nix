@@ -59,15 +59,6 @@ in {
       home.file.".face.icon".source = ./.face.icon;
       home.file."profile.png".source = ./.face.icon;
       home.file.".ssh/id_ed25519.pub".text = sshKey;
-      home.file.".config/git/ignore-nebulab".text = ''
-        .devenv/
-        devenv.local.nix
-        .devenv.flake.nix
-        devenv.nix
-        devenv.yaml
-        devenv.lock
-      '';
-
       programs = {
         ssh = {
           enable = true;
@@ -86,13 +77,6 @@ in {
             ".DS_Store"
             ".mise.local.toml"
             "**/.claude/settings.local.json"
-          ];
-
-          includes = [
-            {
-              condition = "gitdir:~/code/work/nebulab/**";
-              contents.core.excludesFile = "~/.config/git/ignore-nebulab";
-            }
           ];
 
           signing = {
