@@ -18,8 +18,8 @@
         # | system-action mic mute                    | noctalia msg mic-mute                                           | wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle                    |
         # | system-action brightness up               | noctalia msg brightness-up 5%                                   | brightnessctl -e4 -n2 set 5%+                                   |
         # | system-action brightness down             | noctalia msg brightness-down 5%                                 | brightnessctl -e4 -n2 set 5%-                                   |
-        # | system-action brightness set <number>     | N/A                                                            | brightnessctl set -s <number>                                   |
-        # | system-action brightness restore          | N/A                                                            | brightnessctl -r                                                |
+        # | system-action brightness set <number>     | noctalia msg brightness-set <number>                            | brightnessctl set -s <number>                                   |
+        # | system-action brightness restore          | N/A                                                             | brightnessctl -r                                                |
         # | system-action kbd-backlight on            | N/A                                                            | brightnessctl -sd "<device>" set "100%"                         |
         # | system-action kbd-backlight off           | N/A                                                            | brightnessctl -sd "<device>" set 0                              |
         # | system-action kbd-backlight restore       | N/A                                                            | brightnessctl -rd "<device>"                                    |
@@ -103,26 +103,45 @@
           esac
         }
 
-        brightness() {
+        brightness_available() {
           # brightnessctl is usable only when present AND a backlight device exists
-          # (e.g. laptop panel, or an external monitor via ddcci-backlight). If not,
-          # the whole brightness subcommand is a silent no-op.
-          if ! command -v brightnessctl >/dev/null 2>&1 \
-            || [[ -z "$(brightnessctl -l -c backlight -m 2>/dev/null)" ]]; then
-            return
-          fi
+          # (e.g. laptop panel, or an external monitor via ddcci-backlight).
+          command -v brightnessctl >/dev/null 2>&1 \
+            && [[ -n "$(brightnessctl -l -c backlight -m 2>/dev/null)" ]]
+        }
+
+        brightness() {
+          # When noctalia is running it handles brightness itself and brightnessctl
+          # is not needed; otherwise fall back to brightnessctl if available, and
+          # silently no-op if it isn't (e.g. no backlight device).
           case "''${ACTION}" in
           up)
-            if noctalia_running; then noctalia msg brightness-up 5%; else brightnessctl -e4 -n2 set 5%+; fi ;;
+            if noctalia_running; then
+              noctalia msg brightness-up 5%
+            elif brightness_available; then
+              brightnessctl -e4 -n2 set 5%+
+            fi ;;
           down)
-            if noctalia_running; then noctalia msg brightness-down 5%; else brightnessctl -e4 -n2 set 5%-; fi ;;
+            if noctalia_running; then
+              noctalia msg brightness-down 5%
+            elif brightness_available; then
+              brightnessctl -e4 -n2 set 5%-
+            fi ;;
           set)
             if [[ -z "''${ARG}" ]]; then
               echo "Usage: system-action brightness set <number>" >&2; exit 1
             fi
-            brightnessctl set -s "''${ARG}" ;;
+            if noctalia_running; then
+              noctalia msg brightness-set "''${ARG}"
+            elif brightness_available; then
+              brightnessctl set -s "''${ARG}"
+            fi ;;
           restore)
-            brightnessctl -r ;;
+            if noctalia_running; then
+              :
+            elif brightness_available; then
+              brightnessctl -r
+            fi ;;
           *)
             echo "Usage: system-action brightness <up|down|set <number>|restore>" >&2; exit 1 ;;
           esac
