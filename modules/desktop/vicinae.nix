@@ -11,7 +11,6 @@
 
       programs.vicinae = {
         enable = true;
-        enableSoulver = true;
         enableFirefoxIntegration = true;
 
         systemd = {
