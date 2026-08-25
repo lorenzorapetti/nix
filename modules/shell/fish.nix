@@ -32,6 +32,12 @@
               end
             '';
           };
+
+          re = {
+            body = ''
+              eval sudo $history[1]
+            '';
+          };
         };
       };
     };
