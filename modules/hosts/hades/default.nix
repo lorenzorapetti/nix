@@ -25,7 +25,7 @@
       docker
     ];
 
-    nixos = {
+    nixos = {pkgs, ...}: {
       imports = [
         inputs.nixos-hardware.nixosModules.framework-intel-core-ultra-series3
       ];
@@ -52,6 +52,10 @@
         upower.enable = true;
         fwupd.extraRemotes = ["lvfs-testing"];
       };
+
+      environment.systemPackages = with pkgs; [
+        brightnessctl
+      ];
     };
 
     homeManager = {config, ...}: {
