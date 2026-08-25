@@ -13,6 +13,7 @@ hl.config({
 			natural_scroll = false,
 			disable_while_typing = true,
 			scroll_factor = 0.2,
+			clickfinger_behavior = true,
 		},
 	},
 
@@ -31,4 +32,20 @@ hl.gesture({
 	fingers = 3,
 	direction = "vertical",
 	action = "workspace",
+})
+
+hl.gesture({
+	fingers = 3,
+	direction = "left",
+	action = function()
+		hl.dispatch(hl.dsp.focus({ direction = "left" }))
+	end,
+})
+
+hl.gesture({
+	fingers = 3,
+	direction = "right",
+	action = function()
+		hl.dispatch(hl.dsp.focus({ direction = "right" }))
+	end,
 })
