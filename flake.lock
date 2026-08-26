@@ -962,11 +962,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787643501,
-        "narHash": "sha256-hfp0Lx3Ymwmy9mhR6Ap73n8TWskGgOMAatGzEunE63I=",
+        "lastModified": 1787752904,
+        "narHash": "sha256-p/sksjopxPakE6EUoblq0iuMWvoFeq2uvLnq+59oS3c=",
         "owner": "lorenzorapetti",
         "repo": "nvim-nix",
-        "rev": "005d0ec5a0f6bbe9c330703a3cbdb59f77f60717",
+        "rev": "50370eb9a1c7acf5a308a8837be5fa7ea2df0318",
         "type": "github"
       },
       "original": {
