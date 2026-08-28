@@ -20,6 +20,10 @@
         seahorse.enable = true;
         gpu-screen-recorder.enable = true;
       };
+
+      environment.systemPackages = with pkgs; [
+        grim
+      ];
     };
   };
 }

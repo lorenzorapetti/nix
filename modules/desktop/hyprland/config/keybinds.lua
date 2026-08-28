@@ -79,8 +79,13 @@ bindm("SHIFT + CAPS_LOCK", system_action("session menu-toggle"), "Power Menu")
 
 --------------------- Screenshot ---------------------
 bind("PRINT", system_action("screenshot region"), "Screenshot of region")
-bind("SHIFT + PRINT", exec("screenshot window"), "Screenshot of window")
-bind("CTRL + PRINT", exec("screenshot output"), "Screenshot of display")
+bind(
+	"SHIFT + PRINT",
+	exec(
+		"grim -o \"$(hyprctl monitors -j | jq -r '.[] | select(.focused==true).name')\" \"$(xdg-user-dir PICTURES)/Screenshots/$(date +'%Y-%m-%d-%H%M').png\""
+	),
+	"Screenshot of window"
+)
 
 bindm("PRINT", hl.dsp.submap("screenshot"), "Screenshot Submap")
 
