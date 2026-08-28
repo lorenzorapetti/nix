@@ -1,7 +1,7 @@
 {
   "name": "single",
   "created_at": "2026-08-23T23:31:40.424429022Z",
-  "updated_at": "2026-08-26T07:30:47.754539364Z",
+  "updated_at": "2026-08-28T16:11:26.13158516Z",
   "outputs": [
     {
       "key": "china star optoelectronics technology co., ltd|mnd508zb1-1",
@@ -17,7 +17,7 @@
       "refresh": 120,
       "x": 0,
       "y": 0,
-      "scale": 1.5,
+      "scale": 1.6,
       "transform": 0,
       "bitdepth": 8,
       "cm": "srgb",
