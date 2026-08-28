@@ -25,6 +25,11 @@
       # Bias the kernel toward using (fast) zram aggressively over reclaiming page
       # cache -- appropriate when swap is compressed RAM. Range 0-200 (kernel >=5.8).
       boot.kernel.sysctl."vm.swappiness" = 180;
+
+      services.udev.extraRules = ''
+        # Keychron Ultra-Link 8K USB receiver: expose hidraw device to non-root users.
+        KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="d028", MODE="0660", GROUP="wheel", TAG+="uaccess", TAG+="udev-acl"
+      '';
     };
 
     homeManager = {
