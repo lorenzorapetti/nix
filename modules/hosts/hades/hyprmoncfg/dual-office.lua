@@ -17,3 +17,14 @@ hl.monitor({
   sdr_min_luminance = 0.2,
   sdr_max_luminance = 80,
 })
+
+hl.workspace_rule({ workspace = "1", monitor = "desc:Xiaomi Corporation Mi Monitor 0000000000000", default = true, persistent = true })
+hl.workspace_rule({ workspace = "2", monitor = "desc:Xiaomi Corporation Mi Monitor 0000000000000" })
+hl.workspace_rule({ workspace = "3", monitor = "desc:Xiaomi Corporation Mi Monitor 0000000000000" })
+hl.workspace_rule({ workspace = "4", monitor = "desc:Xiaomi Corporation Mi Monitor 0000000000000" })
+hl.workspace_rule({ workspace = "5", monitor = "desc:Xiaomi Corporation Mi Monitor 0000000000000" })
+hl.workspace_rule({ workspace = "6", monitor = "desc:China Star Optoelectronics Technology Co. Ltd MND508ZB1-1", default = true, persistent = true })
+hl.workspace_rule({ workspace = "7", monitor = "desc:China Star Optoelectronics Technology Co. Ltd MND508ZB1-1" })
+hl.workspace_rule({ workspace = "8", monitor = "desc:China Star Optoelectronics Technology Co. Ltd MND508ZB1-1" })
+hl.workspace_rule({ workspace = "9", monitor = "desc:China Star Optoelectronics Technology Co. Ltd MND508ZB1-1" })
+hl.workspace_rule({ workspace = "10", monitor = "desc:China Star Optoelectronics Technology Co. Ltd MND508ZB1-1" })

@@ -20,6 +20,7 @@
       desktop.work
       desktop.bambu-studio
       desktop.kicad
+      desktop.ai
       development
       development.embedded
       docker
