@@ -133,6 +133,11 @@
         rule = "Host(`pikvm.home.lorenzolab.com`)";
         url = "http://10.0.0.70";
       };
+
+      jellyfin = {
+        rule = "Host(`media.lorenzorapetti.com`)";
+        url = "http://10.0.1.10:8096";
+      };
     };
   };
 }

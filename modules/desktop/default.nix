@@ -27,7 +27,8 @@
       boot.kernel.sysctl."vm.swappiness" = 180;
 
       services.udev.extraRules = ''
-        # Keychron Ultra-Link 8K USB receiver: expose hidraw device to non-root users.
+        # Keychron Mouse
+        KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0ea0", MODE="0660", GROUP="wheel", TAG+="uaccess", TAG+="udev-acl"
         KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="d028", MODE="0660", GROUP="wheel", TAG+="uaccess", TAG+="udev-acl"
       '';
     };
