@@ -25,25 +25,18 @@
             center = ["taskbar"];
             end =
               [
-                "network_rx"
-                "network_tx"
                 "cpu"
                 "ram"
                 "network"
-                "tailscale"
               ]
               ++ lib.optional osConfig.hardware.bluetooth.enable "bluetooth"
               ++ [
                 "notifications"
-                "screenshot"
                 "recorder"
                 "caffeine"
                 "volume"
               ]
-              ++ lib.optional osConfig.services.power-profiles-daemon.enable "battery"
-              ++ [
-                "session"
-              ];
+              ++ lib.optional osConfig.services.power-profiles-daemon.enable "battery";
             margin_edge = 0;
             margin_ends = 0;
             radius = 0;
@@ -181,6 +174,7 @@
             screenshot = {
               copy_to_clipboard = false;
               directory = "~/Pictures/Screenshots";
+              filename_pattern = "%Y-%m-%d-%H%M";
               pipe_command = "satty -f -";
               pipe_to_command = true;
               save_to_file = false;
@@ -220,6 +214,8 @@
             ];
           };
 
+          system.monitor.disk_poll_seconds = 0;
+
           wallpaper = {
             directory = "~/Pictures/Wallpapers";
             automation = {
@@ -229,6 +225,8 @@
           };
 
           widget = {
+            notifications.hide_when_no_unread = true;
+
             active_window = {
               max_length = 180;
               title_scroll = "on_hover";
