@@ -3,6 +3,7 @@
     nixos = {pkgs, ...}: {
       environment.systemPackages = with pkgs; [
         telegram-desktop
+        concord-tui
       ];
     };
 
