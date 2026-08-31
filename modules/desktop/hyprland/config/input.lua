@@ -25,7 +25,7 @@ hl.config({
 
 hl.device({
 	name = "at-translated-set-2-keyboard",
-	kb_options = "compose:ralt,ctrl:nocaps",
+	kb_options = "compose:ralt,ctrl:hyper_capscontrol",
 })
 
 hl.gesture({
