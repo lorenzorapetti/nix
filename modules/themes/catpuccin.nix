@@ -6,12 +6,18 @@
 }: {
   den.aspects.theming.catppuccin = {host, ...}: let
     isDesktop = host.hasAspect den.aspects.desktop;
+    flavor = "mocha";
+    accent = "lavender";
   in {
     includes = [
       den.aspects.theming.base
     ];
 
-    nixos = {config, ...}: {
+    nixos = {
+      config,
+      pkgs,
+      ...
+    }: {
       imports = [
         inputs.catppuccin.nixosModules.catppuccin
       ];
@@ -19,12 +25,19 @@
       catppuccin = {
         enable = true;
         autoEnable = false;
-        flavor = "mocha";
-        accent = "lavender";
+        inherit flavor accent;
 
         limine.enable = true;
         tty.enable = true;
         plymouth.enable = config.boot.plymouth.enable;
+      };
+
+      programs.noctalia-greeter = lib.mkIf config.programs.noctalia-greeter.enable {
+        settings.cursor = {
+          theme = "catppuccin-${flavor}-${accent}-cursors";
+          size = 24;
+          path = "${pkgs.catppuccin-cursors."${flavor}${lib.toSentenceCase accent}"}/share/icons";
+        };
       };
     };
 
@@ -38,8 +51,7 @@
       catppuccin = {
         enable = true;
         autoEnable = false;
-        flavor = "mocha";
-        accent = "lavender";
+        inherit flavor accent;
 
         alacritty.enable = isDesktop;
         bat.enable = true;
