@@ -21,6 +21,7 @@
       desktop.bambu-studio
       desktop.kicad
       desktop.ai
+      desktop.coding
       development
       development.embedded
       docker
