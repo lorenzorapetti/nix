@@ -14,17 +14,32 @@
         enablePkexecWrapper = true;
       };
 
-      # Fast, compressed, RAM-backed swap. Default zram priority (5) is higher than a
-      # disk swapfile, so runtime swapping hits zram first; only allocates as used.
+      # Small compressed RAM swap for routine paging. Priority 100 puts it well
+      # above the disk swapfile (negative priority) so idle anon pages land in
+      # fast zram first; the disk swapfile is left as overflow + hibernation
+      # space only. 25% of RAM (~7.6G on a 32G host) keeps the working set roomy
+      # and avoids the "big zram starves RAM under load" failure mode.
       zramSwap = {
         enable = true;
         algorithm = "zstd";
-        memoryPercent = 50;
+        memoryPercent = 25;
+        priority = 100;
       };
 
-      # Bias the kernel toward using (fast) zram aggressively over reclaiming page
-      # cache -- appropriate when swap is compressed RAM. Range 0-200 (kernel >=5.8).
-      boot.kernel.sysctl."vm.swappiness" = 180;
+      # CachyOS kernels enable zswap by default (CONFIG_ZSWAP_DEFAULT_ON). zswap
+      # in front of zram is pointless double-compression -- disable it so zram is
+      # the only compressed-swap layer. Takes effect after a reboot.
+      boot.kernelParams = ["zswap.enabled=0"];
+
+      # Kernel default. With only ~8G of zram, don't page anon memory out any
+      # more eagerly than reclaiming page cache; real pressure still spills to
+      # zram and then the disk swapfile.
+      boot.kernel.sysctl."vm.swappiness" = 60;
+
+      # No swap readahead -- decompressing an extra zram page is never cheaper
+      # than faulting the one that was asked for. (Already the CachyOS default;
+      # pinned here so it survives a kernel switch.)
+      boot.kernel.sysctl."vm.page-cluster" = 0;
 
       services.udev.extraRules = ''
         # Keychron Mouse
