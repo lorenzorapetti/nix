@@ -15,7 +15,7 @@
           snapshot_preserve_min = "2d";
           snapshot_preserve = "7d";
           volume."/" = {
-            subvolume = ".";
+            subvolume = "home";
             snapshot_dir = "/.snapshots";
           };
         };

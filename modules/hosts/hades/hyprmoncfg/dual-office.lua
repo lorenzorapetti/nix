@@ -3,7 +3,7 @@
 hl.monitor({
   output = "desc:China Star Optoelectronics Technology Co. Ltd MND508ZB1-1",
   mode = "2880x1920@120.00",
-  position = "5360x780",
+  position = "5360x180",
   scale = 1.6,
   sdr_min_luminance = 0.2,
   sdr_max_luminance = 80,

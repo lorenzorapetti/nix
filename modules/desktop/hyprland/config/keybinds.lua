@@ -167,6 +167,7 @@ hl.bind(main_mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(main_mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 bindm("R", hl.dsp.submap("resize"), "Resize Submap")
+bindm("SHIFT + R", hl.dsp.layout("colresize +conf"), "Resize Column")
 
 define_submap("resize", function()
 	bind("C", hl.dsp.layout("colresize +conf"), "Resize Column")

@@ -1,6 +1,10 @@
 {
   den.aspects.shell = {
-    homeManager = {pkgs, osConfig, ...}: {
+    homeManager = {
+      pkgs,
+      osConfig,
+      ...
+    }: {
       programs.zoxide = {
         enable = true;
         enableFishIntegration = true;

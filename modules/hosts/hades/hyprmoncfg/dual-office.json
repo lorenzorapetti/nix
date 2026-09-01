@@ -1,7 +1,7 @@
 {
   "name": "dual-office",
   "created_at": "2026-08-24T16:16:13.349111262Z",
-  "updated_at": "2026-08-28T11:02:10.703042983Z",
+  "updated_at": "2026-09-01T12:29:21.490574455Z",
   "outputs": [
     {
       "key": "china star optoelectronics technology co., ltd|mnd508zb1-1",
@@ -16,7 +16,7 @@
       "height": 1920,
       "refresh": 120,
       "x": 5360,
-      "y": 780,
+      "y": 180,
       "scale": 1.6,
       "transform": 0,
       "bitdepth": 8,
@@ -55,14 +55,68 @@
   ],
   "workspaces": {
     "enabled": true,
-    "strategy": "sequential",
-    "max_workspaces": 10,
-    "group_size": 5,
+    "strategy": "manual",
+    "max_workspaces": 9,
+    "group_size": 3,
     "monitor_order": [
       "xiaomi corporation|mi monitor|0000000000000",
       "china star optoelectronics technology co., ltd|mnd508zb1-1"
     ],
     "rules": [
+      {
+        "workspace": "1",
+        "output_key": "xiaomi corporation|mi monitor|0000000000000",
+        "output_name": "DP-1",
+        "default": true,
+        "persistent": true
+      },
+      {
+        "workspace": "2",
+        "output_key": "xiaomi corporation|mi monitor|0000000000000",
+        "output_name": "DP-1"
+      },
+      {
+        "workspace": "3",
+        "output_key": "xiaomi corporation|mi monitor|0000000000000",
+        "output_name": "DP-1"
+      },
+      {
+        "workspace": "4",
+        "output_key": "xiaomi corporation|mi monitor|0000000000000",
+        "output_name": "DP-1"
+      },
+      {
+        "workspace": "5",
+        "output_key": "xiaomi corporation|mi monitor|0000000000000",
+        "output_name": "DP-1"
+      },
+      {
+        "workspace": "6",
+        "output_key": "china star optoelectronics technology co., ltd|mnd508zb1-1",
+        "output_name": "eDP-1",
+        "default": true,
+        "persistent": true
+      },
+      {
+        "workspace": "7",
+        "output_key": "china star optoelectronics technology co., ltd|mnd508zb1-1",
+        "output_name": "eDP-1"
+      },
+      {
+        "workspace": "8",
+        "output_key": "china star optoelectronics technology co., ltd|mnd508zb1-1",
+        "output_name": "eDP-1"
+      },
+      {
+        "workspace": "9",
+        "output_key": "china star optoelectronics technology co., ltd|mnd508zb1-1",
+        "output_name": "eDP-1"
+      },
+      {
+        "workspace": "10",
+        "output_key": "china star optoelectronics technology co., ltd|mnd508zb1-1",
+        "output_name": "eDP-1"
+      },
       {
         "workspace": "special:tasks",
         "output_key": ""

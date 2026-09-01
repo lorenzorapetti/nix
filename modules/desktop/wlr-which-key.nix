@@ -26,6 +26,9 @@
           - key: "p"
             desc: Power
             cmd: system-action session menu-toggle
+          - key: "m"
+            desc: Monitor Configuration
+            cmd: quick-terminal hyprmoncfg
           - key: "a"
             desc: Apps
             submenu:
@@ -41,9 +44,6 @@
               - key: "d"
                 desc: Discord
                 cmd: vicinae vicinae://launch/applications/vesktop
-              - key: "l"
-                desc: Linear
-                cmd: vicinae vicinae://launch/applications/chrome-bgdbmehlmdmddlgneophbcddadgknlpm-Profile_1
               - key: "s"
                 desc: Slack
                 cmd: vicinae vicinae://launch/applications/slack
@@ -53,9 +53,6 @@
               - key: "m"
                 desc: SONE
                 cmd: vicinae vicinae://launch/applications/SONE
-              - key: "e"
-                desc: Google Meet
-                cmd: vicinae vicinae://launch/applications/chrome-kjgfgldnnfoeklkmfkjfagphfepbbdan-Profile_1
           - key: "e"
             desc: Execute
             submenu:
