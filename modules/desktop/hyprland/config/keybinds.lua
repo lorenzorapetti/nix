@@ -11,6 +11,26 @@ hl.config({
 
 local main_mod = "SUPER"
 
+local function get_workspace()
+	return hl.get_active_special_workspace() or hl.get_active_workspace()
+end
+
+local function layout_bind(bind_table)
+	return function()
+		local workspace = get_workspace()
+
+		if not workspace then
+			return
+		end
+
+		local layout = workspace.tiled_layout
+
+		if bind_table[layout] or bind_table["default"] then
+			hl.dispatch(bind_table[layout] or bind_table["default"])
+		end
+	end
+end
+
 local function quick_terminal(command)
 	return string.format(programs.quick_terminal .. ' "%s"', command)
 end
@@ -141,16 +161,26 @@ local directions = {
 for dir, keys in pairs(directions) do
 	for _, key in ipairs(keys) do
 		bindm(key, function()
-			local workspace = hl.get_active_workspace()
+			local workspace = get_workspace()
 
-			if workspace ~= nil and workspace.tiled_layout == "scrolling" and (dir == "left" or dir == "right") then
+			if not workspace then
+				return
+			end
+
+			if workspace.tiled_layout == "scrolling" and (dir == "left" or dir == "right") then
 				hl.dispatch(hl.dsp.layout("focus " .. (dir == "left" and "l" or "r")))
+			elseif workspace.tiled_layout == "monocle" and (dir == "left" or dir == "right") then
+				if dir == "left" then
+					hl.dispatch(hl.dsp.layout("cycleprev"))
+				else
+					hl.dispatch(hl.dsp.layout("cyclenext"))
+				end
 			else
 				hl.dispatch(hl.dsp.focus({ direction = dir }))
 			end
 		end, "Focus " .. dir .. " window")
 		bindm("SHIFT + " .. key, function()
-			local workspace = hl.get_active_workspace()
+			local workspace = get_workspace()
 
 			if workspace ~= nil and workspace.tiled_layout == "scrolling" and (dir == "left" or dir == "right") then
 				hl.dispatch(hl.dsp.layout("swapcol " .. (dir == "left" and "l" or "r")))
@@ -158,7 +188,6 @@ for dir, keys in pairs(directions) do
 				hl.dispatch(hl.dsp.window.move({ direction = dir }))
 			end
 		end, "Move window " .. dir)
-		-- bind('CTRL + ' .. key, hl.dsp.window.move(dir), 'Move window ' .. dir)
 	end
 end
 
@@ -166,8 +195,22 @@ end
 hl.bind(main_mod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(main_mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
-bindm("R", hl.dsp.submap("resize"), "Resize Submap")
-bindm("SHIFT + R", hl.dsp.layout("colresize +conf"), "Resize Column")
+bindm("SHIFT + R", hl.dsp.submap("resize"), "Resize Submap")
+
+bindm(
+	"R",
+	layout_bind({
+		scrolling = hl.dsp.layout("colresize +conf"),
+	}),
+	"Resize Column"
+)
+bindm(
+	"C",
+	layout_bind({
+		scrolling = hl.dsp.layout("colresize 0.5"),
+	}),
+	"Maximize Column"
+)
 
 define_submap("resize", function()
 	bind("C", hl.dsp.layout("colresize +conf"), "Resize Column")

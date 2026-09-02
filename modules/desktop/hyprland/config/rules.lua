@@ -34,13 +34,21 @@ hl.window_rule({
 hl.window_rule({
 	name = "float-apps",
 	match = {
-		class = "(org.gnome.Nautilus|1password|org.pulseaudio.pavucontrol|blueman-manager|com.gabm.satty|org.gnome.FileRoller|com.nextcloud.desktopclient.nextcloud)",
+		class = "(org.pulseaudio.pavucontrol|blueman-manager|com.gabm.satty|org.gnome.FileRoller|com.nextcloud.desktopclient.nextcloud)",
 	},
 	float = true,
 	size = {
 		"monitor_w*0.8",
 		"monitor_h*0.7",
 	},
+})
+
+hl.window_rule({
+	name = "special-apps",
+	match = {
+		class = "(org.gnome.Nautilus|1password)",
+	},
+	workspace = "special:magic",
 })
 
 hl.window_rule({
@@ -188,6 +196,24 @@ hl.window_rule({
 hl.workspace_rule({
 	workspace = "special:tasks",
 	on_created_empty = "runapp ticktick",
+	layout = "monocle",
+	gaps_out = {
+		left = 80,
+		right = 80,
+		top = 60,
+		bottom = 60,
+	},
+})
+
+hl.workspace_rule({
+	workspace = "special:magic",
+	layout = "monocle",
+	gaps_out = {
+		left = 80,
+		right = 80,
+		top = 60,
+		bottom = 60,
+	},
 })
 
 -- Gaming
