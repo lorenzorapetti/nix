@@ -25,6 +25,8 @@
             center = ["taskbar"];
             end =
               [
+                "network_rx"
+                "network_tx"
                 "cpu"
                 "ram"
                 "network"
@@ -41,6 +43,8 @@
             margin_ends = 0;
             radius = 0;
             start = [
+              "home_assistant"
+              "bar"
               "clock"
               "weather"
               "tray"
@@ -143,7 +147,12 @@
             reserve_space = false;
           };
 
-          plugins.enabled = ["noctalia/screen_recorder" "davemhammer/tailscale"];
+          plugins.enabled = [
+            "noctalia/screen_recorder"
+            "davemhammer/tailscale"
+            "noctalia/world_clock"
+            "pozzoo/hassio"
+          ];
 
           plugin_settings = {
             "davemhammer/tailscale" = {
@@ -219,7 +228,7 @@
           wallpaper = {
             directory = "~/Pictures/Wallpapers";
             automation = {
-              enabled = true;
+              enabled = false;
               interval_seconds = 36000;
             };
           };
@@ -232,11 +241,19 @@
               title_scroll = "on_hover";
             };
 
+            bar.type = "noctalia/world_clock:bar";
             battery.display_mode = "graphic";
             clock.format = "%a %e %b %H:%M";
             cpu = {
               show_label = false;
               show_value = false;
+            };
+
+            home_assistant = {
+              glyph = "smart-home";
+              type = "custom_button";
+
+              actions.left = "panel-toggle pozzoo/hassio:entity_manager";
             };
 
             media = {
@@ -246,8 +263,16 @@
             };
 
             network.show_label = false;
-            network_rx.show_label = false;
-            network_tx.show_label = false;
+            network_rx = {
+              show_label = false;
+              show_value = false;
+            };
+
+            network_tx = {
+              show_label = false;
+              show_value = false;
+            };
+
             privacy.hide_inactive = true;
 
             ram = {

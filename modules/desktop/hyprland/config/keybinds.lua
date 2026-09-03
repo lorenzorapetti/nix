@@ -47,6 +47,10 @@ local function bindm(key, action, description)
 	hl.bind(main_mod .. " + " .. key, action, { description = description })
 end
 
+local function bindh(key, action, description)
+	hl.bind(main_mod .. " + SHIFT + CTRL + ALT + " .. key, action, { description = description })
+end
+
 local function exec(cmd)
 	return hl.dsp.exec_cmd(cmd)
 end
@@ -71,8 +75,12 @@ end
 local function submap_bind(key, action, description)
 	hl.bind(key, function()
 		hl.dispatch(action)
-		hl.dsp.submap("reset")
+		hl.dispatch(hl.dsp.submap("reset"))
 	end, { description = description })
+end
+
+local function submenu(key)
+	return exec(programs.wlr_which_key .. " --initial-keys " .. key)
 end
 
 --------------------- Programs ---------------------
@@ -80,11 +88,12 @@ bindm("RETURN", run_app(programs.terminal), "Open Terminal")
 bindm("B", exec(vicinae_app("helium")), "Open Browser")
 bindm("E", exec(quick_terminal(programs.yazi)), "Open Terminal File Manager")
 bindm("D", exec(quick_terminal(programs.bluetui)), "Open Bluetooth Settings")
-bindm("V", exec(quick_terminal(programs.wiremix)), "OpenVolume Control")
+bindm("V", exec(quick_terminal(programs.wiremix)), "Open Volume Control")
 bindm("T", hl.dsp.workspace.toggle_special("tasks"), "Open Tasks")
 bindm("GRAVE", system_action("window-switcher"), "Switch Windows")
 bindm("SHIFT + E", exec(vicinae_app("org.gnome.Nautilus")), "Open File Manager")
 bindm("CTRL + E", exec("vicinae vicinae://launch/core/search-emojis"), "Open Emoji Search")
+bindh("E", exec(vicinae_app("org.gnome.Nautilus")), "Open File Manager")
 
 --------------------- Launchers ---------------------
 bindm("SPACE", exec("vicinae toggle"), "Toggle Launcher")
@@ -97,27 +106,16 @@ bindm("CAPS_LOCK", system_action("session lock"), "Lock Screen")
 bindm("SHIFT + ESCAPE", system_action("session menu-toggle"), "Power Menu")
 bindm("SHIFT + CAPS_LOCK", system_action("session menu-toggle"), "Power Menu")
 
+bind("ALT + TAB", hl.dsp.exec_cmd("noctalia msg window-switcher"), "Window Switcher")
+
 --------------------- Screenshot ---------------------
 bind("PRINT", system_action("screenshot region"), "Screenshot of region")
-bind(
-	"SHIFT + PRINT",
-	exec(
-		"grim -o \"$(hyprctl monitors -j | jq -r '.[] | select(.focused==true).name')\" \"$(xdg-user-dir PICTURES)/Screenshots/$(date +'%Y-%m-%d-%H%M').png\""
-	),
-	"Screenshot of window"
-)
+bind("SHIFT + PRINT", exec("screenshot"), "Screenshot of window")
 
-bindm("PRINT", hl.dsp.submap("screenshot"), "Screenshot Submap")
-
-define_submap("screenshot", function()
-	submap_bind("S", system_action("screenshot region"), "Screenshot of region")
-	submap_bind("W", exec("screenshot window"), "Screenshot of window")
-	submap_bind("R", system_action("screenrecord start"), "Screenrecord")
-	submap_bind("SHIFT + R", system_action("screenrecord stop"), "Stop Screenrecord")
-end)
+bindm("PRINT", submenu("s"), "Screenshot Submenu")
 
 --------------------- Apps ---------------------
-bindm("A", exec(programs.wlr_which_key .. " --initial-keys a"), "Apps")
+bindm("A", submenu("a"), "Apps")
 
 --------------------- Windows ---------------------
 bindm("Q", hl.dsp.window.close(), "Close Current Window")
@@ -152,10 +150,10 @@ end, "Pin Window")
 bindm("tab", hl.dsp.focus({ last = true }), "Focus Current or Last Window")
 
 local directions = {
-	left = { "LEFT", "H" },
-	right = { "RIGHT", "L" },
-	up = { "UP", "K" },
-	down = { "DOWN", "J" },
+	left = { "LEFT", "H", "mouse_left" },
+	right = { "RIGHT", "L", "mouse_right" },
+	up = { "UP", "K", "mouse_up" },
+	down = { "DOWN", "J", "mouse_down" },
 }
 
 for dir, keys in pairs(directions) do
@@ -267,7 +265,44 @@ end
 bindm("S", hl.dsp.workspace.toggle_special("magic"), "Toggle Special Workspace")
 bindm("SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }), "Move Window to Special Workspace")
 
---------------------- Groups ---------------------
+hl.bind("SUPER + X", function ()
+    if hl.get_workspace("special:minimized") then
+        hl.dispatch(hl.dsp.window.move({ workspace = hl.get_active_workspace(), window = "tag:minimized" }))
+        hl.dispatch(hl.dsp.window.clear_tags({ window = "tag:minimized" }))
+    else
+        hl.dispatch(hl.dsp.window.tag({ tag = "minimized", window = hl.get_active_window() }))
+        hl.dispatch(hl.dsp.window.move({ workspace = "special:minimized", follow = false }))
+    end
+end)
+
+--------------------- Layouts ---------------------
+
+bindm("SEMICOLON", hl.dsp.submap("layout"), "Layout Submap")
+
+define_submap("layout", function ()
+  local function change_and_exit(layout)
+      local workspace = get_workspace()
+
+      return function ()
+        if not workspace then
+          return
+        end
+
+        if workspace.special then
+          hl.workspace_rule({ workspace = tostring(workspace.name), layout = layout })
+        else
+          hl.workspace_rule({ workspace = tostring(workspace.id), layout = layout })
+        end
+
+        hl.dispatch(hl.dsp.submap("reset"))
+      end
+  end
+
+  bind("D", change_and_exit("dwindle"), "Set Dwindle Layout")
+  bind("S", change_and_exit("scrolling"), "Set Scrolling Layout")
+  bind("M", change_and_exit("master"), "Set Master Layout")
+  bind("O", change_and_exit("monocle"), "Set Monocle Layout")
+end)
 
 --------------------- Monitors ---------------------
 bindm("PERIOD", hl.dsp.focus({ monitor = "+1" }), "Focus Next Monitor")
@@ -280,7 +315,7 @@ bindm("CTRL + PERIOD", hl.dsp.workspace.move({ monitor = "+1" }), "Move Workspac
 bindm("CTRL + COMMA", hl.dsp.workspace.move({ monitor = "-1" }), "Move Workspace to Previous Monitor")
 
 --------------------- Notifications ---------------------
-bindm("N", exec(programs.wlr_which_key .. " --initial-keys n"), "Notifications")
+bindm("N", submenu("n"), "Notifications")
 
 --------------------- Media ---------------------
 -- Laptop multimedia keys for volume and LCD brightness

@@ -33,7 +33,6 @@ in {
 
         libreoffice-stable
         streamcontroller
-        protonmail-desktop
       ];
 
       programs.obs-studio.enable = true;

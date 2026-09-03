@@ -1,0 +1,50 @@
+onboarding = false
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+[keys]
+copy_mode = "prefix+enter"
+new_tab = "prefix+t"
+settings = "prefix+comma"
+split_vertical = "prefix+v"
+split_horizontal = "prefix+s"
+
+[[keys.command]]
+key = "prefix+shift+g"
+type = "popup"
+command = 'cd "$(herdr-worktree-current)" 2>/dev/null; exec lazygit'
+width = "90%"
+height = "90%"
+description = "Git: lazygit on the current worktree"
+
+[[keys.command]]
+key = "prefix+shift+o"
+type = "popup"
+command = "gh dash"
+width = "90%"
+height = "90%"
+description = "GitHub: dashboard"
+
+[ui]
+tab_bar_right = [
+  { type = "zoom" },
+  { type = "datetime", format = "%H:%M" },
+]
+tab_bar_right_separator = " · "
+prompt_new_tab_name = false
+hide_tab_bar_when_single_tab = true
+
+[ui.toast]
+delivery = "herdr"
+delay_seconds = 1
+
+[ui.toast.herdr]
+position = "bottom-right"
+
+[experimental]
+kitty_graphics = true
+
+[update]
+version_check = false

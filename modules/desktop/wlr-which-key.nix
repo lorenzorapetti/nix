@@ -23,12 +23,36 @@
         margin_bottom: 12
 
         menu:
-          - key: "p"
-            desc: Power
-            cmd: system-action session menu-toggle
           - key: "m"
             desc: Monitor Configuration
             cmd: quick-terminal hyprmoncfg
+          - key: "p"
+            desc: Noctalia Panels
+            submenu:
+              - key: "b"
+                desc: Bluetooth
+                cmd: noctalia msg panel-toggle control-center bluetooth
+              - key: "c"
+                desc: Calendar
+                cmd: noctalia msg panel-toggle control-center calendar
+              - key: "h"
+                desc: Home Assistant
+                cmd: noctalia msg panel-toggle pozzoo/hassio:entity_manager
+              - key: "k"
+                desc: Hyprland Keybinds
+                cmd: noctalia msg panel-toggle kenn/keybind-cheatsheet:cheatsheet
+              - key: "n"
+                desc: Network
+                cmd: noctalia msg panel-toggle control-center network
+              - key: "t"
+                desc: Tailscale
+                cmd: noctalia msg panel-toggle davemhammer/tailscale:manager
+              - key: "v"
+                desc: Volume
+                cmd: noctalia msg panel-toggle control-center audio
+              - key: "w"
+                desc: World Clock
+                cmd: noctalia msg panel-toggle noctalia/world_clock:panel
           - key: "a"
             desc: Apps
             submenu:
@@ -84,32 +108,23 @@
             desc: Screenshot
             submenu:
               - key: "f"
-                desc: Full Screen
-                cmd: system-action screenshot fullscreen
+                desc: Fullscreen
+                cmd: screenshot
               - key: "r"
                 desc: Region
-                cmd: system-action screenshot region
-              - key: "w"
-                desc: Windows
-                cmd: screenshot windows
+                cmd: noctalia msg screenshot-region
               - key: "s"
-                desc: Smart
-                cmd: screenshot smart
+                desc: Fullscreen with Edit
+                cmd: noctalia msg screenshot-fullscreen
           - key: "r"
             desc: Record Screen
             submenu:
               - key: "r"
                 desc: Normal Recording
-                cmd: system-action screenrecord start
-              - key: "a"
-                desc: With Desktop Audio
-                cmd: screenrecord --with-desktop-audio
-              - key: "f"
-                desc: With Full Audio (Dekstop and Mic)
-                cmd: screenrecord --with-desktop-audio --with-microphone-audio
+                cmd: noctalia msg plugin noctalia/screen_recorder:service all start focused
               - key: "s"
                 desc: Stop Recording
-                cmd: system-action screenrecord stop
+                cmd: noctalia msg plugin noctalia/screen_recorder:service all stop
           - key: "n"
             desc: Notifications
             submenu:
