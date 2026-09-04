@@ -5,9 +5,25 @@
       inputs',
       ...
     }: {
+      nixpkgs.overlays = [
+        inputs.helium.overlays.default
+        (final: prev: {
+          helium = prev.helium.overrideAttrs (old: {
+            postFixup = (old.postFixup or "") + ''
+              rm -f $out/opt/helium/libvulkan.so.1
+              ln -s ${final.lib.getLib final.vulkan-loader}/lib/libvulkan.so.1 $out/opt/helium/
+
+              substituteInPlace $out/bin/helium \
+                  --replace-fail "--enable-features=WaylandWindowDecorations" \
+                    "--use-gl=angle --use-angle=vulkan --enable-features=WaylandWindowDecorations,Vulkan,VulkanFromANGLE,DefaultANGLEVulkan"
+            '';
+          });
+        })
+      ];
+
       environment.systemPackages = with pkgs; [
         firefox
-        inputs'.helium.packages.default
+        helium
       ];
     };
 

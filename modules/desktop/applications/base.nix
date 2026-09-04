@@ -24,9 +24,6 @@ in {
       ...
     }: {
       environment.systemPackages = with pkgs; [
-        # Browsers
-        firefox
-        inputs'.helium.packages.default
 
         ticktick
         cine # Video player
