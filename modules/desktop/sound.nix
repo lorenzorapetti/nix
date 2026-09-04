@@ -57,6 +57,28 @@
                 }
               ];
             };
+            "53-crinear-bitperfect.conf" = {
+              "monitor.alsa.rules" = [
+                {
+                  matches = [{"node.name" = "alsa_output.usb-CrinEar_Technology_Protocol_Max_330243CC251219-01.analog-stereo";}];
+                  actions = {
+                    update-props = {
+                      "node.description" = "CrinEar Protocol Max (Bit-Perfect)";
+                      "node.nick" = "CrinEar Protocol Max";
+                      "audio.format" = "S32LE";
+                      "audio.channels" = 2;
+                      "api.alsa.period-size" = 1024;
+                      "api.alsa.headroom" = 0;
+                      "node.suspend-on-idle" = false;
+                      "priority.driver" = 8000;
+                      "priority.session" = 8000;
+                      "resample.disable" = true;
+                      "monitor.channel-volumes" = false;
+                    };
+                  };
+                }
+              ];
+            };
           };
         };
 
@@ -77,11 +99,15 @@
         wiremix
         pwvucontrol
         sone
+        tidal-hifi
         easyeffects
       ];
     };
 
-    homeManager = {
+    homeManager = {config, ...}: {
+      xdg.configFile."tidal-hifi/config.json".source =
+        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/dotfiles/tidal-hifi/config.json";
+
       home.file.".config/wiremix/wiremix.toml".text = ''
         tab = "output"
         tabs = [ "output", "playback", "input", "recording", "configuration" ]

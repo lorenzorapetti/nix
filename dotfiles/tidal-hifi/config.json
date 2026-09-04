@@ -1,0 +1,100 @@
+{
+	"adBlock": false,
+	"advanced": {
+		"tidalUrl": "https://tidal.com",
+		"controllerType": "mediaSessionController",
+		"userAgent": "default",
+		"notificationImageDownscaling": false
+	},
+	"api": true,
+	"apiSettings": {
+		"port": 47836,
+		"hostname": "127.0.0.1"
+	},
+	"customCSS": [],
+	"disableAltMenuBar": false,
+	"disableBackgroundThrottle": true,
+	"disableHardwareMediaKeys": false,
+	"enableCustomHotkeys": false,
+	"enableDiscord": false,
+	"discord": {
+		"showSong": true,
+		"showIdle": false,
+		"idleText": "Browsing Tidal",
+		"usingText": "Playing media on TIDAL",
+		"includeTimestamps": true,
+		"detailsPrefix": "Listening to ",
+		"buttonText": "Play on Tidal"
+	},
+	"ListenBrainz": {
+		"enabled": false,
+		"api": "https://api.listenbrainz.org/1/submit-listens",
+		"token": "",
+		"delay": 5000
+	},
+	"flags": {
+		"audioOutputSampleRate": false,
+		"disableHardwareMediaKeys": false,
+		"disableSandbox": true,
+		"enableWaylandSupport": true,
+		"gpuRasterization": true
+	},
+	"hotkeys": {
+		"toggleFavorite": "control+a",
+		"logout": "control+l",
+		"hardReload": "control+u",
+		"toggleRepeat": "control+r",
+		"shareTrackLink": "control+w",
+		"goBack": "alt+left",
+		"goForward": "alt+right",
+		"openSettings1": "control+=",
+		"openSettings2": "control+0",
+		"volumeUp": "control+up",
+		"volumeDown": "control+down",
+		"expandNowPlaying": "control+p",
+		"sidebarMusic": "alt+m",
+		"sidebarExplore": "alt+e",
+		"sidebarFeed": "alt+f",
+		"sidebarUpload": "alt+u",
+		"toggleSidebar": "alt+s",
+		"sidebarCollectionPlaylists": "alt+shift+p",
+		"sidebarCollectionAlbums": "alt+shift+a",
+		"sidebarCollectionTracks": "alt+shift+t",
+		"sidebarCollectionVideos": "alt+shift+v",
+		"sidebarCollectionArtists": "alt+shift+r",
+		"sidebarCollectionMixes": "alt+shift+m",
+		"deleteDisabled": "delete"
+	},
+	"menuBar": true,
+	"minimizeOnClose": false,
+	"mpris": true,
+	"notifications": true,
+	"playBackControl": true,
+	"preventSleep": true,
+	"singleInstance": true,
+	"skipArtists": false,
+	"skippedArtists": [
+		""
+	],
+	"skipTracks": false,
+	"skippedTracks": [
+		""
+	],
+	"startMinimized": false,
+	"staticWindowTitle": false,
+	"showCustomTitlebar": false,
+	"theme": "none",
+	"trayIcon": false,
+	"trayIconPath": "",
+	"updateFrequency": "1000",
+	"windowTransparency": false,
+	"windowBounds": {
+		"width": 800,
+		"height": 600
+	},
+	"__internal__": {
+		"migrations": {
+			"version": "8.1.3"
+		}
+	}
+}
