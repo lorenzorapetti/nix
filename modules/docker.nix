@@ -12,7 +12,5 @@
         enable = true;
       };
     };
-
-    user.extraGroups = ["docker"];
   };
 }
