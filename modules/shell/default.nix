@@ -15,6 +15,8 @@
           lg = "lazygit";
           c = "cargo";
           du = "dust";
+          dv = "devenv";
+          dvu = "devenv up";
           j = "just";
           g = "git";
           gs = "git status";

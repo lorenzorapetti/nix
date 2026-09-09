@@ -38,6 +38,18 @@
               eval sudo $history[1]
             '';
           };
+
+          nsh = {
+            body = ''
+              nix shell "nixpkgs#$argv[1]"
+            '';
+          };
+
+          nshpr = {
+            body = ''
+              nix shell "github:NixOS/nixpkgs/pull/$argv[1]/head#$argv[2]"
+            '';
+          };
         };
       };
     };
