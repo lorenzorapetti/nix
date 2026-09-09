@@ -61,6 +61,7 @@
         fcitx5.enable = isDesktop;
         fish.enable = true;
         fzf.enable = true;
+        foot.enable = isDesktop && config.programs.foot.enable;
         gh-dash.enable = config.programs.gh-dash.enable;
         ghostty.enable = isDesktop && config.programs.ghostty.enable;
         imv.enable = isDesktop && config.programs.imv.enable;

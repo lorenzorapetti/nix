@@ -15,11 +15,7 @@
       desktop.wlr-which-key
     ];
 
-    nixos = {
-      inputs',
-      pkgs,
-      ...
-    }: {
+    nixos = {pkgs, ...}: {
       environment.systemPackages = with pkgs; [
         runapp
         hyprmoncfg
@@ -28,9 +24,6 @@
       programs.hyprland = {
         enable = true;
         withUWSM = true;
-
-        package = inputs'.hyprland.packages.hyprland;
-        portalPackage = inputs'.hyprland.packages.xdg-desktop-portal-hyprland;
       };
     };
 
@@ -90,13 +83,13 @@
             content = ''
               return {
                 _1password = "${lib.getExe pkgs._1password-gui}",
-                terminal = "${lib.getExe pkgs.ghostty}",
+                terminal = "${lib.getExe osConfig.defaultTerminal.package}",
                 browser = "${lib.getExe inputs'.helium.packages.default}",
                 file_manager = "${lib.getExe pkgs.nautilus}",
                 yazi = "${lib.getExe pkgs.yazi}",
                 bluetui = "${lib.getExe pkgs.bluetui}",
                 wiremix = "${lib.getExe pkgs.wiremix}",
-                quick_terminal = "${lib.getExe self'.packages.quick-terminal}",
+                quick_terminal = "${lib.getExe osConfig.defaultTerminal.quickTerminal}",
                 system_action = "${lib.getExe self'.packages.system-action}",
                 runapp = "${lib.getExe pkgs.runapp}",
                 wlr_which_key = "${lib.getExe pkgs.wlr-which-key}",
