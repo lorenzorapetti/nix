@@ -24,9 +24,9 @@ in {
       ...
     }: {
       environment.systemPackages = with pkgs; [
-
         ticktick
         cine # Video player
+        foliate
 
         libreoffice-stable
         streamcontroller

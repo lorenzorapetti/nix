@@ -44,6 +44,18 @@ hl.window_rule({
 })
 
 hl.window_rule({
+	name = "xdg-dialog",
+	match = {
+		title = "Select what to share",
+	},
+	float = true,
+	size = {
+		"monitor_w*0.5",
+		"monitor_h*0.5",
+	},
+})
+
+hl.window_rule({
 	name = "special-apps",
 	match = {
 		class = "(org.gnome.Nautilus|1password)",

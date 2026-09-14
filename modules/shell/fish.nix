@@ -4,9 +4,10 @@
       programs.fish = {
         enable = true;
 
-        binds = {
-          "alt-r".command = "tv zellij";
-        };
+        # TODO: Uncomment this when https://github.com/nix-community/home-manager/pull/9939 is merged
+        # binds = {
+        #   "alt-r".command = "tv zellij";
+        # };
 
         shellInit = ''
           set -g fish_greeting

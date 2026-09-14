@@ -32,7 +32,7 @@
         plymouth.enable = config.boot.plymouth.enable;
       };
 
-      programs.noctalia-greeter = lib.mkIf config.programs.noctalia-greeter.enable {
+      services.displayManager.noctalia-greeter = lib.mkIf config.services.displayManager.noctalia-greeter.enable {
         settings.cursor = {
           theme = "catppuccin-${flavor}-${accent}-cursors";
           size = 24;
