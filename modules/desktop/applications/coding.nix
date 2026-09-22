@@ -27,7 +27,7 @@
     # plain `orca` is the GNOME screen reader.
     pname = "orca-ide";
     src = pkgs.fetchurl sources.${system};
-    appimageContents = pkgs.appimageTools.extractType2 {inherit pname version src;};
+    appimageContents = pkgs.appimageTools.extract {inherit pname version src;};
   in
     lib.optionalAttrs (sources ? ${system}) {
       packages.orca-ide = pkgs.appimageTools.wrapType2 {

@@ -55,20 +55,15 @@ in {
       ];
     };
 
-    homeManager = {
+    homeManager = {config, ...}: {
       home.file.".face.icon".source = ./.face.icon;
       home.file."profile.png".source = ./.face.icon;
       home.file.".ssh/id_ed25519.pub".text = sshKey;
-      programs = {
-        ssh = {
-          enable = true;
-          enableDefaultConfig = false;
-          settings."*" = {
-            AddKeysToAgent = "yes";
-            IdentityFile = "~/.ssh/id_ed25519";
-          };
-        };
 
+      home.file.".ssh/config".source =
+        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/dotfiles/ssh/config";
+
+      programs = {
         git = {
           enable = true;
 
