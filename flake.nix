@@ -35,7 +35,9 @@
 
     nix-cachyos-kernel = {
       url = "github:xddxdd/nix-cachyos-kernel/release";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # No `inputs.nixpkgs.follows` here on purpose: `overlays.pinned` resolves
+      # through this flake's own nixpkgs, so overriding it turns every kernel
+      # into a cache miss and a full local ThinLTO build.
     };
 
     sops-nix = {
