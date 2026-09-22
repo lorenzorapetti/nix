@@ -122,11 +122,16 @@ don't need to be retyped. Host defaults to the current machine's hostname
 - Prefer extending an existing aspect/module over creating a new one when the
   feature is closely related.
 - Validate changes with `nix flake check` and `just build [host]` (see
-  [Commands](#commands)) for an affected host before considering a change done —
-  this repo has no CI to catch eval errors. Prefer `just build` over raw
+  [Commands](#commands)) before considering a change done — this repo has no CI
+  to catch eval errors. Prefer `just build` over raw
   `nixos-rebuild`/`darwin-rebuild`/`home-manager build` invocations so
   verification matches how the user drives this repo. Don't run `just switch`
   (or bare `just`) to verify a change — that activates the config on the
   machine; only run it if the user explicitly asks to switch/apply.
+- **Only build/test the current host** — bare `just build`, with no host
+  argument — even when a change touches shared modules that other hosts also
+  use. Builds are long, so building every affected host isn't worth it. Build a
+  different host only when the user explicitly asks, or when the change touches
+  only that host and not the current one.
 - `statix.toml` disables the `repeated_keys` and `empty_pattern` lints repo-wide;
   don't "fix" those if `statix` flags them elsewhere.
