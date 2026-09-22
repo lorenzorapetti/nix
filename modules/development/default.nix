@@ -28,7 +28,7 @@
           nix-direnv.enable = true;
           config = {
             global = {
-              load_dotenv = true;
+              load_dotenv = false;
               strict_env = true;
             };
             whitelist.prefix = [
