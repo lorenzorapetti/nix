@@ -54,10 +54,10 @@
       hardware.enableRedistributableFirmware = true;
 
       nix = {
-        nixPath = ["nixpkgs=${inputs.nixpkgs}"];
         optimise.automatic = true;
 
         settings = {
+          nix-path = ["nixpkgs=${inputs.nixpkgs}"];
           use-xdg-base-directories = true;
           experimental-features = [
             "nix-command"
@@ -72,6 +72,7 @@
             "https://vicinae.cachix.org"
             "https://attic.xuyh0120.win/lantian"
             "https://nix-cache.tokidoki.dev/tokidoki"
+            "https://nix-community.cachix.org"
           ];
           extra-trusted-public-keys = [
             "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
@@ -79,6 +80,7 @@
             "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
             "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
             "tokidoki:MD4VWt3kK8Fmz3jkiGoNRJIW31/QAm7l1Dcgz2Xa4hk="
+            "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           ];
 
           warn-dirty = false;

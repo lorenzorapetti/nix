@@ -34,7 +34,7 @@
           v = "nvim";
           notes = "cd ~/notes && nvim";
           ns = "tv nix-search-tv";
-          claude-work = "CLAUDE_CONFIG_DIR=~/.claude-work claude";
+          claudep = "CLAUDE_CONFIG_DIR=~/.claude-personal claude";
         };
       };
 

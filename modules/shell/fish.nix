@@ -4,13 +4,15 @@
       programs.fish = {
         enable = true;
 
-        # TODO: Uncomment this when https://github.com/nix-community/home-manager/pull/9939 is merged
-        # binds = {
-        #   "alt-r".command = "tv zellij";
-        # };
+        binds = {
+          "alt-r".command = "tv zellij";
+        };
 
         shellInit = ''
           set -g fish_greeting
+        '';
+
+        interactiveShellInit = ''
         '';
 
         functions = {
@@ -43,12 +45,6 @@
           nsh = {
             body = ''
               nix shell "nixpkgs#$argv[1]"
-            '';
-          };
-
-          nshpr = {
-            body = ''
-              nix shell "github:NixOS/nixpkgs/pull/$argv[1]/head#$argv[2]"
             '';
           };
         };

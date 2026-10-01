@@ -27,6 +27,12 @@ width = "90%"
 height = "90%"
 description = "GitHub: dashboard"
 
+[[keys.command]]
+key = "prefix+d"
+type = "plugin_action"
+command = "tdi.worktree-from-linear.pick"
+description = "Linear: worktree from issue"
+
 [ui]
 tab_bar_right = [
   { type = "zoom" },

@@ -115,7 +115,7 @@
 
         idle.behavior.lock-and-suspend = lib.mkForce {
           action = "command";
-          command = "pidof hyprlock || hyprlock; sleep 0.5; systemctl suspend-then-hibernate";
+          command = "pidof hyprlock || hyprlock; sleep 0.5; systemctl suspend";
           enabled = true;
           timeout = 600;
         };

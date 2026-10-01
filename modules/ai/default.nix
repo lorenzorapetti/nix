@@ -9,20 +9,6 @@
           };
         };
 
-        opencode = {
-          enable = true;
-          enableMcpIntegration = true;
-          settings = {
-            plugins = [
-              "@mohak34/opencode-notifier@latest"
-            ];
-          };
-
-          skills = {
-            nix-search = ./skills/nix-search;
-          };
-        };
-
         claude-code = {
           enable = true;
           enableMcpIntegration = true;
@@ -31,10 +17,19 @@
             nix-search = ./skills/nix-search;
           };
         };
+
+        worktrunk = {
+          enable = true;
+          enableFishIntegration = true;
+
+          settings = {
+            worktree-path = "~/.worktrunk/worktrees/{{ repo }}/{{ branch | sanitize }}";
+          };
+        };
       };
 
       home.activation.createClaudeWorkDir = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        mkdir -p "$HOME/.claude-work"
+        mkdir -p "$HOME/.claude-personal"
       '';
     };
   };

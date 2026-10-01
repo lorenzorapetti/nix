@@ -1,5 +1,4 @@
 {
-  inputs,
   den,
   lib,
   ...
@@ -10,10 +9,6 @@
     ];
 
     homeManager = {osConfig, ...}: {
-      imports = [
-        inputs.noctalia.homeModules.default
-      ];
-
       programs.noctalia = {
         enable = true;
         systemd.enable = true;
@@ -22,7 +17,7 @@
           bar.default = {
             background_opacity = 0.85;
             capsule_group = [];
-            center = ["taskbar"];
+            center = ["workspaces"];
             end =
               [
                 "network_rx"
@@ -42,20 +37,29 @@
             margin_edge = 0;
             margin_ends = 0;
             radius = 0;
+            shadow = false;
             start = [
               "home_assistant"
-              "bar"
               "clock"
               "weather"
               "tray"
-              "active_window"
+              "taskbar"
               "privacy"
             ];
             thickness = 40;
             widget_spacing = 14;
           };
 
-          calendar.enabled = true;
+          calendar = {
+            enabled = true;
+
+            account.nebulab = {
+              name = "Nebulab";
+              type = "google";
+            };
+
+            reminders.all_day_digest_time = "";
+          };
 
           control_center = {
             width = 900;
@@ -69,7 +73,7 @@
             ];
           };
 
-          desktop_widgets.enabled = true;
+          desktop_widgets.enabled = false;
 
           hooks.session_locked = "1password --lock";
 
@@ -126,6 +130,7 @@
             allow_empty_password = true;
             blurred_desktop = true;
             fingerprint = lib.mkDefault false;
+            transition = [];
           };
 
           lockscreen_widgets = {
@@ -133,11 +138,19 @@
             schema_version = 2;
           };
 
-          osd.kinds = {
-            bluetooth = false;
-            keyboard_layout = false;
-            media = false;
-            wifi = false;
+          notification = {
+            history_retention_hours = 6;
+            max_visible = 5;
+          };
+
+          osd = {
+            border = false;
+            kinds = {
+              bluetooth = false;
+              keyboard_layout = false;
+              media = false;
+              wifi = false;
+            };
           };
 
           dock = {
@@ -150,7 +163,6 @@
           plugins.enabled = [
             "noctalia/screen_recorder"
             "davemhammer/tailscale"
-            "noctalia/world_clock"
             "pozzoo/hassio"
           ];
 
@@ -158,17 +170,33 @@
             "davemhammer/tailscale" = {
               manager_open_near_click = false;
               manager_placement = "attached";
+              notify_on_peer_change = false;
             };
 
             "noctalia/screen_recorder" = {
+              audio_codec = "aac";
               color_range = "full";
               copy_to_clipboard = true;
+              video_source = "focused";
+            };
+
+            # ha_token is intentionally not managed here (secret).
+            "pozzoo/hassio" = {
+              entity_manager_placement = "attached";
+              ha_url = "https://ha.francescorapetti.dev";
+              shortcut_entity_1 = "switch.camera_sonoff_1000cba156";
+              shortcut_entity_2 = "switch.stampante_3d";
             };
           };
 
           shell = {
             avatar_path = "~/profile.png";
+            button_borders = false;
+            card_borders = false;
             clipboard_enabled = false;
+            external_ip_enabled = true;
+            input_borders = false;
+            popup_borders = false;
             font_family = osConfig.fonts.nerd;
             launch_apps_as_systemd_services = true;
             polkit_agent = true;
@@ -181,13 +209,17 @@
             };
 
             screenshot = {
+              annotate = true;
               copy_to_clipboard = false;
               directory = "~/Pictures/Screenshots";
               filename_pattern = "%Y-%m-%d-%H%M";
               pipe_command = "satty -f -";
-              pipe_to_command = true;
-              save_to_file = false;
+              pipe_to_command = false;
+              save_to_file = true;
+              skip_annotate_on_copy_save = true;
             };
+
+            window_switcher.current_workspace_only = true;
 
             session.actions = [
               {
@@ -230,8 +262,11 @@
             automation = {
               enabled = false;
               interval_seconds = 36000;
+              recursive = true;
             };
           };
+
+          weather.effects = false;
 
           widget = {
             notifications.hide_when_no_unread = true;
@@ -296,7 +331,10 @@
               group_by_workspace = true;
               group_single_icon_per_app = true;
               occupied_color = "primary";
-              show_active_indicator = false;
+              only_active_workspace = true;
+              show_active_indicator = true;
+              show_workspace_label = false;
+              workspace_group_capsule = false;
               workspace_label_placement = "inside";
             };
 
@@ -306,6 +344,13 @@
             };
 
             weather.show_condition = false;
+
+            workspaces = {
+              active_pill_size = 1.8;
+              empty_color = "primary";
+              focused_color = "tertiary";
+              occupied_color = "primary";
+            };
           };
         };
       };

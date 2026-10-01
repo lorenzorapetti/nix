@@ -5,7 +5,7 @@
     lib,
     ...
   }: let
-    version = "1.4.207";
+    version = "1.4.218";
 
     # Prebuilt AppImages published with every Orca release. Orca is not in
     # nixpkgs and has no upstream flake, and a from-source build would mean a
@@ -15,11 +15,11 @@
     sources = {
       x86_64-linux = {
         url = "https://github.com/stablyai/orca/releases/download/v${version}/orca-linux.AppImage";
-        hash = "sha256-QRIsSbuWA6pr4mEU1EHXydp8o4luhiiCS2azspONuss=";
+        hash = "sha256-fDFjzzJXXJD+Ngu+zekB+y3MI0lAlhvRXiLBH95QcEQ=";
       };
       aarch64-linux = {
         url = "https://github.com/stablyai/orca/releases/download/v${version}/orca-linux-arm64.AppImage";
-        hash = "sha256-UQ0RcEVMqmsYN+FAG7ba3QUEnL8VNIjdaPeUaBbgeag=";
+        hash = "sha256-VrnAHSHNE1Qlu8wzidSXDGU8WT2Aoe08qQuKQF3tVKE=";
       };
     };
 
