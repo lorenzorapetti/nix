@@ -6,10 +6,16 @@
       programs.vicinae.input-server.enable = true;
     };
 
-    homeManager = {inputs', ...}: {
+    homeManager = {
+      inputs',
+      pkgs,
+      config,
+      ...
+    }: {
       imports = [inputs.vicinae.homeManagerModules.default];
 
       programs.vicinae = {
+        package = pkgs.vicinae;
         enable = true;
         enableFirefoxIntegration = true;
 
@@ -21,23 +27,14 @@
           };
         };
 
-        settings = {
-          telemetry = {
-            system_info = false;
-          };
-          providers = {
-            applications = {
-              defaultAction = "focus";
-              launchPrefix = "runapp";
-            };
-          };
-        };
-
         extensions = with inputs'.vicinae-extensions.packages; [
           nix
           nerdfont-search
         ];
       };
+
+      home.file.".vicinae/settings.json".source =
+        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/dotfiles/vicinae/settings.json";
     };
   };
 }

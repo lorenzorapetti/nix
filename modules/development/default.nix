@@ -47,7 +47,5 @@
         gh-dash.enable = true;
       };
     };
-
-    user.extraGroups = ["docker"];
   };
 }

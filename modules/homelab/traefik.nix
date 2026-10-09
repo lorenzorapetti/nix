@@ -63,6 +63,8 @@
             websecure = {
               address = ":443";
               http.tls.certResolver = "cloudflare";
+              # The default readTimeout (60s) kills large uploads, e.g. attic pushes.
+              transport.respondingTimeouts.readTimeout = "0s";
             };
           };
 

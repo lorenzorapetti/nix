@@ -67,7 +67,7 @@
         imv.enable = isDesktop && config.programs.imv.enable;
         mpv.enable = isDesktop && config.programs.mpv.enable;
         hyprland.enable = isDesktop && config.wayland.windowManager.hyprland.enable;
-        lazygit.enable = config.programs.lazygit.enable;
+        lazygit.enable = false;
         opencode.enable = config.programs.opencode.enable;
         starship.enable = config.programs.starship.enable;
         television.enable = config.programs.television.enable;

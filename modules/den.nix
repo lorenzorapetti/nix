@@ -73,6 +73,7 @@
             "https://attic.xuyh0120.win/lantian"
             "https://nix-cache.tokidoki.dev/tokidoki"
             "https://nix-community.cachix.org"
+            "https://cache.home.lorenzorapetti.com/main"
           ];
           extra-trusted-public-keys = [
             "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
@@ -81,6 +82,7 @@
             "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
             "tokidoki:MD4VWt3kK8Fmz3jkiGoNRJIW31/QAm7l1Dcgz2Xa4hk="
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+            "main:DZUPR5GT1nirSvjEDm28gYrN4Z87FtZljlfokWQsgYo="
           ];
 
           warn-dirty = false;
