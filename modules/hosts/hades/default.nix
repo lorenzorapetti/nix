@@ -20,7 +20,6 @@
       desktop.work
       desktop.bambu-studio
       desktop.kicad
-      # desktop.ai
       desktop.coding
       development
       development.embedded

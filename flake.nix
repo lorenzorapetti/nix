@@ -97,8 +97,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    claude-desktop.url = "github:aaddrick/claude-desktop-debian";
-
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
 }
