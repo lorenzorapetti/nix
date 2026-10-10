@@ -24,7 +24,7 @@
       desktop.gaming
       desktop.messaging
       desktop.work
-      desktop.bambu-studio
+      # desktop.bambu-studio
       desktop.kicad
       desktop.coding
       development
