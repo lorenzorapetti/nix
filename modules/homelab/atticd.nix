@@ -20,6 +20,12 @@
           listen = "127.0.0.1:8005";
           api-endpoint = "https://cache.home.lorenzolab.com/";
 
+          # SQLite only allows one writer at a time, so parallel pushes time out
+          # waiting for a pool connection. Peer auth over the socket, no password.
+          # The user must be explicit: inside the sandbox (PrivateUsers) sqlx
+          # can't resolve its own username and falls back to "anonymous".
+          database.url = "postgresql:///atticd?host=/run/postgresql&user=atticd";
+
           jwt = {};
 
           chunking = {
@@ -37,6 +43,17 @@
 
           garbage-collection.default-retention-period = "6 months";
         };
+      };
+
+      services.postgresql = {
+        enable = true;
+        ensureDatabases = ["atticd"];
+        ensureUsers = [
+          {
+            name = "atticd";
+            ensureDBOwnership = true;
+          }
+        ];
       };
 
       # The host only has 4 cores and 16GB of RAM shared with the other

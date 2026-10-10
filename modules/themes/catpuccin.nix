@@ -41,7 +41,11 @@
       };
     };
 
-    homeManager = {config, ...}: {
+    homeManager = {
+      config,
+      pkgs,
+      ...
+    }: {
       imports = [
         inputs.catppuccin.homeModules.catppuccin
       ];
@@ -52,6 +56,20 @@
         enable = true;
         autoEnable = false;
         inherit flavor accent;
+
+        # lazygit >= 0.66 moved gui.authorColors under gui.theme, but the upstream theme
+        # hasn't caught up; lazygit can't migrate it in place since it lives in the store.
+        # Drop this once catppuccin/lazygit uses the new key.
+        sources.lazygit = let
+          upstream = (import inputs.catppuccin {inherit pkgs;}).packages.lazygit;
+        in
+          pkgs.runCommand "catppuccin-lazygit-migrated" {nativeBuildInputs = [pkgs.yq-go];} ''
+            cp -r ${upstream} $out
+            chmod -R u+w $out
+            for f in $out/*/*.yml; do
+              yq -i '.gui.theme.authorColors = .gui.authorColors | del(.gui.authorColors)' "$f"
+            done
+          '';
 
         alacritty.enable = isDesktop;
         bat.enable = true;
@@ -67,7 +85,7 @@
         imv.enable = isDesktop && config.programs.imv.enable;
         mpv.enable = isDesktop && config.programs.mpv.enable;
         hyprland.enable = isDesktop && config.wayland.windowManager.hyprland.enable;
-        lazygit.enable = false;
+        lazygit.enable = config.programs.lazygit.enable;
         opencode.enable = config.programs.opencode.enable;
         starship.enable = config.programs.starship.enable;
         television.enable = config.programs.television.enable;

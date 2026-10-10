@@ -103,8 +103,6 @@
         [
           wiremix
           pwvucontrol
-          sone
-          tidal-hifi
           easyeffects
         ]
         ++ [
