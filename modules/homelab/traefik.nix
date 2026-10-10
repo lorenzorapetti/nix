@@ -18,12 +18,6 @@
         config.sops.templates."traefik-env".path
       ];
 
-      # Alloy runs as its own user; traefik's dataDir defaults to mode 700,
-      # so it needs both group membership and a loosened directory mode to
-      # tail traefik.log/access.log from there.
-      users.users.traefik.homeMode = "750";
-      systemd.services.alloy.serviceConfig.SupplementaryGroups = ["traefik"];
-
       services.traefik = {
         enable = true;
         dataDir = "/var/lib/traefik";
@@ -110,20 +104,6 @@
     firewall = {
       ports.tcp = [80 443];
     };
-
-    logging.alloy = ''
-      local.file_match "traefik_logs" {
-        path_targets = [
-          {__path__ = "/var/lib/traefik/traefik.log", job = "traefik", log_type = "traefik"},
-          {__path__ = "/var/lib/traefik/access.log", job = "traefik", log_type = "access"},
-        ]
-      }
-
-      loki.source.file "traefik" {
-        targets    = local.file_match.traefik_logs.targets
-        forward_to = [loki.write.default.receiver]
-      }
-    '';
 
     traefik = {
       jetkvm = {

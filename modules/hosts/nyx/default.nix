@@ -15,9 +15,6 @@
         traefik
         technitium
         glance
-        loki
-        grafana
-        alloy
         atticd
       ]
       ++ [
@@ -29,8 +26,6 @@
 
       sops.secrets.nyx_tailscale_key = {};
       services.tailscale.authKeyFile = config.sops.secrets.nyx_tailscale_key.path;
-
-      observability.lokiEndpoint = "http://nyx.local:8004/loki/api/v1/push";
 
       nix = {
         settings = {

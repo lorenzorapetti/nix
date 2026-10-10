@@ -21,25 +21,10 @@
         group = "technitium";
       };
       users.groups.technitium = {};
-
-      systemd.services.alloy.serviceConfig.SupplementaryGroups = ["technitium"];
     };
 
     firewall = {
       ports.udp = [53];
     };
-
-    logging.alloy = ''
-      local.file_match "technitium_logs" {
-        path_targets = [
-          {__path__ = "/var/log/technitium/dns/*.log", job = "technitium"},
-        ]
-      }
-
-      loki.source.file "technitium" {
-        targets    = local.file_match.technitium_logs.targets
-        forward_to = [loki.write.default.receiver]
-      }
-    '';
   };
 }
