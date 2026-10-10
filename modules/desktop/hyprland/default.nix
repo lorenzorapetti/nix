@@ -31,12 +31,9 @@
       pkgs,
       config,
       osConfig,
-      self',
       inputs',
       ...
     }: {
-      home.packages = [self'.packages.system-action];
-
       home.sessionVariables = {
         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
         ELECTRON_OZONE_PLATFORM_HINT = "auto";
@@ -90,7 +87,6 @@
                 bluetui = "${lib.getExe pkgs.bluetui}",
                 wiremix = "${lib.getExe pkgs.wiremix}",
                 quick_terminal = "${lib.getExe osConfig.defaultTerminal.quickTerminal}",
-                system_action = "${lib.getExe self'.packages.system-action}",
                 runapp = "${lib.getExe pkgs.runapp}",
                 wlr_which_key = "${lib.getExe pkgs.wlr-which-key}",
               }

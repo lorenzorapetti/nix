@@ -8,7 +8,13 @@
       desktop.noctalia-greeter
     ];
 
-    homeManager = {osConfig, ...}: {
+    homeManager = {
+      pkgs,
+      osConfig,
+      ...
+    }: let
+      brightnessctl = lib.getExe pkgs.brightnessctl;
+    in {
       programs.noctalia = {
         enable = true;
         systemd.enable = true;
@@ -90,16 +96,16 @@
             behavior = {
               "Keyboard Brightness" = {
                 action = "command";
-                command = "system-action kbd-backlight off";
-                resume_command = "system-action kbd-backlight restore";
+                command = "${brightnessctl} -sd '*::kbd_backlight' set 0";
+                resume_command = "${brightnessctl} -rd '*::kbd_backlight'";
                 enabled = true;
                 timeout = 180;
               };
 
               "Reduce Brightness" = {
                 action = "command";
-                command = "system-action brightness set 10%";
-                resume_command = "system-action brightness restore";
+                command = "${brightnessctl} -s set 10%";
+                resume_command = "${brightnessctl} -r";
                 enabled = true;
                 timeout = 180;
               };

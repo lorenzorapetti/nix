@@ -130,16 +130,16 @@
             submenu:
               - key: "c"
                 desc: Clear Active
-                cmd: system-action notifications clear-active
+                cmd: noctalia msg notification-clear-active
               - key: "x"
                 desc: Clear History
-                cmd: system-action notifications clear-history
+                cmd: noctalia msg notification-clear-history
               - key: "h"
                 desc: Show History
-                cmd: system-action notifications show-history
+                cmd: noctalia msg panel-open control-center notifications
               - key: "d"
                 desc: Toggle Do Not Disturb
-                cmd: system-action notifications toggle-dnd
+                cmd: noctalia msg notification-dnd-toggle
       '';
     };
   };

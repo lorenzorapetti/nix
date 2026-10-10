@@ -59,8 +59,8 @@ local function run_app(app)
 	return exec(programs.runapp .. " " .. app)
 end
 
-local function system_action(action)
-	return exec(programs.system_action .. " " .. action)
+local function noctalia(cmd)
+	return exec("noctalia msg " .. cmd)
 end
 
 local function define_submap(name, callback)
@@ -90,7 +90,7 @@ bindm("E", exec(quick_terminal(programs.yazi)), "Open Terminal File Manager")
 bindm("D", exec(quick_terminal(programs.bluetui)), "Open Bluetooth Settings")
 bindm("V", exec(quick_terminal(programs.wiremix)), "Open Volume Control")
 bindm("T", hl.dsp.workspace.toggle_special("tasks"), "Open Tasks")
-bindm("GRAVE", system_action("window-switcher"), "Switch Windows")
+bindm("GRAVE", noctalia("window-switcher"), "Switch Windows")
 bindm("SHIFT + E", exec(vicinae_app("org.gnome.Nautilus")), "Open File Manager")
 bindm("CTRL + E", exec("vicinae vicinae://launch/core/search-emojis"), "Open Emoji Search")
 bindh("E", exec(vicinae_app("org.gnome.Nautilus")), "Open File Manager")
@@ -101,15 +101,15 @@ bindm("SHIFT + SPACE", run_app(programs._1password .. " --quick-access"), "Toggl
 bindm("Y", exec("vicinae vicinae://launch/clipboard/history"), "Toggle Clipboard History")
 bindm("O", exec(programs.wlr_which_key), "Which Key")
 
-bindm("ESCAPE", system_action("session lock"), "Lock Screen")
-bindm("CAPS_LOCK", system_action("session lock"), "Lock Screen")
-bindm("SHIFT + ESCAPE", system_action("session menu-toggle"), "Power Menu")
-bindm("SHIFT + CAPS_LOCK", system_action("session menu-toggle"), "Power Menu")
+bindm("ESCAPE", noctalia("session lock"), "Lock Screen")
+bindm("CAPS_LOCK", noctalia("session lock"), "Lock Screen")
+bindm("SHIFT + ESCAPE", noctalia("panel-toggle session"), "Power Menu")
+bindm("SHIFT + CAPS_LOCK", noctalia("panel-toggle session"), "Power Menu")
 
-bind("ALT + TAB", hl.dsp.exec_cmd("noctalia msg window-switcher"), "Window Switcher")
+bind("ALT + TAB", noctalia("window-switcher"), "Window Switcher")
 
 --------------------- Screenshot ---------------------
-bind("PRINT", system_action("screenshot region"), "Screenshot of region")
+bind("PRINT", noctalia("screenshot-region"), "Screenshot of region")
 bind("SHIFT + PRINT", exec("screenshot"), "Screenshot of window")
 
 bindm("PRINT", submenu("s"), "Screenshot Submenu")
@@ -319,18 +319,18 @@ bindm("N", submenu("n"), "Notifications")
 
 --------------------- Media ---------------------
 -- Laptop multimedia keys for volume and LCD brightness
-hl.bind("XF86AudioRaiseVolume", system_action("volume up"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", system_action("volume down"), { locked = true, repeating = true })
-hl.bind("XF86AudioMute", system_action("volume mute"), { locked = true, repeating = true })
-hl.bind("XF86AudioMicMute", system_action("mic mute"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessUp", system_action("brightness up"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", system_action("brightness down"), { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume", noctalia("volume-up 5%"), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", noctalia("volume-down 5%"), { locked = true, repeating = true })
+hl.bind("XF86AudioMute", noctalia("volume-mute"), { locked = true, repeating = true })
+hl.bind("XF86AudioMicMute", noctalia("mic-mute"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp", noctalia("brightness-up"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", noctalia("brightness-down"), { locked = true, repeating = true })
 
--- Requires playerctl
-hl.bind("XF86AudioNext", system_action("media next"), { locked = true })
-hl.bind("XF86AudioPause", system_action("media toggle"), { locked = true })
-hl.bind("XF86AudioPlay", system_action("media toggle"), { locked = true })
-hl.bind("XF86AudioPrev", system_action("media previous"), { locked = true })
+-- Media controls
+hl.bind("XF86AudioNext", noctalia("media next"), { locked = true })
+hl.bind("XF86AudioPause", noctalia("media toggle"), { locked = true })
+hl.bind("XF86AudioPlay", noctalia("media toggle"), { locked = true })
+hl.bind("XF86AudioPrev", noctalia("media previous"), { locked = true })
 
 -- # ------------------- Groups -------------------
 -- bindd = $mainMod SHIFT, G, Toggle Window into Group, togglegroup
