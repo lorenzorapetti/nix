@@ -74,6 +74,7 @@
             "https://nix-cache.tokidoki.dev/tokidoki"
             "https://nix-community.cachix.org"
             "https://cache.home.lorenzorapetti.com/main"
+            "https://syzygy.cachix.org"
           ];
           extra-trusted-public-keys = [
             "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
@@ -83,6 +84,7 @@
             "tokidoki:MD4VWt3kK8Fmz3jkiGoNRJIW31/QAm7l1Dcgz2Xa4hk="
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
             "main:DZUPR5GT1nirSvjEDm28gYrN4Z87FtZljlfokWQsgYo="
+            "syzygy.cachix.org-1:Qeub+ffjjtefJPLKq81fQznQ6eTVzXQ0U/plMiEPp4Q="
           ];
 
           warn-dirty = false;

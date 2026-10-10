@@ -1,6 +1,10 @@
 {
   den.aspects.desktop.sound = {
-    nixos = {pkgs, ...}: {
+    nixos = {
+      pkgs,
+      inputs',
+      ...
+    }: {
       services.pulseaudio.enable = false;
       security.rtkit.enable = true;
       services.pipewire = {
@@ -95,13 +99,17 @@
         };
       };
 
-      environment.systemPackages = with pkgs; [
-        wiremix
-        pwvucontrol
-        sone
-        tidal-hifi
-        easyeffects
-      ];
+      environment.systemPackages = with pkgs;
+        [
+          wiremix
+          pwvucontrol
+          sone
+          tidal-hifi
+          easyeffects
+        ]
+        ++ [
+          inputs'.syzygy.packages.syzygy
+        ];
     };
 
     homeManager = {config, ...}: {
