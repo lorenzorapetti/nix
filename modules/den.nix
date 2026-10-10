@@ -73,7 +73,7 @@
             "https://attic.xuyh0120.win/lantian"
             "https://nix-cache.tokidoki.dev/tokidoki"
             "https://nix-community.cachix.org"
-            "https://cache.home.lorenzorapetti.com/main"
+            "https://cache.home.lorenzolab.com/main"
             "https://syzygy.cachix.org"
           ];
           extra-trusted-public-keys = [
