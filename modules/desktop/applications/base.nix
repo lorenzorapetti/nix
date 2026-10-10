@@ -28,13 +28,11 @@ in {
         cine # Video player
         foliate
 
-        libreoffice-stable
         streamcontroller
       ];
 
       programs.obs-studio.enable = true;
       programs.thunderbird.enable = true;
-      programs.evince.enable = true;
 
       # Ports for KDE Connect
       networking.firewall = rec {
@@ -113,15 +111,6 @@ in {
       {
         mimes = imvMimeTypes;
         app = "imv.desktop";
-      }
-      {
-        mimes = [
-          "application/pdf"
-          "application/x-pdf"
-          "application/vnd.pdf"
-          "application/x-bzpdf"
-        ];
-        app = "org.gnome.Evince.desktop";
       }
     ];
   };
