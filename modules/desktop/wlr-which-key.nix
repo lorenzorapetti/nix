@@ -75,8 +75,8 @@
                 desc: Microsoft Teams
                 cmd: vicinae vicinae://launch/applications/teams-for-linux
               - key: "m"
-                desc: SONE
-                cmd: vicinae vicinae://launch/applications/SONE
+                desc: Tidal
+                cmd: vicinae vicinae://launch/applications/com.lorenzorapetti.syzygy
           - key: "e"
             desc: Execute
             submenu:
