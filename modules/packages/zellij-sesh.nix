@@ -136,7 +136,7 @@
     };
   };
 
-  den.default.homeManager = {self', ...}: {
+  den.aspects.shell.homeManager = {self', ...}: {
     home.packages = [self'.packages.zellij-sesh];
   };
 }

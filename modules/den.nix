@@ -42,7 +42,14 @@
 
       nixpkgs.config.allowUnfree = true;
 
-      services.openssh.enable = true;
+      services.openssh = {
+        enable = true;
+        settings = {
+          PasswordAuthentication = false;
+          KbdInteractiveAuthentication = false;
+          PermitRootLogin = "prohibit-password";
+        };
+      };
 
       home-manager = {
         useUserPackages = true;
@@ -54,8 +61,6 @@
       hardware.enableRedistributableFirmware = true;
 
       nix = {
-        optimise.automatic = true;
-
         settings = {
           nix-path = ["nixpkgs=${inputs.nixpkgs}"];
           use-xdg-base-directories = true;

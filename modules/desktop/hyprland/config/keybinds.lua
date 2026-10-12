@@ -110,7 +110,6 @@ bind("ALT + TAB", noctalia("window-switcher"), "Window Switcher")
 
 --------------------- Screenshot ---------------------
 bind("PRINT", noctalia("screenshot-region"), "Screenshot of region")
-bind("SHIFT + PRINT", exec("screenshot"), "Screenshot of window")
 
 bindm("PRINT", submenu("s"), "Screenshot Submenu")
 

@@ -42,7 +42,7 @@
       # A large parallel C++ build (e.g. bambu-studio) with no cap ran the machine
       # out of RAM+swap and froze it solid, requiring a hard reset. Cage the build
       # daemon's cgroup so a runaway build gets throttled/OOM-killed on its own
-      # instead of starving the interactive desktop session. Sized for zagreus's 27G.
+      # instead of starving the interactive desktop session. Sized for hades's 30G.
       systemd.services.nix-daemon.serviceConfig = {
         MemoryHigh = "18G";
         MemoryMax = "22G";

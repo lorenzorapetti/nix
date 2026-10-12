@@ -1,4 +1,4 @@
-{lib, ...}: {
+{
   den.default.nixos = {lib, ...}: {
     options.fonts = {
       serif = lib.mkOption {

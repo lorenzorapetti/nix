@@ -10,9 +10,7 @@
       desktop.base-applications
       desktop.wm-applications
       desktop.wlr-which-key
-      desktop.noctalia-greeter
       desktop.noctalia
-      desktop.wlr-which-key
     ];
 
     nixos = {pkgs, ...}: {
@@ -81,7 +79,7 @@
               return {
                 _1password = "${lib.getExe pkgs._1password-gui}",
                 terminal = "${lib.getExe osConfig.defaultTerminal.package}",
-                browser = "${lib.getExe inputs'.helium.packages.default}",
+                browser = "${lib.getExe pkgs.helium}",
                 file_manager = "${lib.getExe pkgs.nautilus}",
                 yazi = "${lib.getExe pkgs.yazi}",
                 bluetui = "${lib.getExe pkgs.bluetui}",

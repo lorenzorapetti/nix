@@ -50,7 +50,7 @@ in {
         for h in $hosts; do
           echo "==> $h"
           if nix build -o "result-$h" "$ref#nixosConfigurations.$h.config.system.build.toplevel"; then
-            attic push local:main "result-$h"
+            attic push local:main "result-$h" || failed=1
           else
             echo "!! build failed for $h"
             failed=1

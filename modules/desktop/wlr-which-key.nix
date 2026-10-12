@@ -38,9 +38,6 @@
               - key: "h"
                 desc: Home Assistant
                 cmd: noctalia msg panel-toggle pozzoo/hassio:entity_manager
-              - key: "k"
-                desc: Hyprland Keybinds
-                cmd: noctalia msg panel-toggle kenn/keybind-cheatsheet:cheatsheet
               - key: "n"
                 desc: Network
                 cmd: noctalia msg panel-toggle control-center network
@@ -50,9 +47,6 @@
               - key: "v"
                 desc: Volume
                 cmd: noctalia msg panel-toggle control-center audio
-              - key: "w"
-                desc: World Clock
-                cmd: noctalia msg panel-toggle noctalia/world_clock:panel
           - key: "a"
             desc: Apps
             submenu:
@@ -89,9 +83,6 @@
               - key: "p"
                 desc: Task Manager
                 cmd: quick-terminal btop
-              - key: "t"
-                desc: Todo
-                cmd: quick-terminal tuxedo
               - key: "b"
                 desc: Bluetooth
                 cmd: quick-terminal bluetui
@@ -107,9 +98,6 @@
           - key: "s"
             desc: Screenshot
             submenu:
-              - key: "f"
-                desc: Fullscreen
-                cmd: screenshot
               - key: "r"
                 desc: Region
                 cmd: noctalia msg screenshot-region

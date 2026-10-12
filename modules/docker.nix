@@ -1,4 +1,4 @@
-{den, ...}: {
+{
   den.aspects.docker = {
     nixos = {
       virtualisation.docker = {

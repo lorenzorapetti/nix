@@ -46,10 +46,6 @@ in {
         };
       };
 
-      boot.initrd.network.ssh.authorizedKeys = [
-        sshKey
-      ];
-
       users.users.root.openssh.authorizedKeys.keys = [
         sshKey
       ];
@@ -59,6 +55,9 @@ in {
       home.file.".face.icon".source = ./.face.icon;
       home.file."profile.png".source = ./.face.icon;
       home.file.".ssh/id_ed25519.pub".text = sshKey;
+
+      # Read by git through gpg.ssh.allowedSignersFile to verify commit signatures.
+      xdg.configFile."git/allowed_signers".text = "lorenzo.rapetti.94@gmail.com ${sshKey}\n";
 
       home.file.".ssh/config".source =
         config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/dotfiles/ssh/config";

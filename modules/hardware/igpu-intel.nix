@@ -1,6 +1,6 @@
 {inputs, ...}: {
   den.aspects.hardware.igpu-intel = {
-    nixos = {pkgs, ...}: {
+    nixos = {
       imports = [
         inputs.nixos-hardware.nixosModules.common-gpu-intel
       ];

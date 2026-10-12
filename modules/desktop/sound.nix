@@ -110,10 +110,7 @@
         ];
     };
 
-    homeManager = {config, ...}: {
-      xdg.configFile."tidal-hifi/config.json".source =
-        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/dotfiles/tidal-hifi/config.json";
-
+    homeManager = {
       home.file.".config/wiremix/wiremix.toml".text = ''
         tab = "output"
         tabs = [ "output", "playback", "input", "recording", "configuration" ]

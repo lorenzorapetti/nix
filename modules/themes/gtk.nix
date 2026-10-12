@@ -1,4 +1,8 @@
-{den, lib, ...}: {
+{
+  den,
+  lib,
+  ...
+}: {
   den.aspects.theming.base = {host, ...}: {
     homeManager = {
       pkgs,
@@ -14,17 +18,17 @@
         enable = true;
         colorScheme = "dark";
 
-        iconTheme = iconTheme;
+        inherit iconTheme;
         font.name = osConfig.fonts.sans;
 
         gtk2 = {
           enable = true;
-          iconTheme = iconTheme;
+          inherit iconTheme;
         };
 
         gtk3 = {
           enable = true;
-          iconTheme = iconTheme;
+          inherit iconTheme;
         };
 
         gtk4.iconTheme = iconTheme;

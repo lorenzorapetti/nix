@@ -1,5 +1,7 @@
 {
   den.aspects.desktop._1password = {
+    # `host` is unused but tells den to apply this in host+user context only.
+    # deadnix: skip
     host,
     user,
     ...

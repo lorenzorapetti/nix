@@ -18,11 +18,7 @@ in {
       desktop._1password
     ];
 
-    nixos = {
-      pkgs,
-      inputs',
-      ...
-    }: {
+    nixos = {pkgs, ...}: {
       environment.systemPackages = with pkgs; [
         ticktick
         cine # Video player

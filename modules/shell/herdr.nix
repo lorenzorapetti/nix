@@ -3,9 +3,10 @@
     packages.herdr-worktree-current = pkgs.writeShellApplication {
       name = "herdr-worktree-current";
       runtimeInputs = with pkgs; [git jq];
+      # A failing `herdr workspace list` or a $PWD outside any repo are normal
+      # here and must fall through to the git fallback, so leave errexit off.
+      bashOptions = ["nounset" "pipefail"];
       text = ''
-        #!/usr/bin/env bash
-        #
         # Print the checkout you are looking at, so the lazygit popup knows what "here"
         # means.
         #
@@ -14,8 +15,6 @@
         # can sit on the repo root while you are looking at one of its worktrees. But it
         # only wins within the same repository, so running it straight from a shell can
         # never reach across into whatever repo happens to be on screen.
-
-        set -uo pipefail
 
         herdr=''${HERDR_BIN_PATH:-herdr}
 

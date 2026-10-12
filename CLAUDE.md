@@ -4,14 +4,15 @@ Guidance for Claude Code when working in this repository.
 
 ## What this repo is
 
-Personal Nix configuration for multiple machines (NixOS + nix-darwin + home-manager),
-built as a single flake. The repo is currently being rewritten from a traditional
-`hosts/` + `modules/` layout onto the **dendritic pattern**, implemented with the
-**den framework**. Previous hosts (for reference, may not exist yet in the new layout):
-`nixps` and `bee` (NixOS), `mac14` (nix-darwin).
+Personal Nix configuration for multiple machines (NixOS + home-manager), built as a
+single flake using the **dendritic pattern**, implemented with the **den framework**.
 
-The `bee` host will be called `zagreus` in the new layout. The `mac14` host is being
-deleted and will not be present in the new layout.
+Hosts (each under `modules/hosts/<name>/`):
+
+- `hades` — Framework laptop (Intel Core Ultra Series 3), Hyprland desktop.
+- `zagreus` — Beelink SER8 (AMD), Hyprland desktop.
+- `nyx` — homelab server: Traefik, Technitium DNS, Glance, Attic cache.
+- `nixvm` — test VM, Hyprland desktop.
 
 Read these before making structural decisions — don't guess at conventions:
 
@@ -34,7 +35,6 @@ The flake wires together `flake-parts`, `import-tree`, and `den`:
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
     home-manager.url = "github:nix-community/home-manager";
-    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # ... follows, theming, hardware, app-specific inputs
   };
@@ -48,14 +48,15 @@ except ones prefixed with `_`. This means:
   `modules/` is enough to activate it.
 - File paths are just organization, not semantics. Any file can be renamed, merged,
   or split without changing behavior.
-- Files prefixed `_` (e.g. `modules/_nixos/configuration.nix`) are skipped by
-  `import-tree` — use that prefix for plain files that are `imports`-ed manually
-  from elsewhere rather than auto-loaded (e.g. hardware-configuration.nix-style files).
+- Files prefixed `_` are skipped by `import-tree` — use that prefix for plain files
+  that are `imports`-ed manually from elsewhere rather than auto-loaded, e.g.
+  `modules/hosts/nixvm/_hardware-configuration.nix` or the shared AppImage wrapper
+  `modules/_lib/appimage.nix`.
 
 ### Dendritic rules to follow
 
 - **Every file is a top-level module.** A file implements one feature and may
-  contribute to NixOS, home-manager, and darwin config for that feature all at once
+  contribute to NixOS and home-manager config for that feature all at once
   — don't split "the nixos half" and "the home-manager half" of one feature into
   unrelated directories unless there's a real reason to.
 - **Don't thread values through `specialArgs`.** Share values via `config` (declare
@@ -89,10 +90,8 @@ Den layers four concerns on top of the dendritic module tree:
 Aspect functions take typed context parameters (`{ host, user, ... }`) instead of
 booleans/conditionals — Den decides whether an aspect applies based on whether its
 declared parameters are available in a given context, not via `lib.mkIf`/`enable`
-flags.
-
-Building/deploying still works the normal way once hosts are declared:
-`nixos-rebuild switch --flake .#<host>`, `darwin-rebuild switch --flake .#<host>`.
+flags. Because of this, an unused `host`/`user` parameter can still be
+load-bearing — don't drop it to satisfy `deadnix`; mark it `# deadnix: skip`.
 
 ## Commands
 
@@ -111,20 +110,24 @@ don't need to be retyped. Host defaults to the current machine's hostname
   that host's config, useful for inspecting `config`/option values while debugging.
 - `just secrets` — `sops modules/secrets/secrets.yaml`, opens the sops-encrypted
   secrets file for editing.
+- `just nyx` — builds and switches `nyx` remotely over SSH. Same caution as
+  `just switch`.
+- `just fmt` — `nix fmt .` (alejandra).
+- `just check` — `nix flake check`, which also runs the `statix` and `deadnix`
+  checks from `modules/checks.nix`.
+- `just update` — `nix flake update`.
 
 ## Working in this repo
 
-- This repo is **mid-migration**: most of the tree was deleted in the working
-  directory as part of moving to the dendritic/den layout. Before assuming a file
-  exists, check the actual working tree, not just git history.
-- New config should go under `modules/` as dendritic files, not recreate the old
+- New config goes under `modules/` as dendritic files; don't recreate a
   `hosts/<name>/configuration.nix` + `modules/<category>/*.nix` split.
+- Flakes only see git-tracked files: `git add` new files before building.
 - Prefer extending an existing aspect/module over creating a new one when the
   feature is closely related.
-- Validate changes with `nix flake check` and `just build [host]` (see
+- Validate changes with `just fmt`, `just check` and `just build [host]` (see
   [Commands](#commands)) before considering a change done — this repo has no CI
   to catch eval errors. Prefer `just build` over raw
-  `nixos-rebuild`/`darwin-rebuild`/`home-manager build` invocations so
+  `nixos-rebuild`/`home-manager build` invocations so
   verification matches how the user drives this repo. Don't run `just switch`
   (or bare `just`) to verify a change — that activates the config on the
   machine; only run it if the user explicitly asks to switch/apply.

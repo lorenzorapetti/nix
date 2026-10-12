@@ -19,3 +19,12 @@ nyx:
 secrets:
   sops modules/secrets/secrets.yaml
 
+fmt:
+  nix fmt .
+
+check:
+  nix flake check
+
+update:
+  nix flake update
+

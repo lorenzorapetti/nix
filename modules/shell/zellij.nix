@@ -284,16 +284,6 @@
                 bind "PageUp" { HalfPageScrollUp; }
                 bind "PageDown" { HalfPageScrollDown; }
 
-                bind "Alt a" {
-                    Run "tuxedo" {
-                        floating true
-                        width "80%"
-                        height "80%"
-                        close_on_exit true
-                    }
-                    SwitchToMode "locked"
-                }
-
                 bind "Alt r" {
                     Run "tv" "zellij" {
                         floating true
