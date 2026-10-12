@@ -7,17 +7,17 @@
   }: {
     packages = import ../../../_lib/appimage.nix {inherit pkgs lib system;} rec {
       pname = "pdfcraft";
-      version = "0.5.0";
+      version = "0.6.0";
       appId = "ai.storyteller.pdfcraft";
 
       sources = {
         x86_64-linux = {
           url = "https://github.com/storytold/pdfcraft/releases/download/v${version}/pdfcraft-${version}-linux-x86_64.AppImage";
-          hash = "sha256-cjwWcw69cs/xK0DmSO2TWQDzrLWQsi0DbirxOijOb0U=";
+          hash = "sha256-FzFK9UQ/WB9FFt6u/avB5w+DGZphQSoQ3q9nOtrvAow=";
         };
         aarch64-linux = {
           url = "https://github.com/storytold/pdfcraft/releases/download/v${version}/pdfcraft-${version}-linux-aarch64.AppImage";
-          hash = "sha256-7+Cjo7sDypZlcR0vLuy26rfnzr7c9jL/g1FTH0bQb1E=";
+          hash = "sha256-e8YUAEKaLjfbbVGFwVCo3Xk8JZCsPbn82dukTajcWeQ=";
         };
       };
 

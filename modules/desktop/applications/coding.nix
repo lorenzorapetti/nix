@@ -12,16 +12,16 @@
       # Upstream ships the Linux binary and desktop entry as `orca-ide`, since
       # plain `orca` is the GNOME screen reader.
       pname = "orca-ide";
-      version = "1.4.223";
+      version = "1.4.224";
 
       sources = {
         x86_64-linux = {
           url = "https://github.com/stablyai/orca/releases/download/v${version}/orca-linux.AppImage";
-          hash = "sha256-Dhis/lwH7Rk6/2A/tja6H8WQeBEgOad5pUQ6jVNIPUs=";
+          hash = "sha256-sf6RAtmH012X622cJ0qT2elRqtvoZPwiUaMVAj9gx0Y=";
         };
         aarch64-linux = {
           url = "https://github.com/stablyai/orca/releases/download/v${version}/orca-linux-arm64.AppImage";
-          hash = "sha256-2n/S5dzTfyWCSA7c+gpLdILXxVXfWYvrrs0nhdTLD0A=";
+          hash = "sha256-KHw05kvaE0jNRkRRlL0G0ODqbzXXdfdAXAphFHFHs00=";
         };
       };
 
