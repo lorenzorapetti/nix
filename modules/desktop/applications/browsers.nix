@@ -3,17 +3,15 @@
     nixos = {pkgs, ...}: {
       nixpkgs.overlays = [
         inputs.helium.overlays.default
-        (final: prev: {
+        (_final: prev: {
           helium = prev.helium.overrideAttrs (old: {
+            # Chromium keeps VA-API video encode off by default on Linux.
             postFixup =
               (old.postFixup or "")
               + ''
-                rm -f $out/opt/helium/libvulkan.so.1
-                ln -s ${final.lib.getLib final.vulkan-loader}/lib/libvulkan.so.1 $out/opt/helium/
-
                 substituteInPlace $out/bin/helium \
-                    --replace-fail "--enable-features=WaylandWindowDecorations" \
-                      "--use-gl=angle --use-angle=vulkan --enable-features=WaylandWindowDecorations,Vulkan,VulkanFromANGLE,DefaultANGLEVulkan"
+                  --replace-fail "--enable-features=WaylandWindowDecorations" \
+                    "--enable-features=WaylandWindowDecorations,AcceleratedVideoEncoder"
               '';
           });
         })
