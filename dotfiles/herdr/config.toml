@@ -15,7 +15,7 @@ navigate_workspace_down = "j"
 goto = "prefix+/"
 
 [[keys.command]]
-key = "prefix+shift+g"
+key = "prefix+g"
 type = "popup"
 command = 'cd "$(herdr-worktree-current)" 2>/dev/null; exec lazygit'
 width = "90%"
@@ -31,10 +31,10 @@ height = "90%"
 description = "GitHub: dashboard"
 
 [[keys.command]]
-key = "prefix+d"
+key = "prefix+p"
 type = "plugin_action"
-command = "tdi.worktree-from-linear.pick"
-description = "Linear: worktree from issue"
+command = "herdr-bar.open"
+description = "Command bar"
 
 [ui]
 tab_bar_right = [

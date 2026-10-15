@@ -78,6 +78,8 @@
             "https://nix-community.cachix.org"
             "https://cache.home.lorenzolab.com/main"
             "https://syzygy.cachix.org"
+            "https://cache.numtide.com"
+            "https://herdr-nix.cachix.org"
           ];
           extra-trusted-public-keys = [
             "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
@@ -86,6 +88,8 @@
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
             "main:DZUPR5GT1nirSvjEDm28gYrN4Z87FtZljlfokWQsgYo="
             "syzygy.cachix.org-1:Qeub+ffjjtefJPLKq81fQznQ6eTVzXQ0U/plMiEPp4Q="
+            "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+            "herdr-nix.cachix.org-1:UpdsQYx39PK0PToKQaa2EFq19Lsjs1M9Ho+X7VNt9gs="
           ];
 
           warn-dirty = false;

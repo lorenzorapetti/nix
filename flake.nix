@@ -103,5 +103,15 @@
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+    llm-agents.url = "github:numtide/llm-agents.nix";
+
+    herdr-nix = {
+      url = "github:lorenzorapetti/herdr-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
   };
 }

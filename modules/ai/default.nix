@@ -1,6 +1,10 @@
 {
   den.aspects.ai = {
-    homeManager = {lib, ...}: {
+    homeManager = {
+      lib,
+      config,
+      ...
+    }: {
       programs = {
         mcp.servers = {
           linear = {
@@ -17,16 +21,12 @@
             nix-search = ./skills/nix-search;
           };
         };
-
-        worktrunk = {
-          enable = true;
-          enableFishIntegration = true;
-
-          settings = {
-            worktree-path = "~/.worktrunk/worktrees/{{ repo }}/{{ branch | sanitize }}";
-          };
-        };
       };
+
+      home.file.".claude/settings.json".source =
+        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/dotfiles/claude-code/settings.json";
+      home.file.".claude-personal/settings.json".source =
+        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/dotfiles/claude-code/settings.json";
 
       home.activation.createClaudeWorkDir = lib.hm.dag.entryAfter ["writeBoundary"] ''
         mkdir -p "$HOME/.claude-personal"
