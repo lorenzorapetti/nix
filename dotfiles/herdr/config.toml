@@ -10,6 +10,9 @@ new_tab = "prefix+t"
 settings = "prefix+comma"
 split_vertical = "prefix+v"
 split_horizontal = "prefix+s"
+navigate_workspace_up = "k"
+navigate_workspace_down = "j"
+goto = "prefix+/"
 
 [[keys.command]]
 key = "prefix+shift+g"
@@ -20,7 +23,7 @@ height = "90%"
 description = "Git: lazygit on the current worktree"
 
 [[keys.command]]
-key = "prefix+shift+o"
+key = "prefix+ctrl+o"
 type = "popup"
 command = "gh dash"
 width = "90%"
