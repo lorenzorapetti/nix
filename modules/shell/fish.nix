@@ -1,7 +1,24 @@
 {
   den.aspects.shell = {
-    homeManager = {
-      programs.fish = {
+    # `host` is unused but tells den to apply this in host+user context only.
+    # deadnix: skip
+    host,
+    user,
+    ...
+  }: {
+    nixos = {
+      sops.secrets.secrets-fish = {
+        sopsFile = ../secrets/secrets.fish;
+        owner = user.name;
+        format = "binary";
+        key = "";
+      };
+    };
+
+    homeManager = {osConfig, ...}: {
+      programs.fish = let
+        secrets = osConfig.sops.secrets.secrets-fish.path;
+      in {
         enable = true;
 
         binds = {
@@ -10,6 +27,10 @@
 
         shellInit = ''
           set -g fish_greeting
+
+          if test -e ${secrets}
+              source ${secrets}
+          end
         '';
 
         interactiveShellInit = ''
