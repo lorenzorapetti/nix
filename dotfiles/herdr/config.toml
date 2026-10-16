@@ -23,7 +23,17 @@ height = "90%"
 description = "Git: lazygit on the current worktree"
 
 [[keys.command]]
-key = "prefix+ctrl+o"
+key = "prefix+space"
+type = "popup"
+# Through fish so the secrets in secrets.fish (LINEAR_*) are current, rather
+# than whatever environment the herdr server inherited when it started.
+command = "fish -c herdr-linear"
+width = "90%"
+height = "90%"
+description = "Create a new worktree from linear"
+
+[[keys.command]]
+key = "prefix+o"
 type = "popup"
 command = "gh dash"
 width = "90%"
@@ -31,16 +41,16 @@ height = "90%"
 description = "GitHub: dashboard"
 
 [[keys.command]]
-key = "prefix+ctrl+t"
-type = "plugin_action"
-command = "tdi.worktree-from-linear.pick"
-description = "Git: open worktree from linear"
-
-[[keys.command]]
 key = "prefix+p"
 type = "plugin_action"
 command = "herdr-bar.open"
 description = "Command bar"
+
+[[keys.command]]
+key = "prefix+tab"
+type = "plugin_action"
+command = "third774.last-workspace.toggle"
+description = "last workspace"
 
 [ui]
 tab_bar_right = [
