@@ -52,6 +52,7 @@
         power-profiles-daemon.enable = true;
         upower.enable = true;
         fwupd.extraRemotes = ["lvfs-testing"];
+        framework-control.enable = true;
       };
 
       environment.systemPackages = with pkgs; [
