@@ -31,6 +31,12 @@ height = "90%"
 description = "GitHub: dashboard"
 
 [[keys.command]]
+key = "prefix+ctrl+t"
+type = "plugin_action"
+command = "tdi.worktree-from-linear.pick"
+description = "Git: open worktree from linear"
+
+[[keys.command]]
 key = "prefix+p"
 type = "plugin_action"
 command = "herdr-bar.open"

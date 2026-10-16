@@ -56,10 +56,15 @@
         enable = true;
         plugins = with herdrPlugins; [
           herdr-bar
+          herdr-auto-title
+          herdr-worktree-from-linear
         ];
         pluginSettings = {
           herdr-bar = {
             auto_titles = false;
+          };
+          "tdi.worktree-from-linear" = {
+            placement = "popup";
           };
         };
       };

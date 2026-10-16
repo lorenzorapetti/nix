@@ -271,11 +271,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792078106,
-        "narHash": "sha256-XpCsZuf2PAimpjstL1sj6kIO1axgGFNVAtq4YNcI/Q8=",
+        "lastModified": 1792138307,
+        "narHash": "sha256-/PtWBanvkSl+nGnzMmYF+33nLRL7rwphraniEppvSBw=",
         "owner": "lorenzorapetti",
         "repo": "herdr-nix",
-        "rev": "5a820fb5c656108a8a6c9ab0a0bcd1bdd864bc78",
+        "rev": "41efa8c457ffde651e25c8ce278f2d71908bbdc2",
         "type": "github"
       },
       "original": {
