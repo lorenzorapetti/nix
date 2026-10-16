@@ -73,7 +73,6 @@
           trusted-users = ["root" "@wheel"];
           extra-substituters = [
             "https://vicinae.cachix.org"
-            "https://attic.xuyh0120.win/lantian"
             "https://nix-cache.tokidoki.dev/tokidoki"
             "https://nix-community.cachix.org"
             "https://cache.home.lorenzolab.com/main"
@@ -83,7 +82,6 @@
           ];
           extra-trusted-public-keys = [
             "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
-            "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
             "tokidoki:MD4VWt3kK8Fmz3jkiGoNRJIW31/QAm7l1Dcgz2Xa4hk="
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
             "main:DZUPR5GT1nirSvjEDm28gYrN4Z87FtZljlfokWQsgYo="
