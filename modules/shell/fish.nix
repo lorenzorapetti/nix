@@ -15,7 +15,13 @@
       };
     };
 
-    homeManager = {osConfig, ...}: {
+    homeManager = {
+      osConfig,
+      pkgs,
+      config,
+      lib,
+      ...
+    }: {
       programs.fish = let
         secrets = osConfig.sops.secrets.secrets-fish.path;
       in {
@@ -33,7 +39,8 @@
           end
         '';
 
-        interactiveShellInit = ''
+        interactiveShellInit = lib.mkIf config.programs.devenv.enable ''
+          ${lib.getExe pkgs.devenv} hook fish -- --no-tui --no-reload --quiet | source
         '';
 
         functions = {

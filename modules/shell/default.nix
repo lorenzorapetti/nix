@@ -50,8 +50,17 @@
 
         devenv = {
           enable = true;
-          enableBashIntegration = true;
-          enableFishIntegration = true;
+          enableFishIntegration = false;
+          settings = {
+            shell = {
+              prompt_prefix = false;
+            };
+            tui = {
+              statusline = {
+                enabled = false;
+              };
+            };
+          };
         };
 
         direnv = {
