@@ -213,6 +213,64 @@
           fi
         '';
       };
+
+    packages.herdr-worktree-remove = pkgs.writeShellApplication {
+      name = "herdr-worktree-remove";
+      runtimeInputs = with pkgs; [git jq fzf];
+      text = ''
+        # Pick linked worktrees of every repository open in herdr and remove them.
+
+        herdr=''${HERDR_BIN_PATH:-herdr}
+
+        # This runs in a popup, which closes as soon as it exits: keep any error on
+        # screen until it has been read.
+        trap '[[ -t 0 ]] && read -rsn1 -p "Press any key to close"' ERR
+
+        # One top-level workspace per repository is enough to list its worktrees.
+        repos=$("$herdr" workspace list | jq -r '
+          [.result.workspaces[] | select(.worktree.is_linked_worktree == false)]
+          | unique_by(.worktree.repo_key)[]
+          | .workspace_id')
+
+        # Each line is `<open workspace>\t<repo root>\t<path>\t<row>`.
+        rows=$(for repo in $repos; do
+          "$herdr" worktree list --workspace "$repo" --trust-repository | jq -r '
+            .result.source.repo_root as $root
+            | .result.source.repo_name as $name
+            | .result.worktrees[]
+            | select(.is_linked_worktree)
+            | [ .open_workspace_id // "", $root, .path,
+                "\u001b[90m\($name)\u001b[0m  \(.branch // "(detached)")"
+                + (if .open_workspace_id then "  \u001b[32m●\u001b[0m" else "" end)
+                + "  \u001b[90m\(.path)\u001b[0m" ]
+            | join("\t")'
+        done)
+
+        if [[ -z $rows ]]; then
+          echo "No worktrees found." >&2
+          false
+        fi
+
+        # Cancelling the picker is not an error.
+        selected=$(fzf --ansi --multi --delimiter='\t' --with-nth=4.. \
+          --layout=reverse --header="Remove worktrees (tab to select many)" <<<"$rows") || exit 0
+
+        while IFS=$'\t' read -r workspace root path _; do
+          # Open in a workspace: let herdr remove it, so the workspace goes too.
+          if [[ -n $workspace ]]; then
+            remove=("$herdr" worktree remove --workspace "$workspace" --trust-repository)
+          else
+            remove=(git -C "$root" worktree remove "$path")
+          fi
+
+          if ! "''${remove[@]}" >/dev/null; then
+            # Usually uncommitted changes: removing anyway throws them away.
+            read -rp "Could not remove $path. Force? [y/N] " answer </dev/tty
+            [[ $answer == [yY] ]] && "''${remove[@]}" --force >/dev/null
+          fi
+        done <<<"$selected"
+      '';
+    };
   };
 
   den.aspects.shell = {
@@ -227,6 +285,7 @@
       home.packages = [
         self'.packages.herdr-worktree-current
         self'.packages.herdr-linear
+        self'.packages.herdr-worktree-remove
       ];
 
       programs.herdr = {

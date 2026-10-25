@@ -33,6 +33,14 @@ height = "90%"
 description = "Create a new worktree from linear"
 
 [[keys.command]]
+key = "prefix+ctrl+w"
+type = "popup"
+command = "herdr-worktree-remove"
+width = "90%"
+height = "90%"
+description = "Remove worktrees"
+
+[[keys.command]]
 key = "prefix+o"
 type = "popup"
 command = "gh dash"
