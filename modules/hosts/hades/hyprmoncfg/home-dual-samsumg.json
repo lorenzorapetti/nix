@@ -1,0 +1,77 @@
+{
+  "name": "home-dual-samsumg",
+  "created_at": "2026-10-24T13:16:10.081991728Z",
+  "updated_at": "2026-10-24T13:16:43.365889071Z",
+  "outputs": [
+    {
+      "key": "china star optoelectronics technology co., ltd|mnd508zb1-1",
+      "match_key": "china star optoelectronics technology co., ltd|mnd508zb1-1",
+      "name": "eDP-1",
+      "description": "China Star Optoelectronics Technology Co. Ltd MND508ZB1-1",
+      "make": "China Star Optoelectronics Technology Co., Ltd",
+      "model": "MND508ZB1-1",
+      "enabled": true,
+      "mode": "2880x1920@120.00Hz",
+      "width": 2880,
+      "height": 1920,
+      "refresh": 120,
+      "x": -260,
+      "y": -472,
+      "scale": 1.6,
+      "transform": 0,
+      "bitdepth": 8,
+      "cm": "srgb",
+      "sdr_brightness": 1,
+      "sdr_saturation": 1,
+      "sdr_min_luminance": 0.2,
+      "sdr_max_luminance": 80,
+      "min_luminance": 0
+    },
+    {
+      "key": "samsung electric company|odyssey g80sd|h1ak500000",
+      "match_key": "samsung electric company|odyssey g80sd|h1ak500000",
+      "name": "DP-1",
+      "description": "Samsung Electric Company Odyssey G80SD H1AK500000",
+      "make": "Samsung Electric Company",
+      "model": "Odyssey G80SD",
+      "serial": "H1AK500000",
+      "enabled": true,
+      "mode": "3840x2160@120.00Hz",
+      "width": 3840,
+      "height": 2160,
+      "refresh": 120,
+      "x": -900,
+      "y": -2200,
+      "scale": 1.25,
+      "transform": 0,
+      "bitdepth": 10,
+      "cm": "srgb",
+      "sdr_brightness": 1,
+      "sdr_saturation": 1,
+      "sdr_min_luminance": 0.2,
+      "sdr_max_luminance": 80,
+      "min_luminance": 0
+    }
+  ],
+  "workspaces": {
+    "enabled": true,
+    "strategy": "sequential",
+    "max_workspaces": 10,
+    "group_size": 5,
+    "monitor_order": [
+      "samsung electric company|odyssey g80sd|h1ak500000",
+      "china star optoelectronics technology co., ltd|mnd508zb1-1"
+    ],
+    "rules": [
+      {
+        "workspace": "special:magic",
+        "output_key": ""
+      },
+      {
+        "workspace": "special:tasks",
+        "output_key": ""
+      }
+    ]
+  },
+  "exec": ""
+}
