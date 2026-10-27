@@ -1,10 +1,9 @@
 {
   den.aspects.ai = {
-    homeManager = {
-      lib,
-      config,
-      ...
-    }: {
+    homeManager = {config, ...}: let
+      dotfiles = "${config.home.homeDirectory}/nix/dotfiles/claude-code";
+      personalConfigDir = "${config.xdg.configHome}/claude-personal";
+    in {
       programs = {
         mcp.servers = {
           linear = {
@@ -17,6 +16,7 @@
           enable = true;
           enableMcpIntegration = true;
           configDir = "${config.xdg.configHome}/claude";
+          context = ./CLAUDE.md;
 
           skills = {
             nix-search = ./skills/nix-search;
@@ -24,14 +24,15 @@
         };
       };
 
-      home.file.".claude/settings.json".source =
-        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/dotfiles/claude-code/settings.json";
-      home.file.".claude-personal/settings.json".source =
-        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/dotfiles/claude-code/settings.json";
+      home.file = {
+        "${config.programs.claude-code.configDir}/settings.json".source =
+          config.lib.file.mkOutOfStoreSymlink "${dotfiles}/settings.json";
+        "${personalConfigDir}/settings.json".source =
+          config.lib.file.mkOutOfStoreSymlink "${dotfiles}/settings-personal.json";
+        "${personalConfigDir}/CLAUDE.md".source = ./CLAUDE.md;
+      };
 
-      home.activation.createClaudeWorkDir = lib.hm.dag.entryAfter ["writeBoundary"] ''
-        mkdir -p "$HOME/.claude-personal"
-      '';
+      home.shellAliases.ccp = "CLAUDE_CONFIG_DIR=${personalConfigDir} claude";
     };
   };
 }
