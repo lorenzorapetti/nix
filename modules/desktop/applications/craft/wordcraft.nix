@@ -7,17 +7,17 @@
   }: {
     packages = import ../../../_lib/appimage.nix {inherit pkgs lib system;} rec {
       pname = "wordcraft";
-      version = "0.8.0";
+      version = "0.11.0";
       appId = "ai.storyteller.wordcraft";
 
       sources = {
         x86_64-linux = {
           url = "https://github.com/storytold/wordcraft/releases/download/v${version}/wordcraft-${version}-linux-x86_64.AppImage";
-          hash = "sha256-ffezpQFyug7ehaLEuDw2CvkrHDdnyLMMOWPr8F02q5w=";
+          hash = "sha256-2S1dN3UrlfCJBMyDKPOnPCl5NhM3/yYNI1GPQCTNXGQ=";
         };
         aarch64-linux = {
           url = "https://github.com/storytold/wordcraft/releases/download/v${version}/wordcraft-${version}-linux-aarch64.AppImage";
-          hash = "sha256-osaVoGTI2hO9AOEYJYusXN+pt+bcfY89/dh/VhKY52o=";
+          hash = "sha256-1a8un2lzCJYoO6bGi+t2A2k2RUcQHlz2WeLJx0+7qcY=";
         };
       };
 
