@@ -36,10 +36,12 @@
         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
         ELECTRON_OZONE_PLATFORM_HINT = "auto";
 
-        GDK_BACKEND = "wayland";
+        # Toolkit backends per https://wiki.hypr.land/configuring/core/environment-variables/#gui-toolkits-backend
+        GDK_BACKEND = "wayland,x11,*";
         QT_QPA_PLATFORM = "wayland;xcb";
-        SDL_VIDEODRIVER = "wayland";
         CLUTTER_BACKEND = "wayland";
+        # SDL_VIDEODRIVER=wayland is intentionally unset: games bundling older
+        # SDL2 versions break with it, and modern SDL picks Wayland on its own.
 
         UWSM_MANAGED = "1";
       };
