@@ -16,8 +16,7 @@
 
       # Small compressed RAM swap for routine paging. Priority 100 puts it well
       # above the disk swapfile (negative priority) so idle anon pages land in
-      # fast zram first; the disk swapfile is left as overflow + hibernation
-      # space only. 25% of RAM (~7.6G on a 32G host) keeps the working set roomy
+      # fast zram first; the disk swapfile is left as overflow only. 25% of RAM (~7.6G on a 32G host) keeps the working set roomy
       # and avoids the "big zram starves RAM under load" failure mode.
       zramSwap = {
         enable = true;

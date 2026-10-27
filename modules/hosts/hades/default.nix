@@ -26,26 +26,26 @@
       docker
     ];
 
-    nixos = {pkgs, ...}: {
+    nixos = {
       imports = [
         inputs.nixos-hardware.nixosModules.framework-intel-core-ultra-series3
       ];
 
       hardware = {
         facter.reportPath = ./facter.json;
-        graphics.enable = true;
         intelgpu.driver = "xe";
       };
 
-      nix.settings.cores = 10;
+      # Laptop roams untrusted networks: keep SSH reachable only over the
+      # tailnet (tailscale0 is a trusted interface in networking.tailscale).
+      services.openssh.openFirewall = false;
 
-      # A large parallel C++ build (e.g. bambu-studio) with no cap ran the machine
-      # out of RAM+swap and froze it solid, requiring a hard reset. Cage the build
-      # daemon's cgroup so a runaway build gets throttled/OOM-killed on its own
-      # instead of starving the interactive desktop session. Sized for hades's 30G.
-      systemd.services.nix-daemon.serviceConfig = {
-        MemoryHigh = "18G";
-        MemoryMax = "22G";
+      # No hibernation: the swapfile is sized as overflow only, too small to
+      # hold a RAM image.
+      systemd.sleep.settings.Sleep = {
+        AllowHibernation = false;
+        AllowHybridSleep = false;
+        AllowSuspendThenHibernate = false;
       };
 
       services = {
@@ -54,10 +54,6 @@
         fwupd.extraRemotes = ["lvfs-testing"];
         framework-control.enable = true;
       };
-
-      environment.systemPackages = with pkgs; [
-        brightnessctl
-      ];
     };
 
     homeManager = {config, ...}: {
