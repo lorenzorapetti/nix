@@ -1,7 +1,7 @@
 {
   "name": "home-dual-samsumg",
   "created_at": "2026-10-24T13:16:10.081991728Z",
-  "updated_at": "2026-10-24T13:16:43.365889071Z",
+  "updated_at": "2026-10-28T08:52:29.068684233Z",
   "outputs": [
     {
       "key": "china star optoelectronics technology co., ltd|mnd508zb1-1",
@@ -15,8 +15,8 @@
       "width": 2880,
       "height": 1920,
       "refresh": 120,
-      "x": -260,
-      "y": -472,
+      "x": 5321,
+      "y": -272,
       "scale": 1.6,
       "transform": 0,
       "bitdepth": 8,
@@ -40,8 +40,8 @@
       "width": 3840,
       "height": 2160,
       "refresh": 120,
-      "x": -900,
-      "y": -2200,
+      "x": 4760,
+      "y": -2000,
       "scale": 1.25,
       "transform": 0,
       "bitdepth": 10,
@@ -55,14 +55,41 @@
   ],
   "workspaces": {
     "enabled": true,
-    "strategy": "sequential",
+    "strategy": "manual",
     "max_workspaces": 10,
-    "group_size": 5,
+    "group_size": 3,
     "monitor_order": [
       "samsung electric company|odyssey g80sd|h1ak500000",
       "china star optoelectronics technology co., ltd|mnd508zb1-1"
     ],
     "rules": [
+      {
+        "workspace": "6",
+        "output_key": "china star optoelectronics technology co., ltd|mnd508zb1-1",
+        "output_name": "eDP-1",
+        "default": true,
+        "persistent": true
+      },
+      {
+        "workspace": "7",
+        "output_key": "china star optoelectronics technology co., ltd|mnd508zb1-1",
+        "output_name": "eDP-1"
+      },
+      {
+        "workspace": "8",
+        "output_key": "china star optoelectronics technology co., ltd|mnd508zb1-1",
+        "output_name": "eDP-1"
+      },
+      {
+        "workspace": "9",
+        "output_key": "china star optoelectronics technology co., ltd|mnd508zb1-1",
+        "output_name": "eDP-1"
+      },
+      {
+        "workspace": "10",
+        "output_key": "china star optoelectronics technology co., ltd|mnd508zb1-1",
+        "output_name": "eDP-1"
+      },
       {
         "workspace": "special:magic",
         "output_key": ""

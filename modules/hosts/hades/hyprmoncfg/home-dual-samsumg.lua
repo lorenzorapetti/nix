@@ -3,8 +3,9 @@
 hl.monitor({
   output = "desc:China Star Optoelectronics Technology Co. Ltd MND508ZB1-1",
   mode = "2880x1920@120.00",
-  position = "-260x-472",
+  position = "5321x-272",
   scale = 1.6,
+  vrr = 0,
   sdr_min_luminance = 0.2,
   sdr_max_luminance = 80,
 })
@@ -12,18 +13,14 @@ hl.monitor({
 hl.monitor({
   output = "desc:Samsung Electric Company Odyssey G80SD H1AK500000",
   mode = "3840x2160@120.00",
-  position = "-900x-2200",
+  position = "4760x-2000",
   scale = 1.25,
+  vrr = 0,
   bitdepth = 10,
   sdr_min_luminance = 0.2,
   sdr_max_luminance = 80,
 })
 
-hl.workspace_rule({ workspace = "1", monitor = "desc:Samsung Electric Company Odyssey G80SD H1AK500000", default = true, persistent = true })
-hl.workspace_rule({ workspace = "2", monitor = "desc:Samsung Electric Company Odyssey G80SD H1AK500000" })
-hl.workspace_rule({ workspace = "3", monitor = "desc:Samsung Electric Company Odyssey G80SD H1AK500000" })
-hl.workspace_rule({ workspace = "4", monitor = "desc:Samsung Electric Company Odyssey G80SD H1AK500000" })
-hl.workspace_rule({ workspace = "5", monitor = "desc:Samsung Electric Company Odyssey G80SD H1AK500000" })
 hl.workspace_rule({ workspace = "6", monitor = "desc:China Star Optoelectronics Technology Co. Ltd MND508ZB1-1", default = true, persistent = true })
 hl.workspace_rule({ workspace = "7", monitor = "desc:China Star Optoelectronics Technology Co. Ltd MND508ZB1-1" })
 hl.workspace_rule({ workspace = "8", monitor = "desc:China Star Optoelectronics Technology Co. Ltd MND508ZB1-1" })
