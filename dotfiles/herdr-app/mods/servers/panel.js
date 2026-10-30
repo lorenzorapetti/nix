@@ -1,12 +1,19 @@
 import { div } from "gpui-kit";
 import { v_flex, h_flex } from "gpui-base";
-import { machines, exec, theme, notify, openOverlay } from "herdr";
+import { machines, spaces, panes, exec, run, theme, notify, openOverlay, closeOverlay } from "herdr";
 import { DOCKER, PROBE, parseProbe, containerHealth, needsAttention, usage, containerAlerts, processHealth, processNeedsAttention, processAlerts } from "./probe.js";
 import { DEMO } from "./demo.js";
 
 const REFRESH_MS = 30000;
 const METER_PX = 84;
 const label = (machine) => machine ?? "This computer";
+// The pane showing the Herdr terminal a `devenv up` runs in; another machine's are "<machine>/t5".
+function paneFor(machine, terminal) {
+  if (!terminal) return null;
+  const address = machine ? `${machine}/${terminal}` : terminal;
+  return panes().find((p) => p.terminal === address) ?? null;
+}
+
 // One row's key, for its confirm and restarting states: a container's name, or a devenv process's project and name.
 const rowKey = (machine, name, dir = null) => `${label(machine)}/${dir ? `${dir}:` : ""}${name}`;
 
@@ -35,7 +42,7 @@ function sortContainers(list) {
 
 export class Panel {
   init(p, cx) {
-    this.demo = Boolean(p?.demo); this.expanded = new Set();
+    this.demo = Boolean(p?.demo); this.expanded = new Set(); this.overlay = p?.overlay ?? null;
     this.stats = this.demo ? Object.fromEntries(DEMO.map((m) => [m.name, { data: m.stats }])) : {};
     if (this.demo) return;
     this.refresh(cx);
@@ -87,6 +94,15 @@ export class Panel {
       } finally { this.restarting = null; cx.notify(); }
     });
     cx.notify();
+  }
+
+  // Shows the pane's space and tab, focuses it, and closes the popup so it's in view.
+  goTo(pane) {
+    const space = spaces().find((s) => (s.tabs ?? []).some((tab) => tab.id === pane.tab));
+    if (space) run("space.select", { id: space.id });
+    run("tab.select", { id: pane.tab });
+    run("pane.focus", { pane: pane.pane });
+    if (this.overlay) closeOverlay(this.overlay);
   }
 
   showLogs(machine, name, dir = null) {
@@ -145,16 +161,29 @@ export class Panel {
     const projects = [...new Set(processes.map((p) => p.dir))].sort();
     return v_flex().gap(2).children(projects.map((dir) => {
       const list = processes.filter((p) => p.dir === dir), bad = list.filter(processNeedsAttention).length;
+      const pane = paneFor(machine, list[0].terminal);
       return v_flex().gap(2)
         .child(h_flex().gap(8).items_center().text_size(11).text_color(t.dim)
           .child(div().flex_none().text_color(t.muted).child(dir.split("/").pop()))
           .child(div().flex_1().min_w(0).truncate().child(`devenv · ${list.length} processes`))
-          .when(bad > 0, (e) => e.child(div().flex_none().text_color(t.ansi1).child(`${bad} need you`))))
+          .when(bad > 0, (e) => e.child(div().flex_none().text_color(t.ansi1).child(`${bad} need you`)))
+          .when(Boolean(pane), (e) => e.child(this.action(`go-${rowKey(machine, dir)}`, "Go to terminal", () => this.goTo(pane), t))))
         .children(list.map((p) => this.processRow(machine, p, t)));
     }));
   }
 
-  dockerSection(machine, docker, t) {
+  // A `compose up` running in a Herdr terminal, matched to its containers by their project folder.
+  composeRows(machine, containers, compose, t) {
+    const runs = [...new Map(compose.map((c) => [c.dir, c])).values()]
+      .map((run) => ({ ...run, pane: paneFor(machine, run.terminal), containers: containers.filter((c) => c.workdir === run.dir) }))
+      .filter((run) => run.pane && run.containers.length);
+    return runs.map((run) => h_flex().gap(8).items_center().text_size(11).text_color(t.dim)
+      .child(div().flex_none().text_color(t.muted).child(run.containers[0].project || run.dir.split("/").pop()))
+      .child(div().flex_1().min_w(0).truncate().child(`compose up · ${run.containers.length} containers`))
+      .child(this.action(`go-${rowKey(machine, run.dir)}`, "Go to terminal", () => this.goTo(run.pane), t)));
+  }
+
+  dockerSection(machine, docker, t, compose = []) {
     if (docker.error) return div().text_size(11).text_color(t.dim).child(`Docker: ${docker.error}`);
     const all = sortContainers(docker.containers), key = label(machine);
     if (!all.length) return div().text_size(11).text_color(t.dim).child("No containers");
@@ -170,6 +199,7 @@ export class Panel {
           if (open) this.expanded.delete(key); else this.expanded.add(key);
           cx.notify();
         }, t)))
+      .children(this.composeRows(machine, all, compose, t))
       .children(shown.map((c) => this.containerRow(machine, c, t)));
   }
 
@@ -187,7 +217,7 @@ export class Panel {
     const u = usage(entry.data);
     return box
       .child(h_flex().gap(12).child(this.meter("CPU", u.cpu, t)).child(this.meter("MEM", u.mem, t)).child(this.meter("DISK", u.disk, t)))
-      .child(this.dockerSection(machine.name, entry.data.docker, t))
+      .child(this.dockerSection(machine.name, entry.data.docker, t, entry.data.compose ?? []))
       .when(Boolean(entry.data.processes?.length), (e) => e.child(this.processesSection(machine.name, entry.data.processes, t)));
   }
 

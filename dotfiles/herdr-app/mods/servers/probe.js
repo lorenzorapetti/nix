@@ -5,17 +5,38 @@ export const DOCKER = `docker=$(command -v docker)
 if [ -n "$docker" ] && [ -z "\${DOCKER_HOST:-}" ] && [ -S /var/run/docker.sock ] && [ ! -w /var/run/docker.sock ]; then docker="sudo -n $docker"; fi`;
 
 // Each running `devenv up`: its manager leaves a pid file under the runtime folder, and the folder
-// it was started in is that process's cwd. One d= line per process: the folder, a tab, then
-// `devenv processes list`'s own line ("name  ready restarts: 0 ports: http:3001").
+// it was started in is that process's cwd. It inherits HC_TERMINAL_ID from the Herdr terminal
+// it runs in (empty when it doesn't). One d= line per process: the folder, the terminal, then
+// `devenv processes list`'s own line ("name  ready restarts: 0 ports: http:3001"), tab-separated.
 const DEVENV = `
 if command -v devenv >/dev/null 2>&1; then
   for pidfile in "\${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"/devenv-*/processes/native-manager.pid; do
     [ -r "$pidfile" ] || continue
     pid=$(cat "$pidfile"); kill -0 "$pid" 2>/dev/null || continue
     dir=$(readlink "/proc/$pid/cwd") || continue
+    term=$(tr '\\0' '\\n' 2>/dev/null < "/proc/$pid/environ" | sed -n 's/^HC_TERMINAL_ID=//p')
     (cd "$dir" && devenv processes list 2>/dev/null) | while IFS= read -r line; do
-      [ -n "$line" ] && printf 'd=%s\\t%s\\n' "$dir" "$line"
+      [ -n "$line" ] && printf 'd=%s\\t%s\\t%s\\n' "$dir" "$term" "$line"
     done
+  done
+fi`;
+
+// Each `docker compose up` / `docker-compose up` in the foreground somewhere: from it up to the first
+// process that carries HC_TERMINAL_ID (through a root `sudo`, whose /proc we can't read), taking
+// the folder from the first one we can read. One k= line each: the folder, a tab, the terminal.
+// Only processes that are docker (or sudo running it): this script mentions "compose" and "up" too.
+const COMPOSE = `
+if command -v pgrep >/dev/null 2>&1; then
+  for start in $(pgrep -f 'compose( .*)? up( |$)'); do
+    argv0=$(tr '\\0' '\\n' 2>/dev/null < "/proc/$start/cmdline" | head -1)
+    case "\${argv0##*/}" in docker|docker-compose|sudo|doas) ;; *) continue ;; esac
+    pid=$start; dir=""; term=""
+    while [ "$pid" -gt 1 ] 2>/dev/null && [ -z "$term" ]; do
+      [ -n "$dir" ] || dir=$(readlink "/proc/$pid/cwd" 2>/dev/null)
+      term=$(tr '\\0' '\\n' 2>/dev/null < "/proc/$pid/environ" | sed -n 's/^HC_TERMINAL_ID=//p')
+      pid=$(awk '{print $4}' "/proc/$pid/stat" 2>/dev/null)
+    done
+    [ -n "$dir" ] && [ -n "$term" ] && printf 'k=%s\\t%s\\n' "$dir" "$term"
   done
 fi`;
 
@@ -31,31 +52,33 @@ elif command -v vm_stat >/dev/null 2>&1; then echo "mem=$(sysctl -n hw.memsize) 
 df -Pk / | awk 'NR==2{print "disk="$2" "$3" "$4}'
 if [ -r /proc/uptime ]; then echo "uptime=$(cut -d' ' -f1 /proc/uptime)"; else echo "uptime=$(( $(date +%s) - $(sysctl -n kern.boottime | awk -F'[ ,]+' '{print $4}') ))"; fi
 if [ -n "$docker" ]; then
-  if out=$($docker ps -a --format '{{.ID}}\\t{{.Names}}\\t{{.State}}\\t{{.Status}}\\t{{.Image}}\\t{{.Label "com.docker.compose.project"}}' 2>&1); then
+  if out=$($docker ps -a --format '{{.ID}}\\t{{.Names}}\\t{{.State}}\\t{{.Status}}\\t{{.Image}}\\t{{.Label "com.docker.compose.project"}}\\t{{.Label "com.docker.compose.project.working_dir"}}' 2>&1); then
     printf '%s\\n' "$out" | sed '/^$/d; s/^/c=/'
   else echo "docker_err=$(printf '%s' "$out" | head -1)"; fi
 else echo "docker_err=not installed"; fi
+${COMPOSE}
 ${DEVENV}
 `;
 
 const number = (text) => Number(String(text).trim().replace(",", "."));
 
 function parseContainer(line) {
-  const [id, name, state, status, image, project] = line.split("\t");
-  return { id, name, state, status, image, project: project || "" };
+  const [id, name, state, status, image, project, workdir] = line.split("\t");
+  return { id, name, state, status, image, project: project || "", workdir: workdir || null };
 }
 
 function parseProcess(value) {
-  const [dir, line = ""] = value.split("\t");
+  const [dir, terminal, line = ""] = value.split("\t");
   const m = /^(\S+)\s+(\S+)(?:\s+restarts:\s*(\d+))?(?:\s+ports:\s*(.*))?$/.exec(line.trim());
   if (!m) return null;
-  return { dir, project: dir.split("/").pop(), name: m[1], state: m[2], restarts: Number(m[3] ?? 0), ports: m[4]?.trim() ?? "" };
+  return { dir, terminal: terminal || null, project: dir.split("/").pop(), name: m[1], state: m[2], restarts: Number(m[3] ?? 0), ports: m[4]?.trim() ?? "" };
 }
 
 // { load: [1m, 5m, 15m], cpus, mem: { total, available } | null, disk: { total, used, free } (bytes),
-//   uptime (s), docker: { error } | { containers }, processes: devenv's, by project folder }.
+//   uptime (s), docker: { error } | { containers }, processes: devenv's, by project folder,
+//   compose: [{ dir, terminal }] for each `compose up` running in a Herdr terminal }.
 export function parseProbe(out) {
-  const result = { load: null, cpus: null, mem: null, disk: null, uptime: null, docker: { containers: [] }, processes: [] };
+  const result = { load: null, cpus: null, mem: null, disk: null, uptime: null, docker: { containers: [] }, processes: [], compose: [] };
   for (const line of out.split("\n")) {
     const at = line.indexOf("=");
     if (at < 0) continue;
@@ -68,6 +91,7 @@ export function parseProbe(out) {
     if (key === "uptime") result.uptime = parts[0];
     if (key === "c") result.docker.containers.push(parseContainer(value));
     if (key === "d") { const p = parseProcess(value); if (p) result.processes.push(p); }
+    if (key === "k") { const [dir, terminal] = value.split("\t"); if (dir && terminal) result.compose.push({ dir, terminal }); }
     if (key === "docker_err") result.docker = { error: /permission denied/i.test(value) ? "no permission" : value.trim() };
   }
   return result;
