@@ -14,6 +14,19 @@
         mode = "0600";
         content = builtins.toJSON {apiKey = config.sops.placeholder.linear_api_key;};
       };
+
+      # The herdr-app `servers` mod lists, reads and restarts containers through `sudo -n`, since
+      # the user isn't in the docker group (that's root on demand). Only these commands, no prompt.
+      security.sudo.extraRules = [
+        {
+          users = [user.name];
+          runAs = "root";
+          commands = map (command: {
+            command = "/run/current-system/sw/bin/docker ${command}";
+            options = ["NOPASSWD"];
+          }) ["ps -a --format *" "logs --tail 300 --timestamps -- *" "restart -- *"];
+        }
+      ];
     };
 
     homeManager = {
@@ -41,6 +54,9 @@
         # Per-mod links: mods/ also holds the mods Herdr ships and rewrites.
         "herdr-app/mods/linear".source = link "herdr-app/mods/linear";
         "herdr-app/mods/linear-agent".source = link "herdr-app/mods/linear-agent";
+        "herdr-app/mods/github".source = link "herdr-app/mods/github";
+        "herdr-app/mods/issue-agent".source = link "herdr-app/mods/issue-agent";
+        "herdr-app/mods/servers".source = link "herdr-app/mods/servers";
         "herdr-app/linear.json".source =
           config.lib.file.mkOutOfStoreSymlink osConfig.sops.templates."herdr-linear.json".path;
       };
