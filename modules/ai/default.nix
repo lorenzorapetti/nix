@@ -2,6 +2,7 @@
   den.aspects.ai = {
     homeManager = {
       config,
+      pkgs,
       lib,
       ...
     }: let
@@ -39,7 +40,13 @@
         run ln -sfn ${dotfiles}/settings-personal.json ${personalConfigDir}/settings.json
       '';
 
-      home.shellAliases.ccp = "CLAUDE_CONFIG_DIR=${personalConfigDir} claude";
+      # A real executable, not just an alias: herdr-app starts it from its + menu (programs.json).
+      home.packages = [
+        (pkgs.writeShellScriptBin "claude-personal" ''
+          CLAUDE_CONFIG_DIR=${personalConfigDir} exec claude "$@"
+        '')
+      ];
+      home.shellAliases.ccp = "claude-personal";
     };
   };
 }

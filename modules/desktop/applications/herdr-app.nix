@@ -2,7 +2,7 @@
 # coding agents. Built from source following the Nix packaging in
 # https://github.com/herdrdev/herdr-app/pull/51 (nix/package.nix).
 #
-# When bumping, update `rev`/`version` and the src hash, then `ghosttyRev` to the
+# When bumping, update `version` and the src hash, then `ghosttyRev` to the
 # commit the `vendor/ghostty` submodule points at, and refresh the ghostty, zig
 # deps and cargo hashes together. The app needs herdr-core at or above its
 # `distribution/core-version` (see herdr-core.nix).
@@ -18,8 +18,7 @@
   in
     lib.optionalAttrs (builtins.elem system platforms) {
       packages.herdr-app = let
-        version = "0.1.6";
-        rev = "8cd3f7c2861ee81122109479b8d905a0866f5bba";
+        version = "0.1.11";
         ghosttyRev = "291fd050b9e9c293c8adb6a140742649b7e42d3a";
 
         runtimeDependencies = with pkgs; [
@@ -50,15 +49,15 @@
           pname = "herdr-app";
           inherit version;
 
-          # PR #51 head (fork); vendor/ghostty is a submodule, filled in postUnpack.
+          # vendor/ghostty is a submodule, filled in postUnpack.
           src = pkgs.fetchFromGitHub {
-            owner = "hackrdotsh";
+            owner = "herdrdev";
             repo = "herdr-app";
-            inherit rev;
-            hash = "sha256-7qpW/qFFCQvs4vljsKeE5DCxug3/055raHeoU08ECNU=";
+            rev = "v${version}";
+            hash = "sha256-lgEKlENOiTSlZaME/j+0LU/2rdalfqkTAA3Y8tUHO7Q=";
           };
 
-          cargoHash = "sha256-kvj1pbtdZA5pEQ2l9VRXwB1i8BL51DYCsxO1wxLRe0k=";
+          cargoHash = "sha256-DX4+ELg1vtprKv8N6R8rW42wty+hKMo96/MxiiUmqu8=";
 
           nativeBuildInputs = with pkgs; [
             pkg-config

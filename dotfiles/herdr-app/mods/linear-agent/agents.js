@@ -1,5 +1,5 @@
 // Adapted from the `issue-agent` mod in obrunogonzaga/herdr-mods (MIT, Copyright (c) 2026 Bruno Gonzaga).
-// Unchanged apart from this note.
+// Changed: the claude-personal alias.
 
 import { exec } from "herdr";
 
@@ -66,7 +66,8 @@ const ADAPTERS = {
   },
 };
 
-const ALIASES = { "cursor-agent": "cursor", agent: "cursor" };
+// claude-personal: claude with the personal CLAUDE_CONFIG_DIR (modules/ai).
+const ALIASES = { "cursor-agent": "cursor", agent: "cursor", "claude-personal": "claude" };
 
 // The adapter for a knownAgents() entry, by its key or the program it runs; null: no model choice.
 export function adapterFor(agent) {

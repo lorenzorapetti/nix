@@ -1,0 +1,12 @@
+{
+  "programs": {
+    "claude-personal": {
+      "name": "Claude Code (personal)",
+      "icon": "icons/claude.svg",
+      "tint": true,
+      "tile": "#1c1d21",
+      "color": "#6ca0f6",
+      "run": ["claude-personal"]
+    }
+  }
+}

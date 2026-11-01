@@ -58,9 +58,12 @@
     "ctrl-shift-w": "tab.close",
     "ctrl-shift-x": "pane.close",
     "ctrl-shift-z": "pane.zoom",
-    "ctrl-shift-l": "layout.switch",
+    "ctrl-shift-l": "layout.switch:personal",
     "f2": "tab.rename",
     "shift-f2": "space.rename"
+  },
+  "layout:personal": {
+    "ctrl-shift-l": "layout.switch:main"
   },
   "terminal": {
     "ctrl-backspace": "send:\u0017",

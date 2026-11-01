@@ -51,12 +51,19 @@
         # herdr-app saves through symlinks, so in-app changes land in dotfiles.
         "herdr-app/settings.json".source = link "herdr-app/settings.json";
         "herdr-app/keys.json".source = link "herdr-app/keys.json";
+        "herdr-app/programs.json".source = link "herdr-app/programs.json";
         # Per-mod links: mods/ also holds the mods Herdr ships and rewrites.
         "herdr-app/mods/linear".source = link "herdr-app/mods/linear";
         "herdr-app/mods/linear-agent".source = link "herdr-app/mods/linear-agent";
         "herdr-app/mods/github".source = link "herdr-app/mods/github";
         "herdr-app/mods/issue-agent".source = link "herdr-app/mods/issue-agent";
         "herdr-app/mods/servers".source = link "herdr-app/mods/servers";
+        "herdr-app/mods/tab-names".source = link "herdr-app/mods/tab-names";
+        # The shipped tab bar plus a Servers side-panel button.
+        "herdr-app/mods/tabs-personal".source = link "herdr-app/mods/tabs-personal";
+        # `main` plus a 0px block running tab-names, tabs-personal and a servers side panel
+        # (shipped layouts get restored on start).
+        "herdr-app/layouts/personal.json".source = link "herdr-app/layouts/personal.json";
         "herdr-app/linear.json".source =
           config.lib.file.mkOutOfStoreSymlink osConfig.sops.templates."herdr-linear.json".path;
       };
