@@ -34,6 +34,9 @@
         shellInit = ''
           set -g fish_greeting
 
+          set -gx OPENSSL_INCLUDE_DIR ${pkgs.openssl.dev}/include
+          set -gx OPENSSL_LIB_DIR ${pkgs.openssl.out}/lib
+
           if test -e ${secrets}
               source ${secrets}
           end
