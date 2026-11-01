@@ -14,7 +14,6 @@
         just
 
         nodejs_26
-        deno
         bun
       ];
     };
