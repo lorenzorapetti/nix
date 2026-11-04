@@ -63,6 +63,8 @@
     "shift-f2": "space.rename"
   },
   "layout:personal": {
+    "ctrl-shift-pagedown": "space-folders.next",
+    "ctrl-shift-pageup": "space-folders.prev",
     "ctrl-shift-l": "layout.switch:main"
   },
   "terminal": {

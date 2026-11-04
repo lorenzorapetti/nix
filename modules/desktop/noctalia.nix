@@ -169,7 +169,6 @@
           plugins.enabled = [
             "noctalia/screen_recorder"
             "davemhammer/tailscale"
-            "pozzoo/hassio"
           ];
 
           plugin_settings = {
@@ -184,14 +183,6 @@
               color_range = "full";
               copy_to_clipboard = true;
               video_source = "focused";
-            };
-
-            # ha_token is intentionally not managed here (secret).
-            "pozzoo/hassio" = {
-              entity_manager_placement = "attached";
-              ha_url = "https://ha.francescorapetti.dev";
-              shortcut_entity_1 = "switch.camera_sonoff_1000cba156";
-              shortcut_entity_2 = "switch.stampante_3d";
             };
           };
 
@@ -288,13 +279,6 @@
             cpu = {
               show_label = false;
               show_value = false;
-            };
-
-            home_assistant = {
-              glyph = "smart-home";
-              type = "custom_button";
-
-              actions.left = "panel-toggle pozzoo/hassio:entity_manager";
             };
 
             media = {

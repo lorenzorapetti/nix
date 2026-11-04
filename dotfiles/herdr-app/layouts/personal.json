@@ -50,7 +50,7 @@
               },
               "min": 90,
               "content": {
-                "mod": "spaces"
+                "mod": "space-folders"
               }
             },
             {

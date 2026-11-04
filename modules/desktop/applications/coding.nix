@@ -61,8 +61,10 @@
         "herdr-app/mods/tab-names".source = link "herdr-app/mods/tab-names";
         # The shipped tab bar plus a Servers side-panel button.
         "herdr-app/mods/tabs-personal".source = link "herdr-app/mods/tabs-personal";
-        # `main` plus a 0px block running tab-names, tabs-personal and a servers side panel
-        # (shipped layouts get restored on start).
+        # The shipped spaces list plus folders (github.com/jankeesvw/herdr-space-folders).
+        "herdr-app/mods/space-folders".source = link "herdr-app/mods/space-folders";
+        # `main` plus a 0px block running tab-names, tabs-personal, space-folders and a servers
+        # side panel (shipped layouts get restored on start).
         "herdr-app/layouts/personal.json".source = link "herdr-app/layouts/personal.json";
         "herdr-app/linear.json".source =
           config.lib.file.mkOutOfStoreSymlink osConfig.sops.templates."herdr-linear.json".path;

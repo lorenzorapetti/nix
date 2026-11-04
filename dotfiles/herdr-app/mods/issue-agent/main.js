@@ -1,4 +1,4 @@
-// Start an agent on a GitHub issue: props { issue: {number, title, labels}, cwd, on }.
+// Start an agent on a GitHub issue: props { issue: {number, title, labels}, cwd, on, panel } (panel: the GitHub panel's overlay, if it is one).
 // Makes a worktree from the default branch and a space running the agent with the issue as its task.
 
 import { View, div, svg, image } from "gpui-kit";
@@ -136,6 +136,8 @@ export default class IssueAgent extends View {
         const folder = await createWorktree(cwd, on, branch);
         setShared(LAST_CHOICE, { agent: agent.key, model, effort });
         run("space.new", { folder, machine: on, tab: `#${this.issue.number}`, argv, task: taskFor(this.issue, branch) });
+        // The GitHub panel behind this dialog goes too; Cancel returns to it.
+        if (props().panel) closeOverlay(props().panel);
         closeOverlay(props().overlay);
       } catch (e) { this.error = String(e.message ?? e); }
       finally { this.busy = false; cx.notify(); }

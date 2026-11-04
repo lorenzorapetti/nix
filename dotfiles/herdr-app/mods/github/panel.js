@@ -1,6 +1,6 @@
 import { div } from "gpui-kit";
 import { v_flex, h_flex, InputState, Input } from "gpui-base";
-import { spaces, panes, focused, exec, theme, nextCommand, openOverlay } from "herdr";
+import { spaces, panes, focused, exec, theme, nextCommand, openOverlay, props } from "herdr";
 import { summarizeChecks, checksIcon } from "./checks.js";
 import { openUrl } from "./open.js";
 
@@ -197,7 +197,7 @@ export class Panel {
 
   startAgent(issue) {
     const { cwd, on } = location();
-    openOverlay({ mod: "issue-agent", kind: "dialog", width: 480, height: 620, props: { issue, cwd, on } });
+    openOverlay({ mod: "issue-agent", kind: "dialog", width: 480, height: 620, props: { issue, cwd, on, panel: props()?.overlay } });
   }
 
   agentButton(issue, t) {

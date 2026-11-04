@@ -1,4 +1,4 @@
-// Start an agent on a Linear issue: props { issue, cwd, on }.
+// Start an agent on a Linear issue: props { issue, cwd, on, panel } (panel: the Linear panel's overlay, if it is one).
 // Makes a worktree from the default branch and a space running the agent with the issue as its task.
 // Adapted from the `issue-agent` mod in obrunogonzaga/herdr-mods (MIT, Copyright (c) 2026 Bruno Gonzaga):
 // Linear issues instead of GitHub ones, the base branch from git instead of gh, a repository line
@@ -209,6 +209,8 @@ export default class LinearAgent extends View {
         const folder = await createWorktree(cwd, on, branch, issue.identifier);
         setShared(LAST_CHOICE, { agent: agent.key, model, effort, subagents });
         run("space.new", { folder, machine: on, tab: issue.identifier, argv, task: taskFor(issue, branch, { subagents }) });
+        // The Linear panel behind this dialog goes too; Cancel returns to it.
+        if (props().panel) closeOverlay(props().panel);
         closeOverlay(props().overlay);
       } catch (e) { this.error = String(e.message ?? e); }
       finally { this.busy = false; cx.notify(); }

@@ -21,6 +21,11 @@ hl.monitor({
   sdr_max_luminance = 80,
 })
 
+hl.workspace_rule({ workspace = "1", monitor = "desc:Samsung Electric Company Odyssey G80SD H1AK500000", default = true, persistent = true })
+hl.workspace_rule({ workspace = "2", monitor = "desc:Samsung Electric Company Odyssey G80SD H1AK500000" })
+hl.workspace_rule({ workspace = "3", monitor = "desc:Samsung Electric Company Odyssey G80SD H1AK500000" })
+hl.workspace_rule({ workspace = "4", monitor = "desc:Samsung Electric Company Odyssey G80SD H1AK500000" })
+hl.workspace_rule({ workspace = "5", monitor = "desc:Samsung Electric Company Odyssey G80SD H1AK500000" })
 hl.workspace_rule({ workspace = "6", monitor = "desc:China Star Optoelectronics Technology Co. Ltd MND508ZB1-1", default = true, persistent = true })
 hl.workspace_rule({ workspace = "7", monitor = "desc:China Star Optoelectronics Technology Co. Ltd MND508ZB1-1" })
 hl.workspace_rule({ workspace = "8", monitor = "desc:China Star Optoelectronics Technology Co. Ltd MND508ZB1-1" })

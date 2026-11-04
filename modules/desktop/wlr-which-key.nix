@@ -35,9 +35,6 @@
               - key: "c"
                 desc: Calendar
                 cmd: noctalia msg panel-toggle control-center calendar
-              - key: "h"
-                desc: Home Assistant
-                cmd: noctalia msg panel-toggle pozzoo/hassio:entity_manager
               - key: "n"
                 desc: Network
                 cmd: noctalia msg panel-toggle control-center network

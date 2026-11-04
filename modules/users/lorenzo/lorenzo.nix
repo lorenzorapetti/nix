@@ -1,5 +1,6 @@
 {den, ...}: let
-  sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ0iBia+xeEjiuMt8QPQ4g03TVOt66zG69R6oFal6o3M";
+  # Authentication subkey of the GPG key on the YubiKey (gpg --export-ssh-key).
+  sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILROQ7svsJV5adPb1j6VQDhfR47HNPlU92As6wRmzr0v";
 in {
   den.aspects.lorenzo = {
     includes = [
@@ -35,15 +36,8 @@ in {
     };
 
     nixos = {
-      sops.secrets = {
-        lorenzo_password = {
-          neededForUsers = true;
-        };
-        lorenzo_ssh_key = {
-          owner = "lorenzo";
-          mode = "0600";
-          path = "/home/lorenzo/.ssh/id_ed25519";
-        };
+      sops.secrets.lorenzo_password = {
+        neededForUsers = true;
       };
 
       users.users.root.openssh.authorizedKeys.keys = [
@@ -51,16 +45,9 @@ in {
       ];
     };
 
-    homeManager = {config, ...}: {
+    homeManager = {
       home.file.".face.icon".source = ./.face.icon;
       home.file."profile.png".source = ./.face.icon;
-      home.file.".ssh/id_ed25519.pub".text = sshKey;
-
-      # Read by git through gpg.ssh.allowedSignersFile to verify commit signatures.
-      xdg.configFile."git/allowed_signers".text = "lorenzo.rapetti.94@gmail.com ${sshKey}\n";
-
-      home.file.".ssh/config".source =
-        config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/dotfiles/ssh/config";
 
       programs = {
         git = {
@@ -73,12 +60,6 @@ in {
             "**/.claude/settings.local.json"
           ];
 
-          signing = {
-            key = sshKey;
-            format = "ssh";
-            signByDefault = true;
-          };
-
           settings = {
             core = {
               autocrlf = "input";
@@ -86,17 +67,12 @@ in {
 
             user = {
               name = "Lorenzo Rapetti";
-              email = "lorenzo.rapetti.94@gmail.com";
+              email = "me@lorenzorapetti.com";
             };
 
             init.defaultBranch = "main";
 
-            gpg.ssh.allowedSignersFile = "~/.config/git/allowed_signers";
-
-            commit = {
-              verbose = true;
-              gpgsign = true;
-            };
+            commit.verbose = true;
 
             push = {
               autoSetupRemote = true;

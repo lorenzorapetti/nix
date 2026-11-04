@@ -26,6 +26,7 @@
       development
       development.embedded
       docker
+      security
     ];
 
     nixos = {

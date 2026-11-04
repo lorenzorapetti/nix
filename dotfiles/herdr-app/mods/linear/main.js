@@ -116,7 +116,7 @@ export default class Linear extends View {
     }
     const { cwd, on } = location(), mapped = this.config?.repos?.[issue.team];
     openOverlay({ mod: "linear-agent", kind: "dialog", width: 480, height: 660,
-      props: { issue, cwd: mapped ?? cwd, on: mapped ? null : on, mapped: Boolean(mapped) } });
+      props: { issue, cwd: mapped ?? cwd, on: mapped ? null : on, mapped: Boolean(mapped), panel: props()?.overlay } });
   }
 
   visible() {

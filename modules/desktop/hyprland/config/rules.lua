@@ -207,7 +207,6 @@ hl.window_rule({
 
 hl.workspace_rule({
 	workspace = "special:tasks",
-	on_created_empty = "runapp ticktick",
 	layout = "monocle",
 	gaps_out = {
 		left = 80,
@@ -216,6 +215,12 @@ hl.workspace_rule({
 		bottom = 60,
 	},
 })
+
+hl.on("workspace.created", function(workspace)
+	if workspace.addressable_name == "special:tasks" and workspace.is_empty then
+		hl.exec_cmd("runapp ticktick")
+	end
+end)
 
 hl.workspace_rule({
 	workspace = "special:magic",
