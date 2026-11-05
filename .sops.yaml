@@ -1,5 +1,13 @@
 creation_rules:
   - path_regex: ^modules/secrets/(secrets\.yaml|atticd\.env|secrets\.fish)$
     key_groups:
-      - age:
+      - pgp:
+          # GPG key on the YubiKey, used to edit secrets.
+          - CFACE1C58F406FD74713AB0BF1F680022C252805
+        age:
+          # SSH host keys, used by sops-nix to decrypt at activation.
+          - age1m2dkp6t0qjqwfuzwwsft0hustfsgk45k5levvkscxy3262xe2ctqtqevdu # hades
+          - age1aesdkckd8cmk6v3pcnprufc7ygyx55pcu83dax47x7s68azklpzq4ge7ad # zagreus
+          - age1gffnvh9fu9sh3uudem8ynlkzzcjhwtnxarvz4pcyv6ca7grp4c2q57f246 # nyx
+          # Old shared key: remove once every host has switched.
           - age1dkx5fryjw78lpvu4fkk59k4ljl24a5cnsd5nj5sefh05p3xn9anszpqxuq

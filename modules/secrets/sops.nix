@@ -9,14 +9,8 @@
         sops
       ];
 
-      environment.sessionVariables = {
-        SOPS_AGE_KEY_FILE = "/var/lib/sops-nix/keys.txt";
-      };
-
-      sops = {
-        defaultSopsFile = ./secrets.yaml;
-        age.keyFile = "/var/lib/sops-nix/keys.txt";
-      };
+      # Decrypts with the SSH host key, which is sops-nix's default.
+      sops.defaultSopsFile = ./secrets.yaml;
     };
   };
 }
