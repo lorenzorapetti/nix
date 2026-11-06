@@ -907,11 +907,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1791641513,
-        "narHash": "sha256-PvbmRXJ28/n1SfpJ3Zm+TmGeb09vaxsbha/+hX8yucg=",
+        "lastModified": 1793898192,
+        "narHash": "sha256-yJRmJCIFg6+4FjBSay2enS6rgeKAcZHarBVh+mtrzMM=",
         "owner": "lorenzorapetti",
         "repo": "syzygy",
-        "rev": "659b891394eb4d3c2fc43231c6f5349693cffe0f",
+        "rev": "a44182d0820d843c85f7a67cff34697743a698a7",
         "type": "github"
       },
       "original": {

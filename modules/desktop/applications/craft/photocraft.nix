@@ -7,17 +7,17 @@
   }: {
     packages = import ../../../_lib/appimage.nix {inherit pkgs lib system;} rec {
       pname = "photocraft";
-      version = "0.18.0";
+      version = "0.20.2";
       appId = "ai.storyteller.photocraft";
 
       sources = {
         x86_64-linux = {
           url = "https://github.com/storytold/photocraft/releases/download/v${version}/photocraft-${version}-linux-x86_64.AppImage";
-          hash = "sha256-gwdXrK6Htd6iDyUgA5LeEYoUOjXcG1IEGjUmEgJn5oQ=";
+          hash = "sha256-vhjRdaCmJ4wwEkJBeTu3ezV++WBG2B8dgYnkksFLwK4=";
         };
         aarch64-linux = {
           url = "https://github.com/storytold/photocraft/releases/download/v${version}/photocraft-${version}-linux-aarch64.AppImage";
-          hash = "sha256-zjACu4xea3g6xqLZwc0DPgj7mtXn11zT2k0Mm+29xf8=";
+          hash = "sha256-jymLOaZ9j+UZqZqnUtoBeGLI40bzoTUgVHj9XbW9cDo=";
         };
       };
 

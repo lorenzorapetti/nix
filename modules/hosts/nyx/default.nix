@@ -21,7 +21,11 @@
         (den.batteries.wake-on-lan "enp2s0")
       ];
 
-    nixos = {config, ...}: {
+    nixos = {
+      config,
+      lib,
+      ...
+    }: {
       hardware.facter.reportPath = ./facter.json;
 
       sops.secrets.nyx_tailscale_key = {};
@@ -31,6 +35,8 @@
         settings = {
           max-jobs = 2;
           cores = 2;
+          # Deploys log in as root, and a trusted user can get root without sudo.
+          trusted-users = lib.mkForce ["root"];
         };
 
         daemonCPUSchedPolicy = "batch";

@@ -59,8 +59,7 @@ in {
         fi
         cd repo
         git fetch origin main
-        git checkout -B main origin/main
-        git reset --hard origin/main
+        git checkout --force -B main origin/main
         git clean -fdx
 
         nix flake update

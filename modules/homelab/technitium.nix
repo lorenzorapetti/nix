@@ -24,6 +24,7 @@
     };
 
     firewall = {
+      ports.tcp = [53];
       ports.udp = [53];
     };
   };

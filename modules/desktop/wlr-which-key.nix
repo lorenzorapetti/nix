@@ -62,6 +62,9 @@
               - key: "s"
                 desc: Slack
                 cmd: vicinae vicinae://launch/applications/slack
+              - key: "z"
+                desc: Zoom
+                cmd: vicinae vicinae://launch/applications/Zoom
               - key: "w"
                 desc: Microsoft Teams
                 cmd: vicinae vicinae://launch/applications/teams-for-linux

@@ -26,7 +26,7 @@ hl.layer_rule({
 hl.window_rule({
 	name = "no-screenshare",
 	match = {
-		class = "1password",
+		class = "com.onepassword.OnePassword",
 	},
 	no_screen_share = true,
 })
@@ -58,7 +58,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "special-apps",
 	match = {
-		class = "(org.gnome.Nautilus|1password)",
+		class = "(org.gnome.Nautilus|com.onepassword.OnePassword)",
 	},
 	workspace = "special:magic",
 })
@@ -87,6 +87,18 @@ hl.window_rule({
 	name = "quick-terminal",
 	match = {
 		class = "(com.ghostty.quick_terminal|quick_terminal|quick-terminal)",
+	},
+	float = true,
+	size = {
+		"monitor_w*0.9",
+		"monitor_h*0.8",
+	},
+})
+
+hl.window_rule({
+	name = "1password",
+	match = {
+		class = "com.onepassword.OnePassword",
 	},
 	float = true,
 	size = {
@@ -167,7 +179,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "work-chat-apps",
 	match = {
-		class = "(slack|teams-for-linux)",
+		class = "(slack|teams-for-linux|zoom)",
 	},
 	workspace = 5,
 })

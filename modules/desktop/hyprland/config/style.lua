@@ -17,6 +17,11 @@ hl.config({
 		no_donation_nag = true,
 	},
 
+	debug = {
+		disable_logs = false,
+		enable_stdout_logs = true,
+	},
+
 	dwindle = {
 		preserve_split = true,
 	},
