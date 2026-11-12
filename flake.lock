@@ -218,6 +218,24 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_7"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "gaze": {
       "inputs": {
         "nixpkgs": [
@@ -721,6 +739,7 @@
         "syzygy": "syzygy",
         "vicinae": "vicinae",
         "vicinae-extensions": "vicinae-extensions",
+        "voxtype": "voxtype",
         "wallpapers": "wallpapers",
         "zen-browser": "zen-browser"
       }
@@ -898,6 +917,21 @@
         "type": "github"
       }
     },
+    "systems_7": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "syzygy": {
       "inputs": {
         "nixpkgs": [
@@ -1025,6 +1059,27 @@
       "original": {
         "owner": "vicinaehq",
         "repo": "vicinae",
+        "type": "github"
+      }
+    },
+    "voxtype": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794135046,
+        "narHash": "sha256-9+8NohNJaQIXPZk+GuaV5SrBjtGKIRpPfYOBIHwhTQg=",
+        "owner": "peteonrails",
+        "repo": "voxtype",
+        "rev": "29c84e05784580faa966e7b2137fca515bbd771e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "peteonrails",
+        "repo": "voxtype",
         "type": "github"
       }
     },

@@ -82,16 +82,22 @@ in {
           exit 1
         fi
 
-        for h in $hosts; do
-          attic push local:main "../result-$h"
-        done
-
+        # Commit before pushing to attic so a cache hiccup can't hold back the
+        # flake update once every host is known to build.
         if git diff --quiet flake.lock; then
           echo "flake.lock unchanged, nothing to commit"
         else
           git commit -m "Update flake" flake.lock
           git push origin main
         fi
+
+        # One push for all hosts so shared paths are uploaded once, with few
+        # parallel uploads so the throttled atticd doesn't time out its DB pool.
+        results=()
+        for h in $hosts; do
+          results+=("../result-$h")
+        done
+        attic push --jobs 2 local:main "''${results[@]}"
       '';
     };
 

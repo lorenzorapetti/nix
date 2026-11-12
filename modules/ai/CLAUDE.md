@@ -1,5 +1,9 @@
 # Global instructions
 
+## Environment
+
+- If an MCP server is unavailable, say so immediately and tell me to run `/mcp` to reconnect. Don't guess.
+
 ## devenv projects
 
 If the repo has a `devenv.nix` at its root, its tooling comes from devenv, so run
@@ -30,3 +34,9 @@ through nixpkgs ephemerally:
 
 Name the exact package and command in the question, and wait for approval before
 running it. If the user declines, fall back to tools that are already available.
+Check with `command -v <cmd>` first. A `<cmd> 2>/dev/null || <fallback>` chain
+also counts as working around a missing command.
+
+## Editing files
+
+- Never use perl, sed or other regex one-liners to edit source files. Use the Edit tool for every change, including multi-file renames, and re-Read a file after rustfmt has run before editing it again.

@@ -106,6 +106,11 @@
 
     llm-agents.url = "github:numtide/llm-agents.nix";
 
+    voxtype = {
+      url = "github:peteonrails/voxtype";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     herdr-nix = {
       url = "github:lorenzorapetti/herdr-nix";
       inputs = {

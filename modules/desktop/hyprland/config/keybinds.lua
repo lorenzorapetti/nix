@@ -100,6 +100,7 @@ bindm("SPACE", exec("vicinae toggle"), "Toggle Launcher")
 bindm("SHIFT + SPACE", run_app(programs._1password .. " --quick-access"), "Toggle 1Password")
 bindm("Y", exec("vicinae vicinae://launch/clipboard/history"), "Toggle Clipboard History")
 bindm("O", exec(programs.wlr_which_key), "Which Key")
+bindm("I", exec("voxtype record toggle"), "Toggle Voice Dictation")
 
 bindm("ESCAPE", noctalia("session lock"), "Lock Screen")
 bindm("CAPS_LOCK", noctalia("session lock"), "Lock Screen")

@@ -1,7 +1,7 @@
 {
   "name": "single",
   "created_at": "2026-08-23T23:31:40.424429022Z",
-  "updated_at": "2026-08-31T17:59:14.831068846Z",
+  "updated_at": "2026-11-10T09:37:33.306260907Z",
   "outputs": [
     {
       "key": "china star optoelectronics technology co., ltd|mnd508zb1-1",
@@ -25,7 +25,9 @@
       "sdr_saturation": 1,
       "sdr_min_luminance": 0.2,
       "sdr_max_luminance": 80,
-      "min_luminance": 0
+      "min_luminance": 0,
+      "supports_wide_color": -1,
+      "supports_hdr": -1
     }
   ],
   "workspaces": {

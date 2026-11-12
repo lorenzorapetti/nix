@@ -18,7 +18,7 @@
   in
     lib.optionalAttrs (builtins.elem system platforms) {
       packages.herdr-app = let
-        version = "0.1.13";
+        version = "0.1.14";
         ghosttyRev = "291fd050b9e9c293c8adb6a140742649b7e42d3a";
 
         runtimeDependencies = with pkgs; [
@@ -54,10 +54,10 @@
             owner = "herdrdev";
             repo = "herdr-app";
             rev = "v${version}";
-            hash = "sha256-c6qoT2cW6+F9mOwofG0gYiIUA0NDziq/VgFx+r7h540=";
+            hash = "sha256-gwZn1j2S187J47G2MFaUzyusBmHPmUl94rTLFnMAfIw=";
           };
 
-          cargoHash = "sha256-7bz9iEMvf2o2I0SsnXaZ0135PlMm73DrJ9ZhSqAjcKY=";
+          cargoHash = "sha256-X+Bh3iagth4glCWo3/8979zTWfhacGXOotpF4ruAeYg=";
 
           nativeBuildInputs = with pkgs; [
             pkg-config

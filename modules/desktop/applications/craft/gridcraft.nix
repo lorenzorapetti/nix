@@ -7,17 +7,17 @@
   }: {
     packages = import ../../../_lib/appimage.nix {inherit pkgs lib system;} rec {
       pname = "gridcraft";
-      version = "0.16.1";
+      version = "0.18.0";
       appId = "ai.storyteller.gridcraft";
 
       sources = {
         x86_64-linux = {
           url = "https://github.com/storytold/gridcraft/releases/download/v${version}/gridcraft-${version}-linux-x86_64.AppImage";
-          hash = "sha256-l7atP75HHS3pTeqqfbMSYko53WPl7h679rOFY9Yqrlc=";
+          hash = "sha256-/eL5mCrHaQJlIctvcQ7Ja02RmxY0rWixWyub9iRnAgw=";
         };
         aarch64-linux = {
           url = "https://github.com/storytold/gridcraft/releases/download/v${version}/gridcraft-${version}-linux-aarch64.AppImage";
-          hash = "sha256-OyQci6YIwDVSeAWAIFLtADUDrRFQFmjLfCgkrWGdN6I=";
+          hash = "sha256-/nfck4OydamwS+LgqBgJnv7OoEWPNyzVcVM9bOiNfVU=";
         };
       };
 

@@ -34,10 +34,12 @@
       self',
       config,
       osConfig,
+      pkgs,
       ...
     }: {
       home.packages = with inputs'.llm-agents.packages; [
-        orca
+        # API client; its MCP server is wired into both claudes in modules/ai.
+        pkgs.yaak
         ccstatusline
         self'.packages.herdr-app
         self'.packages.herdr-core

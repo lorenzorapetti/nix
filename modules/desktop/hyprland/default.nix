@@ -44,6 +44,12 @@
         # SDL2 versions break with it, and modern SDL picks Wayland on its own.
 
         UWSM_MANAGED = "1";
+
+        # Hyprland 0.57 gains realtime scheduling via rtkit, which imposes a
+        # 200ms RLIMIT_RTTIME; a long GPU/kernel stall then SIGKILLs the
+        # compositor and drops into safe mode.
+        # See https://github.com/hyprwm/Hyprland/discussions/16801
+        HYPRLAND_NO_RT = "1";
       };
 
       xdg.configFile."uwsm/env".source = "${config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh";
