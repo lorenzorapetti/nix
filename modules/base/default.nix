@@ -4,6 +4,7 @@
       hardware.ssd
       boot.limine
       networking.networkmanager
+      sops
     ];
   };
 }

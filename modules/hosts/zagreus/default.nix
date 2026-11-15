@@ -5,6 +5,7 @@
 
   den.aspects.zagreus = {
     includes = with den.aspects; [
+      lorenzo.host-config
       base
       boot.plymouth
       hardware.cpu-amd

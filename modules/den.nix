@@ -99,4 +99,9 @@
   den.schema = {
     user.classes = lib.mkDefault ["homeManager" "user"];
   };
+
+  # Adopt den 0.20's behaviour now instead of the transition defaults: a
+  # user's own `nixos` content stays with the user (den#694), so hosts include
+  # what they need from their users explicitly.
+  den.migrations.user-host-content.acknowledged = true;
 }

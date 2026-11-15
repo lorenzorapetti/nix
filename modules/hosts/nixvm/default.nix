@@ -3,6 +3,7 @@
 
   den.aspects.nixvm = {
     includes = with den.aspects; [
+      lorenzo.host-config
       base
       boot.kernel-latest
       theming.catppuccin

@@ -1,20 +1,14 @@
 {
   den.aspects.shell = {
-    # `host` is unused but tells den to apply this in host+user context only.
+    # `host` and `user` are unused but tell den to apply this in host+user
+    # context only.
     # deadnix: skip
     host,
+    # deadnix: skip
     user,
     ...
   }: {
-    nixos = {
-      sops.secrets.secrets-fish = {
-        sopsFile = ../secrets/secrets.fish;
-        owner = user.name;
-        format = "binary";
-        key = "";
-      };
-    };
-
+    # Reads `secrets-fish`, which the host declares (den.aspects.lorenzo.host-config).
     homeManager = {
       osConfig,
       pkgs,

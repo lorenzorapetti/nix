@@ -7,6 +7,7 @@
 
   den.aspects.hades = {
     includes = with den.aspects; [
+      lorenzo.host-config
       base
       boot.plymouth
       hardware.btrfs

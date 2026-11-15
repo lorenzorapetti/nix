@@ -1,6 +1,9 @@
-{den, ...}: let
-  # Authentication subkey of the GPG key on the YubiKey (gpg --export-ssh-key).
-  sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILROQ7svsJV5adPb1j6VQDhfR47HNPlU92As6wRmzr0v";
+{
+  config,
+  den,
+  ...
+}: let
+  sshKey = config.sshKeys.yubikey;
 in {
   den.aspects.lorenzo = {
     includes = [
@@ -22,7 +25,6 @@ in {
 
       den.aspects.shell
       den.aspects.ai
-      den.aspects.sops
     ];
 
     # user can provide NixOS configurations
@@ -35,14 +37,19 @@ in {
       username = "lorenzo";
     };
 
-    nixos = {
-      sops.secrets.lorenzo_password = {
-        neededForUsers = true;
-      };
+    # Host-side config every host with lorenzo needs: since den 0.20 a user's
+    # own `nixos` content stays with the user (den#694), so each such host
+    # includes this explicitly.
+    host-config.nixos.sops.secrets = {
+      lorenzo_password.neededForUsers = true;
 
-      users.users.root.openssh.authorizedKeys.keys = [
-        sshKey
-      ];
+      # Fish secrets, read by den.aspects.shell.
+      secrets-fish = {
+        sopsFile = ../../secrets/secrets.fish;
+        owner = "lorenzo";
+        format = "binary";
+        key = "";
+      };
     };
 
     homeManager = {
