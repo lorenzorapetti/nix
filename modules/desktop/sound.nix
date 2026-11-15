@@ -5,6 +5,16 @@
       inputs',
       ...
     }: {
+      nixpkgs.overlays = [
+        (_final: prev: {
+          syzygy = inputs'.syzygy.packages.syzygy.overrideAttrs (old: {
+            # nixpkgs' cargo hook exports AWS_LC_SYS_USE_SYSTEM=1, so aws-lc-sys
+            # needs a system aws-lc instead of building its vendored copy.
+            buildInputs = (old.buildInputs or []) ++ [prev.aws-lc];
+          });
+        })
+      ];
+
       services.pulseaudio.enable = false;
       security.rtkit.enable = true;
       services.pipewire = {
@@ -99,15 +109,12 @@
         };
       };
 
-      environment.systemPackages = with pkgs;
-        [
-          wiremix
-          pwvucontrol
-          easyeffects
-        ]
-        ++ [
-          inputs'.syzygy.packages.syzygy
-        ];
+      environment.systemPackages = with pkgs; [
+        wiremix
+        pwvucontrol
+        easyeffects
+        syzygy
+      ];
     };
 
     homeManager = {

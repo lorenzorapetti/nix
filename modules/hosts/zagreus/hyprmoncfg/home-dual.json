@@ -1,33 +1,8 @@
 {
   "name": "home-dual",
   "created_at": "2026-07-19T18:16:54.34538402Z",
-  "updated_at": "2026-07-19T18:32:01.137213459Z",
+  "updated_at": "2026-11-15T15:55:12.306374876Z",
   "outputs": [
-    {
-      "key": "audio processing technology ltd|hdmi|0x00000055",
-      "match_key": "audio processing technology ltd|hdmi|0x00000055",
-      "name": "HDMI-A-1",
-      "description": "Audio Processing Technology  Ltd HDMI 0x00000055",
-      "make": "Audio Processing Technology  Ltd",
-      "model": "HDMI",
-      "serial": "0x00000055",
-      "enabled": true,
-      "mode": "2880x1800@100.00Hz",
-      "width": 2880,
-      "height": 1800,
-      "refresh": 100,
-      "x": 540,
-      "y": 1728,
-      "scale": 1.5,
-      "transform": 0,
-      "bitdepth": 8,
-      "cm": "srgb",
-      "sdr_brightness": 1,
-      "sdr_saturation": 1,
-      "sdr_min_luminance": 0.2,
-      "sdr_max_luminance": 80,
-      "min_luminance": 0
-    },
     {
       "key": "samsung electric company|odyssey g80sd|h1ak500000",
       "match_key": "samsung electric company|odyssey g80sd|h1ak500000",
@@ -52,17 +27,55 @@
       "sdr_saturation": 1,
       "sdr_min_luminance": 0.2,
       "sdr_max_luminance": 80,
-      "min_luminance": 0
+      "min_luminance": 0,
+      "supports_wide_color": -1,
+      "supports_hdr": -1
     }
   ],
   "workspaces": {
     "enabled": true,
-    "strategy": "sequential",
-    "max_workspaces": 10,
-    "group_size": 5,
+    "strategy": "manual",
+    "max_workspaces": 5,
+    "group_size": 3,
     "monitor_order": [
-      "samsung electric company|odyssey g80sd|h1ak500000",
-      "audio processing technology ltd|hdmi|0x00000055"
+      "samsung electric company|odyssey g80sd|h1ak500000"
+    ],
+    "rules": [
+      {
+        "workspace": "1",
+        "output_key": "samsung electric company|odyssey g80sd|h1ak500000",
+        "output_name": "DP-1",
+        "default": true,
+        "persistent": true
+      },
+      {
+        "workspace": "2",
+        "output_key": "samsung electric company|odyssey g80sd|h1ak500000",
+        "output_name": "DP-1"
+      },
+      {
+        "workspace": "3",
+        "output_key": "samsung electric company|odyssey g80sd|h1ak500000",
+        "output_name": "DP-1"
+      },
+      {
+        "workspace": "4",
+        "output_key": "samsung electric company|odyssey g80sd|h1ak500000",
+        "output_name": "DP-1"
+      },
+      {
+        "workspace": "5",
+        "output_key": "samsung electric company|odyssey g80sd|h1ak500000",
+        "output_name": "DP-1"
+      },
+      {
+        "workspace": "special:magic",
+        "output_key": ""
+      },
+      {
+        "workspace": "special:tasks",
+        "output_key": ""
+      }
     ]
   },
   "exec": ""

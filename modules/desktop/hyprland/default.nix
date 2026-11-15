@@ -29,7 +29,6 @@
       pkgs,
       config,
       osConfig,
-      inputs',
       ...
     }: {
       home.sessionVariables = {
@@ -95,7 +94,7 @@
                 quick_terminal = "${lib.getExe osConfig.defaultTerminal.quickTerminal}",
                 runapp = "${lib.getExe pkgs.runapp}",
                 wlr_which_key = "${lib.getExe pkgs.wlr-which-key}",
-                syzygy = "${lib.getExe inputs'.syzygy.packages.default}",
+                syzygy = "${lib.getExe pkgs.syzygy}",
               }
             '';
           };

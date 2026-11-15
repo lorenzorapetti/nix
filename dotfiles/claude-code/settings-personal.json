@@ -11,6 +11,7 @@
   "modelSettings": {
     "claude-opus-5-5": {}
   },
+  "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
-  "inputNeededNotifEnabled": true
+  "theme": "dark"
 }

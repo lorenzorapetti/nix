@@ -68,7 +68,8 @@
             copyDesktopItems
           ];
 
-          buildInputs = runtimeDependencies;
+          # nixpkgs' cargo hook makes zstd-sys link a system libzstd.
+          buildInputs = runtimeDependencies ++ [pkgs.zstd];
           LIBCLANG_PATH = "${lib.getLib pkgs.libclang}/lib";
 
           # Cargo invokes Zig through ghostty-sys, not through Nix's Zig phases.
