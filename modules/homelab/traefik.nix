@@ -78,11 +78,15 @@
 
         dynamicConfigOptions.http = {
           routers =
-            lib.mapAttrs (name: route: {
-              entryPoints = ["web" "websecure"];
-              inherit (route) rule;
-              service = name;
-            })
+            lib.mapAttrs (name: route:
+              {
+                entryPoints = ["web" "websecure"];
+                inherit (route) rule;
+                service = name;
+              }
+              // lib.optionalAttrs (route ? middlewares) {
+                inherit (route) middlewares;
+              })
             routes
             // {
               traefik = {
@@ -93,8 +97,8 @@
               };
             };
 
-          # The dashboard has no auth of its own; only serve it to the LAN and
-          # the tailnet.
+          # Only serve to the LAN and the tailnet. Used by the dashboard (no
+          # auth of its own) and routes that set `middlewares = ["local-only"]`.
           middlewares.local-only.ipAllowList.sourceRange = [
             "127.0.0.1/32"
             "10.0.0.0/16"
@@ -102,10 +106,20 @@
           ];
 
           services =
-            lib.mapAttrs (_name: route: {
-              loadBalancer.servers = [{inherit (route) url;}];
+            lib.mapAttrs (name: route: {
+              loadBalancer =
+                {servers = [{inherit (route) url;}];}
+                // lib.optionalAttrs (route ? serverName) {
+                  serversTransport = name;
+                };
             })
             routes;
+
+          # HTTPS backends addressed by IP whose certificate is issued for a
+          # hostname: verify the certificate against `serverName` instead.
+          serversTransports =
+            lib.mapAttrs (_name: route: {inherit (route) serverName;})
+            (lib.filterAttrs (_name: route: route ? serverName) routes);
         };
       };
     };
@@ -128,6 +142,15 @@
       jellyfin = {
         rule = "Host(`media.lorenzorapetti.com`)";
         url = "http://10.0.1.10:8096";
+      };
+
+      hecate = {
+        rule = "Host(`hecate.pve.lorenzolab.com`)";
+        url = "https://10.0.10.1:8006";
+        # Proxmox has a Let's Encrypt certificate for this name (ACME DNS
+        # challenge), while the name itself resolves to Traefik.
+        serverName = "hecate.pve.lorenzolab.com";
+        middlewares = ["local-only"];
       };
     };
   };
