@@ -7,17 +7,17 @@
   }: {
     packages = import ../../../_lib/appimage.nix {inherit pkgs lib system;} rec {
       pname = "vectorcraft";
-      version = "0.23.0";
+      version = "0.24.1";
       appId = "ai.storyteller.vectorcraft";
 
       sources = {
         x86_64-linux = {
           url = "https://github.com/storytold/vectorcraft/releases/download/v${version}/vectorcraft-${version}-linux-x86_64.AppImage";
-          hash = "sha256-ihMPRI+o3/CiedzvylYin1cCyzQRIyY0NtWHxFviqOQ=";
+          hash = "sha256-vc5+gumB+fTtC/JfpvJeb+T6sn6JZB5vlIiZ4BsTpRQ=";
         };
         aarch64-linux = {
           url = "https://github.com/storytold/vectorcraft/releases/download/v${version}/vectorcraft-${version}-linux-aarch64.AppImage";
-          hash = "sha256-KuZWoYf0raoojG6/pv1/pm4A24pR5Xl/F18vL4FwHMc=";
+          hash = "sha256-SbccWfjZmiiO6p6db1Ar3HLEjcizr9VNAEExAtuiWeE=";
         };
       };
 

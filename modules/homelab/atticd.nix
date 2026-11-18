@@ -24,7 +24,11 @@
           # waiting for a pool connection. Peer auth over the socket, no password.
           # The user must be explicit: inside the sandbox (PrivateUsers) sqlx
           # can't resolve its own username and falls back to "anonymous".
-          database.url = "postgresql:///atticd?host=/run/postgresql&user=atticd";
+          # synchronous_commit=off for this connection only: every chunk insert
+          # is its own commit, and waiting on a WAL fsync for each one backs up
+          # the pool until pushes fail with 500s. A crash can lose the last few
+          # cache entries but never corrupts the database.
+          database.url = "postgresql:///atticd?host=/run/postgresql&user=atticd&options=-c%20synchronous_commit%3Doff";
 
           jwt = {};
 

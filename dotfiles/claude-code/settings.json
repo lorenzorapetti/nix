@@ -6,7 +6,8 @@
     "refreshInterval": 10
   },
   "enabledPlugins": {
-    "rust-analyzer-lsp@claude-plugins-official": false
+    "rust-analyzer-lsp@claude-plugins-official": false,
+    "cloudflare@anthropic-plugin-directory": true
   },
   "extraKnownMarketplaces": {
     "mattpocock": {
@@ -18,6 +19,10 @@
     }
   },
   "autoMode": {
+    "soft_deny": [
+      "$defaults",
+      "Bash(just db-reset:*) in /home/lorenzo/code/work/oxidus — destructive dev-database reset, CONTRIBUTING.md notes it asks first but treat as soft block"
+    ],
     "environment": [
       "### Org-wide",
       "**Organization**: None configured",
@@ -44,10 +49,6 @@
       "**Trusted repo**: /home/lorenzo/code/work/oxidus — no git remotes currently configured; treat as local-only until a remote is added",
       "**Org-specific CLIs**: devenv (project dev-environment wrapper; per ~/.claude/CLAUDE.md, commands should run inside `devenv shell --` when `devenv.nix` is present)",
       "Routine under crates/ prefix: cargo test, cargo deny check, and other devenv-wrapped build/test commands are routine within this repo's crates/ tree"
-    ],
-    "soft_deny": [
-      "$defaults",
-      "Bash(just db-reset:*) in /home/lorenzo/code/work/oxidus — destructive dev-database reset, CONTRIBUTING.md notes it asks first but treat as soft block"
     ]
   }
 }

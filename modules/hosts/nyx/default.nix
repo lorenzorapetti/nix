@@ -34,6 +34,12 @@
       sops.secrets.nyx_tailscale_key = {};
       services.tailscale.authKeyFile = config.sops.secrets.nyx_tailscale_key.path;
 
+      # Answer mDNS queries for nyx.local (avahi only resolves by default).
+      services.avahi.settings.publish = {
+        disable-publishing = false;
+        publish-addresses = true;
+      };
+
       nix = {
         settings = {
           max-jobs = 2;

@@ -17,7 +17,7 @@
   in
     lib.optionalAttrs (builtins.elem system platforms) {
       packages.herdr-core = let
-        version = "0.1.19";
+        version = "0.1.21";
         ghosttyRev = "1e5cdb865807abc990181efb8ebfa9122955cce2";
 
         ghostty = pkgs.fetchFromGitHub {
@@ -44,10 +44,10 @@
             owner = "herdrdev";
             repo = "herdr-core";
             rev = "v${version}";
-            hash = "sha256-QCLx5BCWfSCr+Lyhh5Q5ew+uwqXqCasmih5oGgCqjo4=";
+            hash = "sha256-qq1fIFxvOOrXK/1Cb8oIolPiWcoS5x+E5o/CRqO6cQc=";
           };
 
-          cargoHash = "sha256-SISkev423++rb6kFkVStJwiCT/Wj34jSywfi4ZzWWNI=";
+          cargoHash = "sha256-KYWc0WORF6BNDhRcihn+tn0UqD1dF2pmR4irdsUcz7E=";
 
           cargoBuildFlags = ["-p" "herdr-core"];
 

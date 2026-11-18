@@ -297,7 +297,8 @@ hl.window_rule({
 	no_shadow = true,
 	persistent_size = true,
 	focus_on_activate = true,
-	immediate = true,
+	-- No `immediate` (tearing): async page flips hang the display on hades'
+	-- xe driver (Panther Lake) -- "flip_done timed out", forced reboot.
 })
 hl.window_rule({
 	name = "game-popups",

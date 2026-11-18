@@ -64,7 +64,9 @@
           trusted-users = ["root" "@wheel"];
           extra-substituters = [
             "https://vicinae.cachix.org"
-            "https://nix-cache.tokidoki.dev/tokidoki"
+            # nix-cachyos-kernel's Hydra cache (moved from nix-cache.tokidoki.dev
+            # after upstream's servers were rebuilt, see xddxdd/nix-cachyos-kernel#110)
+            "https://cache.lantian.pub/lantian"
             "https://nix-community.cachix.org"
             "https://cache.home.lorenzolab.com/main"
             "https://syzygy.cachix.org"
@@ -73,7 +75,7 @@
           ];
           extra-trusted-public-keys = [
             "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
-            "tokidoki:MD4VWt3kK8Fmz3jkiGoNRJIW31/QAm7l1Dcgz2Xa4hk="
+            "lantian:WVGO7vsRMSEN+h7Lp7kv6SAmrkEXgUGbbXm7jMDjBuQ="
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
             "main:DZUPR5GT1nirSvjEDm28gYrN4Z87FtZljlfokWQsgYo="
             "syzygy.cachix.org-1:Qeub+ffjjtefJPLKq81fQznQ6eTVzXQ0U/plMiEPp4Q="
