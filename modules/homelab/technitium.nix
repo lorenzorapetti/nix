@@ -21,6 +21,13 @@
         group = "technitium";
       };
       users.groups.technitium = {};
+
+      # resolved's stub listener holds TCP 127.0.0.53:53/127.0.0.54:53, so
+      # Technitium's 0.0.0.0:53 TCP bind fails and IPv4 TCP DNS is refused
+      # (UDP tolerates the overlap). Drop the stub and resolve the host's own
+      # lookups through Technitium.
+      services.resolved.settings.Resolve.DNSStubListener = false;
+      networking.nameservers = ["127.0.0.1"];
     };
 
     firewall = {
