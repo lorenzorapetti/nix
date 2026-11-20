@@ -37,6 +37,15 @@ running it. If the user declines, fall back to tools that are already available.
 Check with `command -v <cmd>` first. A `<cmd> 2>/dev/null || <fallback>` chain
 also counts as working around a missing command.
 
+## Command output
+
+Command output here is condensed by rtk to save tokens, keeping every signal and
+dropping costly noise. Treat it as the complete result: run commands
+normally, and batch related commands into one call to avoid extra turns.
+Truncated results state their recovery path in their own output. Re-run a
+command as `rtk bypass <cmd>` only when its result is unusable: empty when
+output was clearly expected, contradicting its exit code, or garbled.
+
 ## Editing files
 
 - Never use perl, sed or other regex one-liners to edit source files. Use the Edit tool for every change, including multi-file renames, and re-Read a file after rustfmt has run before editing it again.

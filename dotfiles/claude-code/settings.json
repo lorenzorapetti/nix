@@ -5,6 +5,19 @@
     "padding": 0,
     "refreshInterval": 10
   },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      }
+    ]
+  },
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": false,
     "cloudflare@anthropic-plugin-directory": true

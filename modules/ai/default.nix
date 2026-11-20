@@ -1,6 +1,7 @@
 {
   den.aspects.ai = {
     homeManager = {
+      inputs',
       config,
       pkgs,
       lib,
@@ -77,6 +78,9 @@
 
       # A real executable, not just an alias: herdr-app starts it from its + menu (programs.json).
       home.packages = [
+        # Token-saving proxy for Bash tool output; both claudes' settings.json
+        # register its PreToolUse hook (`rtk hook claude`).
+        inputs'.llm-agents.packages.rtk
         (pkgs.writeShellScriptBin "claude-personal" ''
           CLAUDE_CONFIG_DIR=${personalConfigDir} exec claude --mcp-config ${personalMcpConfig} "$@"
         '')

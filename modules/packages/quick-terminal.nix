@@ -8,7 +8,7 @@
     options.defaultTerminal = {
       quickTerminalAppId = lib.mkOption {
         type = lib.types.str;
-        default = "quick-terminal";
+        default = "com.ghostty.quick_terminal";
         description = ''
           app-id/class given to quick-terminal windows. Must stay matched by the
           `quick-terminal` window rule in modules/desktop/hyprland/config/rules.lua.

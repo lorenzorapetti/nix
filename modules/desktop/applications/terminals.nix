@@ -7,19 +7,19 @@
     options.defaultTerminal = {
       package = lib.mkOption {
         type = lib.types.package;
-        default = pkgs.foot;
+        default = pkgs.ghostty;
         description = "Terminal emulator this host launches by default.";
       };
 
       desktopFile = lib.mkOption {
         type = lib.types.str;
-        default = "foot.desktop";
+        default = "com.mitchellh.ghostty.desktop";
         description = "Desktop file ID of `package`, for xdg-terminal-exec.";
       };
 
       appIdFlag = lib.mkOption {
         type = lib.types.str;
-        default = "--app-id";
+        default = "--class";
         description = ''
           Flag `package` uses to override a window's app-id/class.
           `--class` for ghostty, alacritty and kitty.
@@ -28,7 +28,7 @@
 
       execFlag = lib.mkOption {
         type = lib.types.str;
-        default = "";
+        default = "-e";
         description = ''
           Flag separating `package`'s own arguments from the command to run.
           `-e` for ghostty and alacritty, empty for foot and kitty.
@@ -85,7 +85,7 @@
             cursor-style = "block";
             mouse-hide-while-typing = true;
             scrollbar = "never";
-            quit-after-last-window-closed = false;
+            quit-after-last-window-closed = true;
           };
         };
 

@@ -152,6 +152,15 @@
         serverName = "hecate.pve.lorenzolab.com";
         middlewares = ["local-only"];
       };
+
+      persephone = {
+        rule = "Host(`persephone.pve.lorenzolab.com`)";
+        url = "https://10.0.10.2:8006";
+        # Proxmox has a Let's Encrypt certificate for this name (ACME DNS
+        # challenge), while the name itself resolves to Traefik.
+        serverName = "persephone.pve.lorenzolab.com";
+        middlewares = ["local-only"];
+      };
     };
   };
 }
