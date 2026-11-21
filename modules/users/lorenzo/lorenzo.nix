@@ -50,6 +50,9 @@ in {
         format = "binary";
         key = "";
       };
+
+      # Grafana service account token for the grafana MCP server, read by den.aspects.ai.
+      grafana_mcp_token.owner = "lorenzo";
     };
 
     homeManager = {

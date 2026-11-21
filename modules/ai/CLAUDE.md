@@ -21,6 +21,25 @@ and services it provides before reaching for anything else. A command missing
 from the shell but needed by the project belongs in `devenv.nix` — suggest
 adding it there instead of using `nix run`.
 
+## Running a project's services
+
+Some projects run their services (app servers, databases, queues) with devenv,
+some with docker compose, and some ship both. Pick one:
+
+1. If `devenv.nix` defines `processes` or `services` (anything `devenv up`
+   would start), use devenv: `devenv up`.
+2. Otherwise, if the project has a compose file (`compose.yaml`,
+   `docker-compose.yml`, ...), use docker: `docker compose up`. If devenv is
+   there too, still use `devenv shell` for the project's commands (see above).
+
+Always ask before starting, stopping or restarting anything, devenv or docker.
+Say which one you picked and why. Once approved, run it in the background.
+
+Docker here is rootless podman: `docker` is a wrapper around `podman`, and
+`DOCKER_HOST` points at the user's own podman socket. Run `docker` and
+`docker compose` directly, without `sudo`. Containers belong to the user, and
+the images and volumes are separate from any rootful docker.
+
 ## Missing commands
 
 This machine runs NixOS, so most tools aren't installed globally. When a command

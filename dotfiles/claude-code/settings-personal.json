@@ -1,10 +1,4 @@
 {
-  "statusLine": {
-    "type": "command",
-    "command": "ccstatusline",
-    "padding": 0,
-    "refreshInterval": 10
-  },
   "hooks": {
     "PreToolUse": [
       {
@@ -18,13 +12,26 @@
       }
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "ccstatusline",
+    "padding": 0,
+    "refreshInterval": 10
+  },
   "enabledPlugins": {
     "mattpocock-skills@claude-plugins-official": true
   },
   "modelSettings": {
     "claude-opus-5-5": {}
   },
+  "theme": "dark",
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
-  "theme": "dark"
+  "pluginConfigs": {
+    "grafana-mcp@anthropic-plugin-directory": {
+      "options": {
+        "grafana_url": "https://grafana.lorenzolab.com"
+      }
+    }
+  }
 }

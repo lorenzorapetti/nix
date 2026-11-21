@@ -14,7 +14,6 @@
 
         traefik
         technitium
-        glance
         atticd
       ]
       ++ [

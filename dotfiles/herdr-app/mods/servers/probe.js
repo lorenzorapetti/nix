@@ -1,6 +1,6 @@
-// `$docker` in the scripts below: docker itself when its socket is ours, else `sudo -n` with its full
-// path, which a NOPASSWD sudoers rule allows for exactly these commands (modules/desktop/applications/coding.nix).
-// Unquoted where used, so "sudo -n /path/docker" splits into words.
+// `$docker` in the scripts below: docker itself when its socket is ours or there is no rootful socket
+// (podman's `docker` wrapper, rootless), else `sudo -n` with its full path, for machines still on a
+// rootful docker whose sudoers allow it. Unquoted where used, so "sudo -n /path/docker" splits into words.
 export const DOCKER = `docker=$(command -v docker)
 if [ -n "$docker" ] && [ -z "\${DOCKER_HOST:-}" ] && [ -S /var/run/docker.sock ] && [ ! -w /var/run/docker.sock ]; then docker="sudo -n $docker"; fi`;
 

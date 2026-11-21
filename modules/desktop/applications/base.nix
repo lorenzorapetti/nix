@@ -28,7 +28,6 @@ in {
       ];
 
       programs.obs-studio.enable = true;
-      programs.thunderbird.enable = true;
 
       # Ports for KDE Connect
       networking.firewall = rec {

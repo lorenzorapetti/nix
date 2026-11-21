@@ -14,19 +14,6 @@
         mode = "0600";
         content = builtins.toJSON {apiKey = config.sops.placeholder.linear_api_key;};
       };
-
-      # The herdr-app `servers` mod lists, reads and restarts containers through `sudo -n`, since
-      # the user isn't in the docker group (that's root on demand). Only these commands, no prompt.
-      security.sudo.extraRules = [
-        {
-          users = [user.name];
-          runAs = "root";
-          commands = map (command: {
-            command = "/run/current-system/sw/bin/docker ${command}";
-            options = ["NOPASSWD"];
-          }) ["ps -a --format *" "logs --tail 300 --timestamps -- *" "restart -- *"];
-        }
-      ];
     };
 
     homeManager = {

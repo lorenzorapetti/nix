@@ -24,7 +24,7 @@
       desktop.coding
       development
       development.embedded
-      docker
+      podman
       security
     ];
 

@@ -11,7 +11,7 @@ Hosts (each under `modules/hosts/<name>/`):
 
 - `hades` — Framework laptop (Intel Core Ultra Series 3), Hyprland desktop.
 - `zagreus` — Beelink SER8 (AMD), Hyprland desktop.
-- `nyx` — homelab server: Traefik, Technitium DNS, Glance, Attic cache.
+- `nyx` — homelab server: Traefik, Technitium DNS, Attic cache.
 - `nixvm` — test VM, Hyprland desktop.
 
 Read these before making structural decisions — don't guess at conventions:

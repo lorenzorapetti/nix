@@ -3,6 +3,7 @@
     homeManager = {
       inputs',
       config,
+      osConfig,
       pkgs,
       lib,
       ...
@@ -24,10 +25,24 @@
         url = "https://plan.lorenzolab.com/api/mcp";
       };
 
+      # Grafana's MCP server, run natively instead of through the grafana-mcp
+      # plugin's `docker run` (the user isn't in the docker group). The token is
+      # read from the sops secret at start, so it never lands in the store.
+      grafanaMcp = pkgs.writeShellScript "grafana-mcp" ''
+        GRAFANA_SERVICE_ACCOUNT_TOKEN="$(cat ${osConfig.sops.secrets.grafana_mcp_token.path})"
+        export GRAFANA_SERVICE_ACCOUNT_TOKEN
+        export GRAFANA_URL=https://grafana.lorenzolab.com
+        exec ${lib.getExe pkgs.mcp-grafana} -t stdio
+      '';
+
       # MCP servers for claude-personal.
       personalMcpConfig = pkgs.writeText "claude-personal-mcp.json" (builtins.toJSON {
         mcpServers = {
           yaak = yaakMcp;
+          grafana = {
+            type = "stdio";
+            command = "${grafanaMcp}";
+          };
           kaneo = {
             type = "http";
             url = "https://board.lorenzolab.com/api/mcp";
