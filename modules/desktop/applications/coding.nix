@@ -42,6 +42,7 @@
             ]);
         }))
         ccstatusline
+        self'.packages.dbdelve
         self'.packages.herdr-app
         self'.packages.herdr-core
       ];
