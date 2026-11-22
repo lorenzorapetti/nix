@@ -18,14 +18,14 @@
     }: let
       esp-config = pkgs.rustPlatform.buildRustPackage rec {
         pname = "esp-config";
-        version = "0.7.0";
+        version = "0.8.0";
 
         src = pkgs.fetchCrate {
           inherit pname version;
-          hash = "sha256-1vEdp6ln0B72xEOcd4Tci9tG3ij62IDm7Kh4HhB37Lc=";
+          hash = "sha256-IKpHZ4ztKINfkfUB4e1ZuQoaH/Le+rz6iEM3TWDElQc=";
         };
 
-        cargoHash = "sha256-BP2AVHNkqNJ/LZtkQS4H5+x2H6YfqWu4cVMeir5Mkqs=";
+        cargoHash = "sha256-q/zp8w4r9uLv16a6+wQgGjdSdOo6YSjfSwIQhYPnntA=";
 
         buildFeatures = ["tui"];
 

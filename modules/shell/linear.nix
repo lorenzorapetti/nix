@@ -10,15 +10,15 @@
     system,
     ...
   }: let
-    version = "3.0.0";
+    version = "3.1.0";
     sources = {
       x86_64-linux = {
         target = "x86_64-unknown-linux-gnu";
-        hash = "sha256-UGSmOn5qi1iTpVDhOMCnujc6rWXUJd3msrZrUKbBAok=";
+        hash = "sha256-v3cSCXzmoB6KN53oNX7KZtV0gFAgHTNrp4e2rTaH8+c=";
       };
       aarch64-linux = {
         target = "aarch64-unknown-linux-gnu";
-        hash = "sha256-9lgBhfOgfFWMZN5EUG165WwTYVx9ITnlzSL/OwOCL80=";
+        hash = "sha256-SwsVtpRk6LamZSkNcCgXZUviEkzx1Y+tfX7VdU+UMdc=";
       };
     };
   in
