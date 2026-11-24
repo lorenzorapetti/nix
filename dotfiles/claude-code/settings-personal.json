@@ -10,6 +10,36 @@
           }
         ]
       }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/agent-memory/hooks/session-start.sh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/agent-memory/hooks/remind.sh"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/agent-memory/hooks/session-end.sh"
+          }
+        ]
+      }
     ]
   },
   "statusLine": {
@@ -24,14 +54,14 @@
   "modelSettings": {
     "claude-opus-5-5": {}
   },
-  "theme": "dark",
-  "inputNeededNotifEnabled": true,
-  "agentPushNotifEnabled": true,
   "pluginConfigs": {
     "grafana-mcp@anthropic-plugin-directory": {
       "options": {
         "grafana_url": "https://grafana.lorenzolab.com"
       }
     }
-  }
+  },
+  "theme": "dark",
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true
 }
