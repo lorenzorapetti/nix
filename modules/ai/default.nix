@@ -11,18 +11,12 @@
       dotfiles = "${config.home.homeDirectory}/nix/dotfiles/claude-code";
       personalConfigDir = "${config.xdg.configHome}/claude-personal";
 
-      # Yaak's local MCP server (served by the running Yaak app). Shared by both
-      # claudes: home-manager's generated MCP plugin only lands in the main
-      # configDir, so claude-personal gets it via its own --mcp-config.
-      yaakMcp = {
+      # orbit, shared by both claudes: home-manager's generated MCP plugin only
+      # lands in the main configDir, so claude-personal gets it via its own
+      # --mcp-config.
+      orbitMcp = {
         type = "http";
-        url = "http://127.0.0.1:64343/mcp";
-      };
-
-      # itsaplan, likewise shared by both claudes.
-      itsaplanMcp = {
-        type = "http";
-        url = "https://plan.lorenzolab.com/api/mcp";
+        url = "https://board.lorenzolab.com/mcp";
       };
 
       # Grafana's MCP server, run natively instead of through the grafana-mcp
@@ -32,22 +26,20 @@
         GRAFANA_SERVICE_ACCOUNT_TOKEN="$(cat ${osConfig.sops.secrets.grafana_mcp_token.path})"
         export GRAFANA_SERVICE_ACCOUNT_TOKEN
         export GRAFANA_URL=https://grafana.lorenzolab.com
-        exec ${lib.getExe pkgs.mcp-grafana} -t stdio
+        # Only the tools for logs, dashboards and alerts (plus search and
+        # datasource lookup, which those need) to keep the tool list small.
+        exec ${lib.getExe pkgs.mcp-grafana} -t stdio \
+          --enabled-tools search,datasource,loki,dashboard,alerting
       '';
 
       # MCP servers for claude-personal.
       personalMcpConfig = pkgs.writeText "claude-personal-mcp.json" (builtins.toJSON {
         mcpServers = {
-          yaak = yaakMcp;
           grafana = {
             type = "stdio";
             command = "${grafanaMcp}";
           };
-          kaneo = {
-            type = "http";
-            url = "https://board.lorenzolab.com/api/mcp";
-          };
-          itsaplan = itsaplanMcp;
+          orbit = orbitMcp;
         };
       });
     in {
@@ -58,13 +50,9 @@
             enabled = true;
             url = "https://mcp.linear.app/mcp";
           };
-          yaak = {
+          orbit = {
             enabled = true;
-            inherit (yaakMcp) url;
-          };
-          itsaplan = {
-            enabled = true;
-            inherit (itsaplanMcp) url;
+            inherit (orbitMcp) url;
           };
         };
 

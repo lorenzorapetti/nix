@@ -48,6 +48,28 @@
       }
     ]
   },
+  "permissions": {
+    "deny": ["Artifact", "ArtifactComments", "ArtifactData"]
+  },
+  "syncClaudeAiSkills": false,
+  "disableClaudeAiConnectors": true,
+  "skillOverrides": {
+    "code-review": "off",
+    "simplify": "off",
+    "security-review": "off",
+    "init": "off",
+    "run": "off",
+    "fewer-permission-prompts": "off",
+    "plugin-authoring": "off",
+    "loop": "off",
+    "schedule": "off",
+    "artifact-design": "off",
+    "artifact-diagramming": "off",
+    "artifact-capabilities": "off",
+    "dataviz": "off",
+    "claude-api": "off",
+    "claude-in-chrome": "off"
+  },
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": false,
     "cloudflare@anthropic-plugin-directory": true

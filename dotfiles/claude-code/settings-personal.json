@@ -1,4 +1,30 @@
 {
+  "syncClaudeAiSkills": false,
+  "permissions": {
+    "deny": [
+      "Artifact",
+      "ArtifactComments",
+      "ArtifactData"
+    ]
+  },
+  "disableClaudeAiConnectors": true,
+  "skillOverrides": {
+    "code-review": "off",
+    "simplify": "off",
+    "security-review": "off",
+    "init": "off",
+    "run": "off",
+    "fewer-permission-prompts": "off",
+    "plugin-authoring": "off",
+    "loop": "off",
+    "schedule": "off",
+    "artifact-design": "off",
+    "artifact-diagramming": "off",
+    "artifact-capabilities": "off",
+    "dataviz": "off",
+    "claude-api": "off",
+    "claude-in-chrome": "off"
+  },
   "hooks": {
     "PreToolUse": [
       {

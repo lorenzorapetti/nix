@@ -25,8 +25,7 @@
       ...
     }: {
       home.packages = with inputs'.llm-agents.packages; [
-        # API client; its MCP server is wired into both claudes in modules/ai.
-        # nixpkgs' cargo hook makes the -sys crates link system libraries,
+        # API client. nixpkgs' cargo hook makes the -sys crates link system libraries,
         # which nixpkgs' yaak doesn't provide yet.
         (pkgs.yaak.overrideAttrs (old: {
           buildInputs =
@@ -43,8 +42,8 @@
         }))
         ccstatusline
         self'.packages.dbdelve
-        self'.packages.herdr-app
-        self'.packages.herdr-core
+        herdr-app
+        herdr-core
       ];
 
       xdg.configFile = let

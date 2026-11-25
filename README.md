@@ -147,8 +147,6 @@ by updating its `version` and hashes in the file listed.
 
 | App | Upstream | How it's packaged | Used by | File |
 |-----|----------|-------------------|---------|------|
-| `herdr-app` | [herdrdev/herdr-app](https://github.com/herdrdev/herdr-app) | Built from source (Rust + Zig/ghostty) | `desktop.coding` | `modules/desktop/applications/herdr-app.nix` |
-| `herdr-core` | [herdrdev/herdr-core](https://github.com/herdrdev/herdr-core) | Built from source (Rust + Zig/ghostty) | `desktop.coding`, `herdr-app` | `modules/desktop/applications/herdr-core.nix` |
 | `gridcraft` | [storytold/gridcraft](https://github.com/storytold/gridcraft) | Release AppImage (`modules/_lib/appimage.nix`) | `desktop.base-applications` | `modules/desktop/applications/craft/gridcraft.nix` |
 | `pdfcraft` | [storytold/pdfcraft](https://github.com/storytold/pdfcraft) | Release AppImage (`modules/_lib/appimage.nix`) | `desktop.base-applications` | `modules/desktop/applications/craft/pdfcraft.nix` |
 | `photocraft` | [storytold/photocraft](https://github.com/storytold/photocraft) | Release AppImage (`modules/_lib/appimage.nix`) | `desktop.base-applications` | `modules/desktop/applications/craft/photocraft.nix` |
